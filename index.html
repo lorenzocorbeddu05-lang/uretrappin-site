@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U'RE TRAPPIN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="brand">U'RE TRAPPIN</div>
+  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="#eventi">Eventi</a></li>
+    <li><a href="#foto">Foto</a></li>
+    <li><a href="#playlist">Playlist</a></li>
+    <li><a href="#liste">Liste</a></li>
+    <li><a href="#link">Link</a></li>
+    <li><a href="#chi-siamo">Chi siamo</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="laser" style="width:60%; top:18%; left:-5%; transform:rotate(-8deg);"></div>
+  <div class="laser" style="width:70%; top:70%; right:-10%; transform:rotate(6deg);"></div>
+  <div class="laser" style="width:40%; top:45%; left:10%; transform:rotate(3deg); opacity:0.3;"></div>
+  <div class="hero-content">
+    <img class="logo" src="assets/logo2.png" alt="U're Trappin">
+    <div class="tag">Eventi · DJ set · Garden</div>
+  </div>
+  <div class="scroll-cue">Scroll ↓</div>
+</section>
+
+<section id="eventi">
+  <div class="eyebrow">// In arrivo</div>
+  <h2 class="outline-heading section-head">Eventi</h2>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="event-date bubble-num"><span>02</span><span style="font-size:0.9rem; -webkit-text-stroke:1px var(--green); align-self:center;">/</span><span>08</span></div>
+      <div class="event-info">
+        <div class="venue">U're Trappin Garden</div>
+        <div class="lineup">Line up da annunciare · Special guest DJ</div>
+      </div>
+      <a class="event-cta" href="#liste">Iscriviti</a>
+    </div>
+    <div class="event-card">
+      <div class="event-date bubble-num"><span>16</span><span style="font-size:0.9rem; -webkit-text-stroke:1px var(--green); align-self:center;">/</span><span>08</span></div>
+      <div class="event-info">
+        <div class="venue">Coconuts x U're Trappin</div>
+        <div class="lineup">B2B set · Open air</div>
+      </div>
+      <a class="event-cta" href="#liste">Iscriviti</a>
+    </div>
+    <div class="event-card">
+      <div class="event-date bubble-num"><span>30</span><span style="font-size:0.9rem; -webkit-text-stroke:1px var(--green); align-self:center;">/</span><span>08</span></div>
+      <div class="event-info">
+        <div class="venue">Closing Party</div>
+        <div class="lineup">Full lineup · Info a breve</div>
+      </div>
+      <a class="event-cta" href="#liste">Iscriviti</a>
+    </div>
+  </div>
+</section>
+
+<section id="foto">
+  <div class="eyebrow">// Ricordi</div>
+  <h2 class="outline-heading section-head">Foto Eventi</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox('assets/crowd.png')"><img src="assets/crowd.png" alt="Evento U're Trappin"></div>
+    <div class="gallery-item" onclick="openLightbox('assets/led-sign.png')"><img src="assets/led-sign.png" alt="Insegna U're Trappin"></div>
+    <div class="gallery-item" onclick="openLightbox('assets/scoreboard.png')"><img src="assets/scoreboard.png" alt="Scoreboard U're Trappin"></div>
+    <div class="gallery-item" onclick="openLightbox('assets/coconuts-halftone.png')"><img src="assets/coconuts-halftone.png" alt="Coconuts x U're Trappin"></div>
+  </div>
+
+  <div class="drive-list">
+    <div class="panel-label" style="margin-top:2.5rem;">Archivio foto complete · Google Drive</div>
+    <div class="drive-row">
+      <span class="drive-date bubble-num">30/08</span>
+      <span class="drive-name">Closing Party</span>
+      <a class="drive-link" href="#" target="_blank" rel="noopener">Apri cartella →</a>
+    </div>
+    <div class="drive-row">
+      <span class="drive-date bubble-num">16/08</span>
+      <span class="drive-name">Coconuts x U're Trappin</span>
+      <a class="drive-link" href="#" target="_blank" rel="noopener">Apri cartella →</a>
+    </div>
+    <div class="drive-row">
+      <span class="drive-date bubble-num">02/08</span>
+      <span class="drive-name">U're Trappin Garden</span>
+      <a class="drive-link" href="#" target="_blank" rel="noopener">Apri cartella →</a>
+    </div>
+  </div>
+</section>
+
+<section id="playlist">
+  <div class="eyebrow">// Ascolta</div>
+  <h2 class="outline-heading section-head">Playlist</h2>
+  <div class="panel">
+    <div class="panel-label">Spotify · U're Trappin</div>
+    <div class="playlist-wrap">
+      <iframe style="border-radius:0" src="https://open.spotify.com/embed/playlist/7722tCvP0Tci7ySR0g6ZQf?utm_source=generator&theme=0&si=49c74c0af75840aa" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="liste">
+  <div class="eyebrow">// Ingressi</div>
+  <h2 class="outline-heading section-head">Info & Liste</h2>
+  <div class="panel info-layout">
+    <div>
+      <div class="info-block">
+        <h3>Entry</h3>
+        <div class="info-row"><span class="label">Lista</span><span class="value">Free until 00:00</span></div>
+        <div class="info-row"><span class="label">Lista</span><span class="value">12€ w/ drink</span></div>
+        <div class="info-row"><span class="label">No RSVP</span><span class="value">15€ w/ drink</span></div>
+      </div>
+      <div class="info-block">
+        <h3>Tables</h3>
+        <div class="info-row"><span class="label">Standard</span><span class="value">DM per info</span></div>
+        <div class="info-row"><span class="label">VIP</span><span class="value">DM per info</span></div>
+      </div>
+      <div class="infoline">Infoline: <strong>+39 XXX XXX XXXX</strong></div>
+    </div>
+    <div>
+      <div class="info-block">
+        <h3>Iscriviti alla lista</h3>
+        <p style="color:#b8beb6; max-width:44ch; margin-bottom:0.5rem;">Compila il Google Form per assicurarti l'ingresso scontato al prossimo evento. Posti limitati.</p>
+        <a class="form-cta" href="#" target="_blank" rel="noopener">Vai al Google Form →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="link">
+  <div class="eyebrow">// Seguici</div>
+  <h2 class="outline-heading section-head">I Nostri Link</h2>
+  <div class="links-grid">
+    <a class="link-card" href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">
+      <span class="link-name">Instagram</span>
+      <span class="link-sub">@uretrappin</span>
+    </a>
+    <a class="link-card" href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">
+      <span class="link-name">TikTok</span>
+      <span class="link-sub">@uretrappin</span>
+    </a>
+    <a class="link-card" href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">
+      <span class="link-name">WhatsApp</span>
+      <span class="link-sub">Entra nel gruppo</span>
+    </a>
+  </div>
+</section>
+
+<section id="chi-siamo">
+  <div class="eyebrow">// Chi siamo</div>
+  <div class="about">
+    <div class="about-photo">
+      <img src="assets/coconuts-halftone.png" alt="U're Trappin crew">
+    </div>
+    <div>
+      <h2 class="outline-heading section-head">The Crew</h2>
+      <p>U're Trappin nasce dalla voglia di un gruppo di amici di portare le serate giuste nei posti giusti — garden all'aperto, palme, laser verdi e un unico obiettivo: far ballare la gente fino a notte fonda.</p>
+      <p>Organizziamo eventi e DJ set in location selezionate, curando ogni dettaglio: dal booking degli artisti alla produzione visiva, fino alla gestione degli ingressi.</p>
+      <p>Questo è solo l'inizio — seguici per non perderti il prossimo evento.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="brand">U'RE TRAPPIN</span>
+  Instagram · TikTok · info@uretrappin.com
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕ Chiudi</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  function openLightbox(src){
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  const nav = document.getElementById('mainNav');
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
