@@ -21,3 +21,10 @@
       navToggle.setAttribute('aria-expanded', 'false');
     });
   });
+
+  const overlay = document.getElementById("menuOverlay");
+
+  overlay.addEventListener("click", () => {
+      nav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+  });
