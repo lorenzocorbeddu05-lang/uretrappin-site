@@ -123,7 +123,7 @@
     nav ul{
       position:fixed;
       top:0; right:0;
-      height:100svh;
+      height:100dvh;
       width:240px;
       flex-direction:column;
       justify-content:flex-start;
