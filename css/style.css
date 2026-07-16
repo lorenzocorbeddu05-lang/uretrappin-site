@@ -35,8 +35,8 @@
     color:var(--bg);
     -webkit-text-stroke:1.5px var(--green);
     text-shadow:
-      0 0 6px rgba(63,230,74,0.7),
-      0 0 22px rgba(63,230,74,0.45);
+      0 0 4px rgba(63,230,74,0.45),
+      0 0 10px rgba(63,230,74,0.25);
     letter-spacing:0.02em;
     font-style:italic;
   }
@@ -214,6 +214,11 @@
   .section-head{
     font-size:clamp(2.2rem, 5vw, 3.6rem);
     margin-bottom:2.4rem;
+  }
+  @media (max-width:720px){
+    .section-head{
+      margin-bottom:1.2rem;
+      }
   }
 
   /* ---------- CHI SIAMO ---------- */
@@ -420,9 +425,11 @@
     border:1px solid rgba(63,230,74,0.15);
     pointer-events:none;
   }
-  .link-card:hover{
-    border-color:var(--green);
-    transform:translateY(-3px);
+  @media (hover:hover){
+    .link-card:hover{
+      border-color:var(--green);
+      transform:translateY(-3px);
+    }
   }
   .link-name{
     font-family:'Bungee', sans-serif;
@@ -437,6 +444,55 @@
     letter-spacing:0.03em;
     font-size:1rem;
   }
+  @media(max-width:720px){
+    .links-grid{
+      display:flex;
+      flex-direction:column;
+      gap:0;
+      border:1px solid rgba(91,98,91,0.6);
+      background:var(--panel);
+    }
+    .link-card{
+      position:relative;
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      justify-content:space-between;
+      padding:1rem 1.2rem;
+      background:transparent;
+      border:none;
+      transform:none;
+      transition:background 0.15s ease;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .link-card:not(:last-child)::after{
+      content:"";
+      position:absolute;
+      left:1.2rem;
+      right:1.2rem;
+      bottom:0;
+      height:1px;
+      background:rgba(91,98,91,0.35);
+    }
+    .link-card::before{
+      display:none;
+    }
+    .link-card:active{
+      background:rgba(63,230,74,0.08);
+    }
+    .link-card:hover{
+      transform:none;
+      border-color:transparent;
+    }
+    .link-name{
+      font-size:1.05rem;
+    }
+    .link-sub{
+      margin-left:auto;
+      margin-right:1rem;
+      font-size:0.85rem;
+    }
+}
 
   /* ---------- PLAYLIST PANEL ---------- */
   .panel{
