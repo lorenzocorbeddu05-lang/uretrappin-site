@@ -79,7 +79,9 @@
     letter-spacing:0.04em;
   }
   nav ul a{ position:relative; padding-bottom:3px; }
-  nav ul a:hover{ color:var(--green-bright); }
+  @media (hover:hover){
+    nav ul a:hover{ color:var(--green-bright); }
+  }
 
   .nav-toggle{
     display:none;
@@ -255,65 +257,110 @@
     .about{ grid-template-columns:1fr; }
   }
 
-  /* ---------- EVENTI ---------- */
+  .events-swipe-hint{
+    display:none;
+    text-align:center;
+    color:var(--steel);
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    margin-top:1rem;
+  }
+
+
   .events-grid{
     display:grid;
-    gap:2rem;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:clamp(1.5rem, 4vw, 2.5rem);
   }
-  .event-card{
-    display:grid;
-    grid-template-columns: auto 1fr auto;
+
+  .event-poster-card{
+    display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:clamp(1.2rem, 3vw, 2.5rem);
-    background:
-      repeating-linear-gradient(0deg, rgba(63,230,74,0.05) 0px, rgba(63,230,74,0.05) 1px, transparent 1px, transparent 3px),
-      var(--panel);
+    gap:1.1rem;
+    background:var(--panel);
     border:1px solid var(--steel);
-    padding: clamp(1.2rem, 3vw, 2rem) clamp(1.4rem, 3vw, 2.4rem);
+    padding:0.6rem 0.6rem 1.4rem;
     position:relative;
+    transition:transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
-  .event-card::before{
+  .event-poster-card::before{
     content:"";
-    position:absolute; inset:6px;
-    border:1px solid rgba(63,230,74,0.15);
+    position:absolute; inset:5px;
+    border:1px solid rgba(63,230,74,0.12);
     pointer-events:none;
   }
-  .event-date{
+  .event-poster-card img{
+    width:100%;
+    height:auto;
+    display:block;
+    border:1px solid rgba(63,230,74,0.25);
+  }
+
+  @media (hover:hover){
+    .event-poster-card:hover{
+      transform:translateY(-6px);
+      border-color:var(--green);
+      box-shadow:0 14px 32px rgba(63,230,74,0.18);
+    }
+  }
+
+  .event-actions{
     display:flex;
-    gap:0.3rem;
-    align-items:baseline;
-    font-size:clamp(2.2rem, 5vw, 3.2rem);
+    gap:0.8rem;
+    width:100%;
+    padding:0 0.4rem;
   }
-  .event-date span{ display:block; }
-  .event-info .venue{
-    font-family:'Bungee', sans-serif;
-    font-size:clamp(1.1rem, 2.5vw, 1.6rem);
-    color:var(--green-bright);
-    text-shadow:0 0 8px rgba(63,230,74,0.5);
-    margin-bottom:0.3rem;
-  }
-  .event-info .lineup{
-    color:#b8beb6;
-    font-size:1.05rem;
-    text-transform:uppercase;
-    letter-spacing:0.03em;
-  }
+
   .event-cta{
+    flex:1;
+    text-align:center;
     font-family:'Barlow Condensed', sans-serif;
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:0.05em;
     border:1.5px solid var(--green);
     color:var(--green-bright);
-    padding:0.7rem 1.4rem;
+    padding:0.7rem 1.2rem;
     white-space:nowrap;
     transition: background 0.2s, color 0.2s;
   }
-  .event-cta:hover{ background:var(--green); color:var(--bg); }
+  @media (hover:hover){
+    .event-cta:hover{ background:var(--green); color:var(--bg); }
+  }
+
+  .event-cta--info{
+    border-color:var(--steel);
+    color:var(--off-white);
+  }
+  @media (hover:hover){
+    .event-cta--info:hover{ background:var(--steel); color:var(--bg); }
+  }
 
   @media (max-width:640px){
-    .event-card{ grid-template-columns:1fr; text-align:left; }
-    .event-cta{ justify-self:start; }
+    .events-grid{
+      display:flex;
+      flex-direction:row;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      gap:1.1rem;
+      padding-bottom:0.4rem;
+      margin:0 calc(-1 * var(--gap));
+      padding-left:var(--gap);
+      padding-right:var(--gap);
+      scrollbar-width:none;
+    }
+    .events-grid::-webkit-scrollbar{ display:none; }
+    .event-poster-card{
+      flex:0 0 78%;
+      scroll-snap-align:center;
+      padding:0.4rem 0.4rem 1.1rem;
+    }
+    .events-swipe-hint{
+      display:block;
+    }
   }
 
   /* ---------- GALLERY ---------- */
@@ -348,8 +395,10 @@
     transition:opacity 0.35s ease;
     mix-blend-mode:color;
   }
-  .gallery-item:hover img{ transform:scale(1.06); filter:grayscale(0.55) contrast(1.2); }
-  .gallery-item:hover::after{ opacity:1; }
+  @media (hover:hover){
+    .gallery-item:hover img{ transform:scale(1.06); filter:grayscale(0.55) contrast(1.2); }
+    .gallery-item:hover::after{ opacity:1; }
+  }
 
   .lightbox{
     position:fixed; inset:0; z-index:200;
@@ -372,17 +421,22 @@
   .drive-row{
     display:flex;
     align-items:center;
-    gap:clamp(1rem, 3vw, 2rem);
+    gap:clamp(0.7rem, 3vw, 2rem);
     padding:0.9rem 0;
     border-bottom:1px dashed #232823;
   }
   .drive-row:last-child{ border-bottom:none; }
   .drive-date{
     font-size:1.4rem;
-    min-width:5.5rem;
+    min-width:4.6rem;
+    flex-shrink:0;
   }
   .drive-name{
     flex:1;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
     text-transform:uppercase;
     font-weight:600;
     letter-spacing:0.03em;
@@ -393,14 +447,18 @@
     text-transform:uppercase;
     color:var(--green-bright);
     white-space:nowrap;
+    flex-shrink:0;
     border-bottom:1px solid transparent;
     transition:border-color 0.2s;
   }
-  .drive-link:hover{ border-color:var(--green-bright); }
+  @media (hover:hover){
+    .drive-link:hover{ border-color:var(--green-bright); }
+  }
 
   @media (max-width:600px){
-    .drive-row{ flex-wrap:wrap; }
-    .drive-name{ flex-basis:100%; order:3; }
+    .drive-date{ font-size:1.15rem; min-width:3.6rem; }
+    .drive-name{ font-size:1rem; }
+    .drive-link{ font-size:0.85rem; }
   }
 
   /* ---------- LINKS GRID ---------- */
@@ -564,7 +622,9 @@
     letter-spacing:0.04em;
     transition:transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .form-cta:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(63,230,74,0.35); }
+  @media (hover:hover){
+    .form-cta:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(63,230,74,0.35); }
+  }
 
   .infoline{
     margin-top:2rem;
@@ -594,3 +654,37 @@
     margin-bottom:0.6rem;
     font-size:1rem;
   }
+
+  /* ---------- EVENTI/FOTO DINAMICI (events.json) ---------- */
+  .date-sep{
+    font-size:0.9rem;
+    -webkit-text-stroke:1px var(--green);
+    align-self:center;
+  }
+
+  .no-events{
+    color:#b8beb6;
+    font-style:italic;
+    font-size:1.05rem;
+  }
+
+  .archive-toggle{
+    margin-top:1.5rem;
+    background:none;
+    border:1.5px solid var(--green);
+    color:var(--green-bright);
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:0.6rem 1.3rem;
+    cursor:pointer;
+    transition:background 0.2s, color 0.2s;
+  }
+  @media (hover:hover){
+    .archive-toggle:hover{ background:var(--green); color:var(--bg); }
+  }
+
+  #drivePhotosArchive{ margin-top:0.5rem; }
+
+  .archive-hidden{ display:none; }

@@ -40,32 +40,10 @@
 <section id="eventi">
   <div class="eyebrow">// In arrivo</div>
   <h2 class="outline-heading section-head">Eventi</h2>
-  <div class="events-grid">
-    <div class="event-card">
-      <div class="event-date bubble-num"><span>02</span><span style="font-size:0.9rem; -webkit-text-stroke:1px var(--green); align-self:center;">/</span><span>08</span></div>
-      <div class="event-info">
-        <div class="venue">U're Trappin Garden</div>
-        <div class="lineup">Line up da annunciare · Special guest DJ</div>
-      </div>
-      <a class="event-cta" href="#liste">Iscriviti</a>
-    </div>
-    <div class="event-card">
-      <div class="event-date bubble-num"><span>16</span><span style="font-size:0.9rem; -webkit-text-stroke:1px var(--green); align-self:center;">/</span><span>08</span></div>
-      <div class="event-info">
-        <div class="venue">Coconuts x U're Trappin</div>
-        <div class="lineup">B2B set · Open air</div>
-      </div>
-      <a class="event-cta" href="#liste">Iscriviti</a>
-    </div>
-    <div class="event-card">
-      <div class="event-date bubble-num"><span>30</span><span style="font-size:0.9rem; -webkit-text-stroke:1px var(--green); align-self:center;">/</span><span>08</span></div>
-      <div class="event-info">
-        <div class="venue">Closing Party</div>
-        <div class="lineup">Full lineup · Info a breve</div>
-      </div>
-      <a class="event-cta" href="#liste">Iscriviti</a>
-    </div>
+  <div class="events-grid" id="eventsGrid">
+    <p class="no-events">Caricamento eventi…</p>
   </div>
+  <p class="events-swipe-hint">← Scorri per vedere altri eventi →</p>
 </section>
 
 <section id="foto">
@@ -80,20 +58,13 @@
 
   <div class="drive-list">
     <div class="panel-label" style="margin-top:2.5rem;">Archivio foto complete · Google Drive</div>
-    <div class="drive-row">
-      <span class="drive-date bubble-num">30/08</span>
-      <span class="drive-name">Closing Party</span>
-      <a class="drive-link" href="#" target="_blank" rel="noopener">Apri cartella →</a>
+    <div id="drivePhotosRecent">
+      <p class="no-events">Caricamento…</p>
     </div>
-    <div class="drive-row">
-      <span class="drive-date bubble-num">16/08</span>
-      <span class="drive-name">Coconuts x U're Trappin</span>
-      <a class="drive-link" href="#" target="_blank" rel="noopener">Apri cartella →</a>
-    </div>
-    <div class="drive-row">
-      <span class="drive-date bubble-num">02/08</span>
-      <span class="drive-name">U're Trappin Garden</span>
-      <a class="drive-link" href="#" target="_blank" rel="noopener">Apri cartella →</a>
+
+    <div id="archiveWrapper" class="archive-hidden">
+      <button class="archive-toggle" id="archiveToggle" aria-expanded="false">Mostra serate precedenti ↓</button>
+      <div id="drivePhotosArchive" class="archive-hidden"></div>
     </div>
   </div>
 </section>
