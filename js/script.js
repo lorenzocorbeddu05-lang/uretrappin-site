@@ -61,20 +61,93 @@ function formatDayMonth(dateObj){
  * La locandina è l'elemento principale; nessuna informazione testuale
  * viene duplicata, dato che è già presente nella grafica stessa.
  */
-function renderEventCard(ev){
-  const bookingHref = ev.booking ? ev.booking : '#liste';
-  const bookingTarget = ev.booking ? '_blank' : '_self';
-  const altText = `Locandina evento: ${ev.name}${ev.location ? ' – ' + ev.location : ''}`;
+/**
+ * Genera il markup del RETRO della card (info specifiche dell'evento).
+ * Combina i campi fissi (location, start) con la lista libera "details",
+ * cosi' si possono aggiungere nuovi campi in events.json senza toccare il codice.
+ */
+function renderInfoBack(ev, iscrivitiHtml){
+  const info = ev.info || {};
+  const fixedRows = [];
+  if (info.location) fixedRows.push({ label: 'Posizione', value: info.location });
+  if (info.start) fixedRows.push({ label: 'Inizio', value: info.start });
+
+  const detailRows = Array.isArray(info.details) ? info.details : [];
+  const allRows = [...fixedRows, ...detailRows];
+
+  const rowsHtml = allRows.length
+    ? allRows.map(r => `
+        <div class="info-back-row">
+          <span class="info-back-label">${r.label}</span>
+          <span class="info-back-value">${r.value}</span>
+        </div>
+      `).join('')
+    : '<p class="no-events">Info in arrivo.</p>';
 
   return `
-    <div class="event-poster-card">
-      <img src="${ev.poster}" alt="${altText}" loading="lazy">
+    <div class="card-face card-back">
+      <div class="info-back-header">${ev.name}</div>
+      <div class="info-back-rows">${rowsHtml}</div>
       <div class="event-actions">
-        <a class="event-cta" href="${bookingHref}" target="${bookingTarget}" rel="noopener">Iscriviti</a>
-        <a class="event-cta event-cta--info" href="#liste">Info</a>
+        ${iscrivitiHtml}
+        <button class="event-cta card-flip-back" type="button">Indietro</button>
       </div>
     </div>
   `;
+}
+
+/**
+ * Genera il markup di una singola card evento (sezione "Eventi").
+ * La card ha due facce: fronte (locandina + pulsanti) e retro (info),
+ * che si alternano con un effetto "flip" quando si preme "Info".
+ */
+function renderEventCard(ev){
+  const altText = `Locandina evento: ${ev.name}${ev.location ? ' – ' + ev.location : ''}`;
+
+  const iscrivitiHtml = ev.booking
+    ? `<a class="event-cta" href="${ev.booking}" target="_blank" rel="noopener">Iscriviti</a>`
+    : `<span class="event-cta event-cta--disabled" aria-disabled="true">Iscrizioni a breve</span>`;
+
+  return `
+    <div class="event-poster-card">
+      <div class="card-inner">
+        <div class="card-face card-front">
+          <img src="${ev.poster}" alt="${altText}" loading="lazy">
+          <div class="event-actions">
+            ${iscrivitiHtml}
+            <button class="event-cta event-cta--info" type="button">Info</button>
+          </div>
+        </div>
+        ${renderInfoBack(ev, iscrivitiHtml)}
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Gestisce il click sui pulsanti "Info" e "← Indietro" tramite event
+ * delegation sul contenitore #eventsGrid. Va agganciato una sola volta:
+ * funziona anche dopo che le card vengono rigenerate, perche' il
+ * contenitore stesso non viene mai ricreato, solo il suo contenuto.
+ */
+function setupFlipCardInteractions(){
+  const grid = document.getElementById('eventsGrid');
+  if (!grid || grid.dataset.flipBound) return;
+
+  grid.addEventListener('click', (e) => {
+    const infoBtn = e.target.closest('.event-cta--info');
+    const backBtn = e.target.closest('.card-flip-back');
+
+    if (infoBtn){
+      e.preventDefault();
+      infoBtn.closest('.event-poster-card').classList.add('flipped');
+    } else if (backBtn){
+      e.preventDefault();
+      backBtn.closest('.event-poster-card').classList.remove('flipped');
+    }
+  });
+
+  grid.dataset.flipBound = 'true';
 }
 
 /**
@@ -168,6 +241,7 @@ async function loadEvents(){
 
     renderUpcomingEvents(events);
     renderPhotoArchive(events);
+    setupFlipCardInteractions();
   } catch (err) {
     console.error('Errore nel caricamento di data/events.json:', err);
     const grid = document.getElementById('eventsGrid');

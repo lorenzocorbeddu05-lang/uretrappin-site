@@ -1,30 +1,49 @@
 [
   {
-    "date": "2026-08-30",
-    "name": "Closing Party",
-    "location": "Garden",
-    "lineup": "Full lineup · Info a breve",
-    "booking": null,
-    "photos": null,
-    "poster": "assets/eventi/2026-08-30.jpg"
-  },
-  {
     "date": "2026-08-16",
     "name": "Coconuts x U're Trappin",
     "location": "Garden",
     "lineup": "B2B set · Open air",
-    "booking": null,
+    "booking": "null",
     "photos": null,
-    "poster": "assets/eventi/2026-08-16.jpg"
+    "poster": "assets/eventi/2026-08-16.jpg",
+    "info": {
+      "location": "Garden, Via Roma 12",
+      "start": "22:30",
+      "details": [
+        {
+          "label": "Ingresso",
+          "value": "12€ con drink incluso"
+        },
+        {
+          "label": "Sponsor",
+          "value": "Coconuts"
+        }
+      ]
+    }
   },
   {
     "date": "2026-08-02",
-    "name": "U're Trappin Garden",
+    "name": "Coconuts Garden",
     "location": "Garden",
     "lineup": "Line up da annunciare · Special guest DJ",
-    "booking": null,
+    "booking": "null",
     "photos": null,
-    "poster": "assets/eventi/2026-08-02.jpg"
+    "poster": "assets/eventi/2026-08-02.jpg",
+    "info": {
+      "location": "Garden, Via Roma 12",
+      "start": "23:00",
+      "details": [
+        {
+          "label": "Ingresso",
+          "value": "Gratuito fino alle 00:00, poi 10€"
+        },
+        {
+          "label": "Tavoli",
+          "value": "Prenotazione via DM Instagram"
+        }
+      ]
+    }
   },
   {
     "date": "2026-07-05",
@@ -37,7 +56,7 @@
   },
   {
     "date": "2026-06-21",
-    "name": "U're Trappin Garden",
+    "name": "Solstizio Estivo",
     "location": "Garden",
     "lineup": "Special guest DJ",
     "booking": null,
@@ -46,7 +65,7 @@
   },
   {
     "date": "2026-06-07",
-    "name": "Opening Party",
+    "name": "Warm Up Session",
     "location": "Garden",
     "lineup": "B2B set",
     "booking": null,
