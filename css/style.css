@@ -199,7 +199,7 @@
   @keyframes bob{ 0%,100%{ transform:translate(-50%,0);} 50%{ transform:translate(-50%,8px);} }
 
   /* ---------- SECTION SHELL ---------- */
-  section{ padding: clamp(2.5rem, 5vw, 4rem) var(--gap); position:relative; }
+  section{ padding: clamp(3rem,6vw,5rem) var(--gap); position:relative; }
   @media(max-width:720px){
   section{
       padding-top:1.5rem;
@@ -270,12 +270,12 @@
 
   .events-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(305px, 1fr));
     gap:clamp(1.5rem, 4vw, 2.5rem);
   }
 
   .event-poster-card{
-    max-width:350px;
+    max-width:400px;
     min-width:0;
     perspective:1600px;
   }
@@ -442,6 +442,9 @@
       scrollbar-width:none;
     }
     .events-grid::-webkit-scrollbar{ display:none; }
+    .events-grid.single-event{
+      justify-content:center;
+    }
     .event-poster-card{
       flex:0 0 85%;
       max-width:none;

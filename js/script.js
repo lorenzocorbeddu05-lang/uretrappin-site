@@ -170,6 +170,7 @@ function renderDriveRow(ev){
  */
 function renderUpcomingEvents(events){
   const grid = document.getElementById('eventsGrid');
+  const swipeHint = document.querySelector('.events-swipe-hint');
   if (!grid) return;
 
   const today = getTodayMidnight();
@@ -180,10 +181,16 @@ function renderUpcomingEvents(events){
 
   if (upcoming.length === 0){
     grid.innerHTML = '<p class="no-events">Nessun evento in programma al momento — torna presto!</p>';
+    grid.classList.remove('single-event');
+    if (swipeHint) swipeHint.style.display = 'none';
     return;
   }
 
   grid.innerHTML = upcoming.map(renderEventCard).join('');
+
+  const isSingle = upcoming.length === 1;
+  grid.classList.toggle('single-event', isSingle);
+  if (swipeHint) swipeHint.style.display = isSingle ? 'none' : '';
 }
 
 /**
