@@ -5,37 +5,89 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>U'RE TRAPPIN</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- ===== COUNTDOWN DROP (rimuovi questo blocco + countdown.html dopo
+     il 28/09 — tutto lo stile e la logica sono dentro countdown.html,
+     qui c'è solo il caricamento generico del frammento) ===== -->
+<div id="countdown-root"></div>
+<script>
+  fetch('countdown.html')
+    .then(res => res.text())
+    .then(html => {
+      const root = document.getElementById('countdown-root');
+      root.innerHTML = html;
+      // Uno <script> inserito via innerHTML non si esegue da solo:
+      // va ricreato e reinserito nel DOM per farlo partire.
+      root.querySelectorAll('script').forEach(oldScript => {
+        const newScript = document.createElement('script');
+        newScript.textContent = oldScript.textContent;
+        oldScript.replaceWith(newScript);
+      });
+    })
+    .catch(err => console.error('Errore nel caricamento di countdown.html:', err));
+</script>
+<!-- ===== FINE COUNTDOWN DROP ===== -->
+
+<!-- ===== SCHERMATA DI CARICAMENTO =====
+     Overlay a schermo intero, visibile finché la pagina non ha finito
+     di caricare (immagini incluse). Sparisce da solo via script.js
+     (vedi funzione hidePageLoader). -->
+<div id="pageLoader">
+  <img src="assets/logo2.png" alt="U're Trappin" class="loader-logo">
+</div>
+
+<!-- ===== NAVBAR ===== -->
 <nav id="mainNav">
   <div class="brand">U'RE TRAPPIN</div>
   <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
   <ul id="navMenu">
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
     <li><a href="#eventi">Eventi</a></li>
-    <li><a href="#foto">Foto</a></li>
-    <li><a href="#playlist">Playlist</a></li>
-    <li><a href="#link">Link</a></li>
-    <li><a href="#chi-siamo">Chi siamo</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#about">About Us</a></li>
   </ul>
 </nav>
 <div id="menuOverlay"></div>
 
+<!-- ===== HERO (landing) =====
+     Foto di sfondo + logo. Per cambiare la foto: modifica il
+     percorso in css/style.css alla regola .hero::before -->
 <section class="hero">
-  <div class="laser" style="width:60%; top:18%; left:-5%; transform:rotate(-8deg);"></div>
-  <div class="laser" style="width:70%; top:70%; right:-10%; transform:rotate(6deg);"></div>
-  <div class="laser" style="width:40%; top:45%; left:10%; transform:rotate(3deg); opacity:0.3;"></div>
   <div class="hero-content">
     <img class="logo" src="assets/logo2.png" alt="U're Trappin">
-    <div class="tag">Eventi · DJ set · Trappin</div>
+    <div class="tag">Merch · Music · Trappin</div>
   </div>
   <div class="scroll-cue">Scroll ↓</div>
 </section>
 
+<!-- ===== SEZIONE SHOP (anteprima sulla home) =====
+     Foto a piena larghezza (sfondo CSS, vedi style.css) + pulsante
+     sopra. Foto diverse per mobile/desktop, gestite automaticamente
+     da una media query in CSS — non serve toccare l'HTML per quello. -->
+<section id="shop" class="teaser-banner">
+  <a class="teaser-cta" href="shop.html">Vai allo Shop →</a>
+</section>
+
+<!-- ===== SEZIONE GALLERY (anteprima sulla home) =====
+     Stessa logica della sezione Shop qui sopra. -->
+<section id="gallery" class="teaser-banner">
+  <a class="teaser-cta" href="gallery.html">Vedi tutte le foto →</a>
+</section>
+
+<!-- ===== SEZIONE EVENTI =====
+     Le card evento sono generate automaticamente da js/script.js,
+     leggendo i dati da data/events.json. Non serve modificare questo
+     HTML per aggiungere un nuovo evento: basta editare events.json.
+     Ogni card ha un fronte (locandina + pulsanti) e un retro (info),
+     che si alternano con un effetto "flip" al click su "Info".
+-->
 <section id="eventi">
   <div class="eyebrow">// In arrivo</div>
   <h2 class="outline-heading section-head">Eventi</h2>
@@ -45,32 +97,13 @@
   <p class="events-swipe-hint">← Scorri per vedere altri eventi →</p>
 </section>
 
-<section id="foto">
-  <div class="eyebrow">// Ricordi</div>
-  <h2 class="outline-heading section-head">Foto Eventi</h2>
-  <div class="gallery-grid">
-    <div class="gallery-item" onclick="openLightbox('assets/crowd.png')"><img src="assets/crowd.png" alt="Evento U're Trappin"></div>
-    <div class="gallery-item" onclick="openLightbox('assets/led-sign.png')"><img src="assets/led-sign.png" alt="Insegna U're Trappin"></div>
-    <div class="gallery-item" onclick="openLightbox('assets/scoreboard.png')"><img src="assets/scoreboard.png" alt="Scoreboard U're Trappin"></div>
-    <div class="gallery-item" onclick="openLightbox('assets/coconuts-halftone.png')"><img src="assets/coconuts-halftone.png" alt="Coconuts x U're Trappin"></div>
-  </div>
-
-  <div class="drive-list">
-    <div class="panel-label" style="margin-top:2.5rem;">Archivio foto complete</div>
-    <div id="drivePhotosRecent">
-      <p class="no-events">Caricamento…</p>
-    </div>
-
-    <div id="archiveWrapper" class="archive-hidden">
-      <button class="archive-toggle" id="archiveToggle" aria-expanded="false">Mostra serate precedenti ↓</button>
-      <div id="drivePhotosArchive" class="archive-hidden"></div>
-    </div>
-  </div>
-</section>
-
-<section id="playlist">
+<!-- ===== SEZIONE MUSIC =====
+     Player Spotify incorporato. Per cambiare playlist: sostituisci
+     l'URL nel src dell'iframe con quello della tua playlist Spotify
+     (Condividi > Incorpora playlist, sul sito/app di Spotify) -->
+<section id="music">
   <div class="eyebrow">// Ascolta</div>
-  <h2 class="outline-heading section-head">Playlist</h2>
+  <h2 class="outline-heading section-head">Music</h2>
   <div class="panel">
     <div class="panel-label">Spotify · U're Trappin</div>
     <div class="playlist-wrap">
@@ -79,33 +112,15 @@
   </div>
 </section>
 
-<section id="link">
-  <div class="eyebrow">// Seguici</div>
-  <h2 class="outline-heading section-head">I Nostri Link</h2>
-  <div class="links-grid">
-    <a class="link-card" href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">
-      <span class="link-name">Instagram</span>
-      <span class="link-sub">@uretrappin</span>
-    </a>
-    <a class="link-card" href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">
-      <span class="link-name">TikTok</span>
-      <span class="link-sub">@uretrappin</span>
-    </a>
-    <a class="link-card" href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">
-      <span class="link-name">WhatsApp</span>
-      <span class="link-sub">Entra nel gruppo</span>
-    </a>
-  </div>
-</section>
-
-<section id="chi-siamo">
+<!-- ===== SEZIONE ABOUT US ===== -->
+<section id="about">
   <div class="eyebrow">// Chi siamo</div>
   <div class="about">
     <div class="about-photo">
       <img src="assets/coconuts-halftone.png" alt="U're Trappin crew">
     </div>
     <div>
-      <h2 class="outline-heading section-head">The Crew</h2>
+      <h2 class="outline-heading section-head">About Us</h2>
       <p>CHI SIAMO</p>
       <p>Breve descrizione/presentazione</p>
       <p>...</p>
@@ -113,11 +128,51 @@
   </div>
 </section>
 
+<!-- ===== FOOTER (uguale su tutte le pagine) ===== -->
+<!-- ===== FOOTER (uguale su tutte le pagine) =====
+     3 categorie impilate verticalmente: Links (social), Sezioni sito
+     (le stesse voci del menu), Contatti. Per aggiungere una voce a una
+     categoria, aggiungi un altro <a> dentro il div.footer-category
+     corrispondente. -->
 <footer>
-  <span class="brand">U'RE TRAPPIN</span>
-  Instagram · TikTok · info@uretrappin.com
+  <div class="footer-top">
+    <img src="assets/logo2.png" alt="U're Trappin" class="footer-logo">
+  </div>
+
+  <div class="footer-columns">
+    <div class="footer-category">
+      <h3 class="footer-heading">Links</h3>
+      <a href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Sezioni sito</h3>
+      <a href="index.html#shop">Shop</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#eventi">Eventi</a>
+      <a href="index.html#music">Music</a>
+      <a href="index.html#about">About Us</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Contatti</h3>
+      <a href="mailto:info@uretrappin.com">info@uretrappin.com</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Info legali</h3>
+      <a href="legali/privacy.html">Privacy Policy</a>
+      <a href="legali/termini.html">Termini e Condizioni</a>
+      <a href="legali/recesso.html">Diritto di Recesso</a>
+    </div>
+  </div>
 </footer>
 
+<!-- ===== LIGHTBOX =====
+     Overlay per vedere le foto ingrandite, invocato da openLightbox()
+     in js/script.js. Non toccare, viene gestito automaticamente. -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close">✕ Chiudi</span>
   <img id="lightbox-img" src="" alt="">

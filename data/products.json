@@ -1,0 +1,144 @@
+[
+  {
+    "name": "Get Rich Or Die Trappin' T-Shirt",
+    "variant": "Black",
+    "price": "40€",
+    "available": true,
+    "photos": [
+      "assets/products/product-1-1.jpg",
+      "assets/products/product-1-2.jpg",
+      "assets/products/product-1-3.jpg"
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "stripeLinksBySize": {
+      "S": "https://buy.stripe.com/REPLACE_ME",
+      "M": "https://buy.stripe.com/REPLACE_ME",
+      "L": "https://buy.stripe.com/REPLACE_ME",
+      "XL": "https://buy.stripe.com/REPLACE_ME"
+    },
+    "details": [
+      "Silk-screen printed graphic",
+      "\"U'RE TRAPPIN'\" logo label",
+      "100% Organic Cotton",
+      "Boxy Fit",
+      "Designed and Customized in Italy"
+    ]
+  },
+  {
+    "name": "Get Rich Or Die Trappin' T-Shirt",
+    "variant": "White",
+    "price": "40€",
+    "available": true,
+    "photos": [
+      "assets/products/product-2-1.jpg",
+      "assets/products/product-2-2.jpg",
+      "assets/products/product-2-3.jpg"
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "stripeLinksBySize": {
+      "S": "https://buy.stripe.com/REPLACE_ME",
+      "M": "https://buy.stripe.com/REPLACE_ME",
+      "L": "https://buy.stripe.com/REPLACE_ME",
+      "XL": "https://buy.stripe.com/REPLACE_ME"
+    },
+    "details": [
+      "Silk-screen printed graphic",
+      "\"U'RE TRAPPIN'\" logo label",
+      "100% Organic Cotton",
+      "Boxy Fit",
+      "Designed and Customized in Italy"
+    ]
+  },
+  {
+    "name": "Get Rich Or Die Trappin' Long Sleeve",
+    "variant": "Heather Black",
+    "price": "40€",
+    "available": true,
+    "photos": [
+      "assets/products/product-3-1.jpg",
+      "assets/products/product-3-2.jpg",
+      "assets/products/product-3-3.jpg"
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "stripeLinksBySize": {
+      "S": "https://buy.stripe.com/REPLACE_ME",
+      "M": "https://buy.stripe.com/REPLACE_ME",
+      "L": "https://buy.stripe.com/REPLACE_ME",
+      "XL": "https://buy.stripe.com/REPLACE_ME"
+    },
+    "details": [
+      "Digital printed graphic, Purple or White",
+      "\"U'RE TRAPPIN'\" logo label",
+      "Distressed by hand, one by one",
+      "Each piece is unique",
+      "50% Polyester, 25% Viscose, 25% Cotton",
+      "Cropped Fit",
+      "Designed and Customized in Italy"
+    ]
+  },
+  {
+    "name": "Get Rich Or Die Trappin' Long Sleeve",
+    "variant": "White",
+    "price": "40€",
+    "available": true,
+    "photos": [
+      "assets/products/product-4-1.jpg",
+      "assets/products/product-4-2.jpg",
+      "assets/products/product-4-3.jpg"
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "stripeLinksBySize": {
+      "S": "https://buy.stripe.com/REPLACE_ME",
+      "M": "https://buy.stripe.com/REPLACE_ME",
+      "L": "https://buy.stripe.com/REPLACE_ME",
+      "XL": "https://buy.stripe.com/REPLACE_ME"
+    },
+    "details": [
+      "Digital printed graphic, Purple or Black",
+      "\"U'RE TRAPPIN'\" logo label",
+      "Distressed by hand, one by one",
+      "Each piece is unique",
+      "50% Polyester, 25% Viscose, 25% Cotton",
+      "Cropped Fit",
+      "Designed and Customized in Italy"
+    ]
+  },
+  {
+    "name": "UT Crochet Mesh Cap",
+    "variant": "Black and Green",
+    "price": "45€",
+    "available": true,
+    "photos": [
+      "assets/products/product-5-1.jpg",
+      "assets/products/product-5-2.jpg",
+      "assets/products/product-5-3.jpg"
+    ],
+    "sizes": [],
+    "stripeLink": "https://buy.stripe.com/REPLACE_ME",
+    "details": [
+      "\"U'RE TRAPPIN'\" embroidered logo label",
+      "Handmade, one by one",
+      "50% Cotton, 50% Polyester",
+      "Designed and Made in Italy"
+    ]
+  },
+  {
+    "name": "UT Balaclava",
+    "variant": "Black and Green",
+    "price": "45€",
+    "available": true,
+    "photos": [
+      "assets/products/product-6-1.jpg",
+      "assets/products/product-6-2.jpg",
+      "assets/products/product-6-3.jpg"
+    ],
+    "sizes": [],
+    "stripeLink": "https://buy.stripe.com/REPLACE_ME",
+    "details": [
+      "\"U'RE TRAPPIN'\" embroidered logo label",
+      "Handmade, one by one",
+      "50% Cotton, 50% Polyester",
+      "Designed and Made in Italy"
+    ]
+  }
+]

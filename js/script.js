@@ -1,15 +1,30 @@
-  function openLightbox(src){
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('open');
-  }
-  function closeLightbox(){
-    document.getElementById('lightbox').classList.remove('open');
-  }
+/* ===== SCHERMATA DI CARICAMENTO =====
+   L'evento "load" scatta quando la pagina E tutte le sue risorse
+   (immagini comprese) hanno finito di caricare — a differenza di
+   DOMContentLoaded, che scatta prima, quando magari le foto sono
+   ancora in caricamento. Aggiungendo la classe "loaded", il CSS
+   (vedi #pageLoader in style.css) fa sparire l'overlay con una
+   dissolvenza di 0.5s. */
+window.addEventListener('load', () => {
+  const loader = document.getElementById('pageLoader');
+  if (loader) loader.classList.add('loaded');
+});
 
-  const nav = document.getElementById('mainNav');
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.getElementById('navMenu');
+/* ---------- LIGHTBOX ---------- */
+function openLightbox(src){
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
 
+/* ---------- NAV MOBILE ---------- */
+const nav = document.getElementById('mainNav');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+
+if (navToggle && navMenu){
   navToggle.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', isOpen);
@@ -21,50 +36,44 @@
       navToggle.setAttribute('aria-expanded', 'false');
     });
   });
+}
 
-  const overlay = document.getElementById("menuOverlay");
-
-  overlay.addEventListener("click", () => {
-      nav.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
+const overlay = document.getElementById('menuOverlay');
+if (overlay){
+  overlay.addEventListener('click', () => {
+    nav.classList.remove('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
   });
+}
 
 /* =========================================================
-   GESTIONE DINAMICA EVENTI E FOTO — data/events.json
+   SEZIONE EVENTI — lettura di data/events.json e generazione
+   automatica delle locandine.
+
+   Per aggiungere un evento: apri data/events.json e aggiungi un
+   blocco con date/name/location/lineup/booking/photos/poster/info.
+   Non serve toccare questo file per aggiungere eventi.
    ========================================================= */
 
 /**
- * Converte una stringa "YYYY-MM-DD" in un oggetto Date
- * impostato a mezzanotte locale (evita problemi di fuso orario
- * che si avrebbero con new Date("YYYY-MM-DD") diretto).
+ * Converte una stringa "YYYY-MM-DD" in un oggetto Date a mezzanotte
+ * locale (evita problemi di fuso orario rispetto a new Date(str) diretto).
  */
 function parseEventDate(dateStr){
   const [y, m, d] = dateStr.split('-').map(Number);
   return new Date(y, m - 1, d);
 }
 
-/** Restituisce la data odierna a mezzanotte, per confronti puliti. */
+/** Restituisce la data di oggi a mezzanotte, per confronti puliti. */
 function getTodayMidnight(){
   const now = new Date();
   return new Date(now.getFullYear(), now.getMonth(), now.getDate());
 }
 
-/** Da un oggetto Date estrae {dd, mm} con zero iniziale. */
-function formatDayMonth(dateObj){
-  const dd = String(dateObj.getDate()).padStart(2, '0');
-  const mm = String(dateObj.getMonth() + 1).padStart(2, '0');
-  return { dd, mm };
-}
-
-/**
- * Genera il markup di una singola card evento (sezione "Eventi").
- * La locandina è l'elemento principale; nessuna informazione testuale
- * viene duplicata, dato che è già presente nella grafica stessa.
- */
 /**
  * Genera il markup del RETRO della card (info specifiche dell'evento).
- * Combina i campi fissi (location, start) con la lista libera "details",
- * cosi' si possono aggiungere nuovi campi in events.json senza toccare il codice.
+ * "location" e "start" sono campi fissi; "details" è una lista libera
+ * di {label, value} che puoi riempire come vuoi per ogni evento.
  */
 function renderInfoBack(ev, iscrivitiHtml){
   const info = ev.info || {};
@@ -97,13 +106,14 @@ function renderInfoBack(ev, iscrivitiHtml){
 }
 
 /**
- * Genera il markup di una singola card evento (sezione "Eventi").
- * La card ha due facce: fronte (locandina + pulsanti) e retro (info),
- * che si alternano con un effetto "flip" quando si preme "Info".
+ * Genera il markup di una singola card evento: fronte (locandina +
+ * pulsanti) e retro (info), che si alternano con l'effetto "flip".
  */
 function renderEventCard(ev){
   const altText = `Locandina evento: ${ev.name}${ev.location ? ' – ' + ev.location : ''}`;
 
+  // Se c'è un link di prenotazione (booking) mostra "Iscriviti" cliccabile,
+  // altrimenti mostra "Iscrizioni a breve" non cliccabile.
   const iscrivitiHtml = ev.booking
     ? `<a class="event-cta" href="${ev.booking}" target="_blank" rel="noopener">Iscriviti</a>`
     : `<span class="event-cta event-cta--disabled" aria-disabled="true">Iscrizioni a breve</span>`;
@@ -125,10 +135,9 @@ function renderEventCard(ev){
 }
 
 /**
- * Gestisce il click sui pulsanti "Info" e "← Indietro" tramite event
- * delegation sul contenitore #eventsGrid. Va agganciato una sola volta:
- * funziona anche dopo che le card vengono rigenerate, perche' il
- * contenitore stesso non viene mai ricreato, solo il suo contenuto.
+ * Click su "Info" o "Indietro" tramite event delegation su #eventsGrid.
+ * Va agganciato una sola volta: funziona anche dopo che le card vengono
+ * rigenerate, perché il contenitore stesso non viene mai ricreato.
  */
 function setupFlipCardInteractions(){
   const grid = document.getElementById('eventsGrid');
@@ -151,22 +160,9 @@ function setupFlipCardInteractions(){
 }
 
 /**
- * Genera il markup di una riga nell'archivio foto (Google Drive).
- */
-function renderDriveRow(ev){
-  const { dd, mm } = formatDayMonth(parseEventDate(ev.date));
-  return `
-    <div class="drive-row">
-      <span class="drive-date bubble-num">${dd}/${mm}</span>
-      <span class="drive-name">${ev.name}</span>
-      <a class="drive-link" href="${ev.photos}" target="_blank" rel="noopener">Apri cartella →</a>
-    </div>
-  `;
-}
-
-/**
- * Filtra e ordina gli eventi FUTURI (data >= oggi), dal più vicino al più lontano,
- * e li disegna dentro #eventsGrid.
+ * Filtra gli eventi FUTURI (data >= oggi), li ordina dal più vicino
+ * al più lontano, e li disegna dentro #eventsGrid. Se c'è un solo
+ * evento, la card viene centrata (vedi classe "single-event" nel CSS).
  */
 function renderUpcomingEvents(events){
   const grid = document.getElementById('eventsGrid');
@@ -194,51 +190,9 @@ function renderUpcomingEvents(events){
 }
 
 /**
- * Filtra gli eventi PASSATI con foto disponibili, li ordina dal più recente
- * al più lontano, mostra i primi 3 come "ultime foto" e sposta il resto
- * in un archivio nascosto, espandibile tramite pulsante.
- */
-function renderPhotoArchive(events){
-  const recentContainer = document.getElementById('drivePhotosRecent');
-  const archiveContainer = document.getElementById('drivePhotosArchive');
-  const archiveWrapper = document.getElementById('archiveWrapper');
-  const archiveToggle = document.getElementById('archiveToggle');
-  if (!recentContainer || !archiveContainer || !archiveWrapper) return;
-
-  const today = getTodayMidnight();
-
-  const pastWithPhotos = events
-    .filter(ev => parseEventDate(ev.date) < today && ev.photos)
-    .sort((a, b) => parseEventDate(b.date) - parseEventDate(a.date)); // più recente prima
-
-  const recent = pastWithPhotos.slice(0, 3);
-  const archived = pastWithPhotos.slice(3);
-
-  recentContainer.innerHTML = recent.length
-    ? recent.map(renderDriveRow).join('')
-    : '<p class="no-events">Foto disponibili a breve dopo il prossimo evento.</p>';
-
-  if (archived.length > 0){
-    archiveContainer.innerHTML = archived.map(renderDriveRow).join('');
-    archiveWrapper.classList.remove('archive-hidden');
-  } else {
-    archiveWrapper.classList.add('archive-hidden');
-  }
-
-  if (archiveToggle && !archiveToggle.dataset.bound){
-    archiveToggle.addEventListener('click', () => {
-      const isHidden = archiveContainer.classList.toggle('archive-hidden');
-      archiveToggle.setAttribute('aria-expanded', String(!isHidden));
-      archiveToggle.textContent = isHidden
-        ? 'Mostra serate precedenti ↓'
-        : 'Nascondi serate precedenti ↑';
-    });
-    archiveToggle.dataset.bound = 'true';
-  }
-}
-
-/**
- * Punto di ingresso: carica events.json e disegna entrambe le sezioni.
+ * Punto di ingresso: carica data/events.json e disegna le locandine.
+ * NB: fetch() richiede un server locale (Live Server), non funziona
+ * aprendo index.html direttamente con doppio click.
  */
 async function loadEvents(){
   try {
@@ -247,7 +201,6 @@ async function loadEvents(){
     const events = await response.json();
 
     renderUpcomingEvents(events);
-    renderPhotoArchive(events);
     setupFlipCardInteractions();
   } catch (err) {
     console.error('Errore nel caricamento di data/events.json:', err);
@@ -257,3 +210,164 @@ async function loadEvents(){
 }
 
 loadEvents();
+
+/* =========================================================
+   SEZIONE SHOP — lettura di data/products.json e generazione
+   automatica delle card prodotto.
+
+   Per aggiungere/togliere un prodotto: apri data/products.json e
+   modifica la lista (name/price/photo). Non serve toccare questo
+   file né shop.html.
+   ========================================================= */
+
+function renderProductCard(product, id){
+  return `
+    <a class="product-card" href="product.html?id=${id}">
+      <img class="product-photo" src="${product.photos[0]}" alt="${product.name}" loading="lazy">
+      <span class="product-name">${product.name}</span>
+      <span class="product-price">${product.price}</span>
+    </a>
+  `;
+}
+
+async function loadProducts(){
+  const grid = document.getElementById('productsGrid');
+  if (!grid) return;
+
+  try {
+    const response = await fetch('data/products.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const products = await response.json();
+
+    grid.innerHTML = products.length
+      ? products.map((product, i) => renderProductCard(product, i + 1)).join('')
+      : '<p class="no-events">Prodotti in arrivo.</p>';
+  } catch (err) {
+    console.error('Errore nel caricamento di data/products.json:', err);
+    grid.innerHTML = '<p class="no-events">Impossibile caricare i prodotti al momento.</p>';
+  }
+}
+
+loadProducts();
+
+/* =========================================================
+   PAGINA PRODOTTO — lettura di data/products.json in base al
+   parametro ?id= nell'URL (product.html?id=1) e popolamento del
+   template in product.html. id è 1-based, nello stesso ordine
+   della lista in products.json (e dei nomi file product-N-*.jpg).
+   ========================================================= */
+
+function setupProductThumbs(photos, mainPhotoEl, thumbsEl){
+  thumbsEl.innerHTML = photos.map((src, i) => `
+    <img src="${src}" alt="Foto ${i + 1}" class="${i === 0 ? 'active' : ''}" loading="lazy">
+  `).join('');
+
+  thumbsEl.querySelectorAll('img').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      mainPhotoEl.src = thumb.src;
+      thumbsEl.querySelectorAll('img').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+}
+
+function setupProductQty(){
+  const qtyValue = document.getElementById('qtyValue');
+  const qtyMinus = document.getElementById('qtyMinus');
+  const qtyPlus = document.getElementById('qtyPlus');
+  if (!qtyValue || !qtyMinus || !qtyPlus) return;
+
+  let qty = 1;
+  qtyMinus.addEventListener('click', () => {
+    if (qty > 1){
+      qty -= 1;
+      qtyValue.textContent = qty;
+    }
+  });
+  qtyPlus.addEventListener('click', () => {
+    qty += 1;
+    qtyValue.textContent = qty;
+  });
+}
+
+function setupProductAccordion(){
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      trigger.closest('.accordion-item').classList.toggle('open');
+    });
+  });
+}
+
+/**
+ * Aggiorna il pulsante "Acquista" in base alla taglia selezionata
+ * (product.stripeLinksBySize) o al link unico (product.stripeLink)
+ * per i prodotti senza taglie.
+ */
+function updateBuyButton(product, buyButton, sizeSelect){
+  if (product.sizes && product.sizes.length){
+    const size = sizeSelect.value;
+    buyButton.href = (product.stripeLinksBySize && product.stripeLinksBySize[size]) || '#';
+  } else {
+    buyButton.href = product.stripeLink || '#';
+  }
+}
+
+async function loadProductDetail(){
+  const page = document.getElementById('productPage');
+  if (!page) return;
+
+  const id = Number(new URLSearchParams(location.search).get('id'));
+
+  try {
+    const response = await fetch('data/products.json');
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const products = await response.json();
+    const product = products[id - 1];
+
+    if (!product){
+      page.innerHTML = '<p class="no-events">Prodotto non trovato.</p>';
+      return;
+    }
+
+    document.title = `${product.name} — U'RE TRAPPIN`;
+
+    document.getElementById('productVariant').textContent = `// ${product.variant}`;
+    document.getElementById('productName').textContent = product.name;
+    document.getElementById('productPrice').textContent = product.price;
+
+    const availabilityEl = document.getElementById('productAvailability');
+    availabilityEl.textContent = product.available ? 'Disponibile' : 'Esaurito';
+    availabilityEl.classList.toggle('is-soldout', !product.available);
+
+    const mainPhotoEl = document.getElementById('productMainPhoto');
+    mainPhotoEl.src = product.photos[0];
+    mainPhotoEl.alt = product.name;
+    setupProductThumbs(product.photos, mainPhotoEl, document.getElementById('productThumbs'));
+
+    document.getElementById('productDetails').innerHTML = product.details.map(d => `<li>${d}</li>`).join('');
+
+    const sizeField = document.getElementById('sizeField');
+    const sizeSelect = document.getElementById('sizeSelect');
+    const buyButton = document.getElementById('buyButton');
+
+    if (product.sizes && product.sizes.length){
+      sizeSelect.innerHTML = product.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
+      sizeSelect.addEventListener('change', () => updateBuyButton(product, buyButton, sizeSelect));
+    } else {
+      sizeField.style.display = 'none';
+    }
+    updateBuyButton(product, buyButton, sizeSelect);
+
+    if (!product.available){
+      buyButton.classList.add('is-disabled');
+    }
+
+    setupProductQty();
+    setupProductAccordion();
+  } catch (err) {
+    console.error('Errore nel caricamento di data/products.json:', err);
+    page.innerHTML = '<p class="no-events">Impossibile caricare il prodotto al momento.</p>';
+  }
+}
+
+loadProductDetail();

@@ -1,0 +1,118 @@
+<!-- ===== FRAMMENTO COUNTDOWN DROP =====
+     Unico file dedicato alla funzione (markup + stile + logica).
+     index.html lo carica via fetch e lo inserisce dentro
+     <div id="countdown-root">. Per rimuovere il countdown dal sito:
+     cancella questo file e il blocco marcato "COUNTDOWN DROP" dentro
+     index.html (link nessuno, div + script inline). -->
+
+<style>
+  #countdown-overlay{
+    position:fixed;
+    inset:0;
+    z-index:400;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  #countdown-timer{
+    font-family:'Michroma', sans-serif; /* <-- cambia qui il font dei numeri */
+    font-size:clamp(2.2rem, 9vw, 6rem);
+    letter-spacing:0.04em;
+    color:#3fe64a;
+    text-shadow:
+      0 0 10px rgba(63,230,74,0.6),
+      0 0 24px rgba(63,230,74,0.35);
+  }
+  /* Pulsante DI SERVIZIO, solo per lavorare al sito senza dover
+     continuamente mettere COUNTDOWN_ENABLED a true/false — bordo
+     tratteggiato apposta per essere riconoscibile come temporaneo.
+     Da togliere (insieme a #countdown-skip in HTML/JS) prima del
+     lancio vero. */
+  #countdown-skip{
+    position:absolute;
+    bottom:1.5rem;
+    left:50%;
+    transform:translateX(-50%);
+    background:none;
+    border:1px dashed #666;
+    color:#888;
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.04em;
+    padding:0.5rem 1rem;
+    cursor:pointer;
+  }
+</style>
+
+<script>
+(function(){
+  /* ---------- INTERRUTTORE ----------
+     Metti questa costante a false per disattivare il countdown e
+     navigare nel sito normalmente mentre lavori. */
+  const COUNTDOWN_ENABLED = true;
+
+  /* Data e ora del drop, ora locale di chi visita.
+     new Date(anno, mese, giorno, ore, minuti, secondi) — il mese
+     parte da 0, quindi 8 = settembre. */
+  const DROP_DATE = new Date(2026, 8, 28, 0, 0, 0);
+
+  /* Scorciatoia per sbirciare il sito senza modificare il codice:
+     aprendo la pagina con "?preview" in fondo all'URL (es.
+     index.html?preview) il countdown viene saltato per quella visita. */
+  const previewBypass = new URLSearchParams(location.search).has('preview');
+
+  if (!COUNTDOWN_ENABLED || previewBypass || Date.now() >= DROP_DATE.getTime()){
+    return;
+  }
+
+  const root = document.getElementById('countdown-root');
+  if (!root) return;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'countdown-overlay';
+  overlay.innerHTML = `
+    <div id="countdown-timer">00:00:00:00</div>
+    <button id="countdown-skip" type="button">Salta countdown (pulsante temporaneo, da rimuovere prima del lancio)</button>
+  `;
+  root.appendChild(overlay);
+
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden';
+
+  const timerEl = overlay.querySelector('#countdown-timer');
+
+  function pad(n){
+    return String(n).padStart(2, '0');
+  }
+
+  function revealSite(){
+    clearInterval(intervalId);
+    overlay.remove();
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+
+  overlay.querySelector('#countdown-skip').addEventListener('click', revealSite);
+
+  function tick(){
+    const diff = DROP_DATE.getTime() - Date.now();
+
+    if (diff <= 0){
+      revealSite();
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    timerEl.textContent = `${pad(days)}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+  }
+
+  tick();
+  const intervalId = setInterval(tick, 1000);
+})();
+</script>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prodotto — U'RE TRAPPIN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== SCHERMATA DI CARICAMENTO =====
+     Overlay a schermo intero, visibile finché la pagina non ha finito
+     di caricare (immagini incluse). Sparisce da solo via script.js
+     (vedi funzione hidePageLoader). -->
+<div id="pageLoader">
+  <img src="assets/logo2.png" alt="U're Trappin" class="loader-logo">
+</div>
+
+<nav id="mainNav">
+  <a class="brand" href="index.html">U'RE TRAPPIN</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="index.html#eventi">Eventi</a></li>
+    <li><a href="index.html#music">Music</a></li>
+    <li><a href="index.html#about">About Us</a></li>
+  </ul>
+</nav>
+<div id="menuOverlay"></div>
+
+<!-- ===== PAGINA PRODOTTO =====
+     Contenuto generato da js/script.js (funzione loadProductDetail),
+     leggendo data/products.json in base al parametro ?id= nell'URL
+     (es. product.html?id=1). Per aggiungere/modificare un prodotto
+     basta editare products.json, non serve toccare questo HTML. -->
+<section class="product-page" id="productPage">
+  <div class="product-gallery">
+    <img class="product-main-photo" id="productMainPhoto" src="" alt="">
+    <div class="product-thumbs" id="productThumbs"></div>
+  </div>
+
+  <div class="product-info">
+    <div class="eyebrow" id="productVariant"></div>
+    <h1 class="product-title" id="productName"></h1>
+    <p class="product-price" id="productPrice"></p>
+    <p class="product-availability" id="productAvailability"></p>
+
+    <div class="product-field" id="sizeField">
+      <label class="product-field-label" for="sizeSelect">Taglia</label>
+      <select class="product-size-select" id="sizeSelect"></select>
+    </div>
+
+    <div class="product-field">
+      <span class="product-field-label">Quantità</span>
+      <div class="product-qty">
+        <button class="qty-btn" id="qtyMinus" type="button" aria-label="Diminuisci quantità">−</button>
+        <span class="qty-value" id="qtyValue">1</span>
+        <button class="qty-btn" id="qtyPlus" type="button" aria-label="Aumenta quantità">+</button>
+      </div>
+    </div>
+
+    <a class="product-buy-btn" id="buyButton" href="#" target="_blank" rel="noopener">Acquista</a>
+
+    <div class="payment-icons">
+      <span class="payment-icon">Visa</span>
+      <span class="payment-icon">Mastercard</span>
+      <span class="payment-icon">PayPal</span>
+      <span class="payment-icon">Apple Pay</span>
+    </div>
+
+    <div class="product-accordion">
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">Dettagli</button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <ul class="accordion-list" id="productDetails"></ul>
+          </div>
+        </div>
+      </div>
+      <!-- Spedizione e Resi sono uguali per tutti i prodotti, quindi il
+           testo è scritto qui una sola volta invece che ripetuto in
+           ogni voce di data/products.json. Per modificarlo basta
+           editare questo blocco. -->
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">Spedizione</button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>Testo spedizione.</p>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger" type="button">Resi</button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p>Testo resi.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <img src="assets/logo2.png" alt="U're Trappin" class="footer-logo">
+  </div>
+
+  <div class="footer-columns">
+    <div class="footer-category">
+      <h3 class="footer-heading">Links</h3>
+      <a href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Sezioni sito</h3>
+      <a href="index.html#shop">Shop</a>
+      <a href="index.html#gallery">Gallery</a>
+      <a href="index.html#eventi">Eventi</a>
+      <a href="index.html#music">Music</a>
+      <a href="index.html#about">About Us</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Contatti</h3>
+      <a href="mailto:info@uretrappin.com">info@uretrappin.com</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Info legali</h3>
+      <a href="legali/privacy.html">Privacy Policy</a>
+      <a href="legali/termini.html">Termini e Condizioni</a>
+      <a href="legali/recesso.html">Diritto di Recesso</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
