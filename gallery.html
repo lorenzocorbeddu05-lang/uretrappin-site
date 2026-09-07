@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery — U'RE TRAPPIN</title>
+<link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<meta name="description" content="Gallery U're Trappin — foto dagli eventi e dai party del collettivo.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="U're Trappin">
+<meta property="og:title" content="Gallery — U're Trappin">
+<meta property="og:description" content="Foto dagli eventi e dai party del collettivo U're Trappin.">
+<meta property="og:image" content="assets/brand/logo2.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gallery — U're Trappin">
+<meta name="twitter:description" content="Foto dagli eventi e dai party del collettivo.">
+<meta name="twitter:image" content="assets/brand/logo2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -12,95 +23,65 @@
 
 <!-- ===== SCHERMATA DI CARICAMENTO =====
      Overlay a schermo intero, visibile finché la pagina non ha finito
-     di caricare (immagini incluse). Sparisce da solo via script.js
+     di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/logo2.png" alt="U're Trappin" class="loader-logo">
+  <img src="assets/brand/logo2.png" alt="U're Trappin" class="loader-logo">
 </div>
 
-<nav id="mainNav">
-  <a class="brand" href="index.html">U'RE TRAPPIN</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <ul id="navMenu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="index.html#eventi">Eventi</a></li>
-    <li><a href="index.html#music">Music</a></li>
-    <li><a href="index.html#about">About Us</a></li>
-  </ul>
-</nav>
-<div id="menuOverlay"></div>
+<div id="nav-mount"></div>
 
 <section class="gallery-page">
-  <div class="eyebrow">// Ricordi</div>
-  <h1 class="outline-heading section-head">Gallery</h1>
+  <div class="eyebrow">// Gallery</div>
 
   <div class="city-group">
     <h2 class="city-name">Rimini</h2>
     <div class="mosaic">
-      <img src="assets/gallery/rimini-1.jpg" alt="Rimini 1" loading="lazy" onclick="openLightbox('assets/gallery/rimini-1.jpg')" style="cursor:pointer">
-      <img src="assets/gallery/rimini-2.jpg" alt="Rimini 2" loading="lazy" onclick="openLightbox('assets/gallery/rimini-2.jpg')" style="cursor:pointer">
-      <img src="assets/gallery/rimini-3.jpg" alt="Rimini 3" loading="lazy" onclick="openLightbox('assets/gallery/rimini-3.jpg')" style="cursor:pointer">
-      <img src="assets/gallery/rimini-4.jpg" alt="Rimini 4" loading="lazy" onclick="openLightbox('assets/gallery/rimini-4.jpg')" style="cursor:pointer">
+      <img src="assets/gallery/rimini-1.jpg" alt="Rimini 1" loading="lazy">
+      <img src="assets/gallery/rimini-2.jpg" alt="Rimini 2" loading="lazy">
+      <img src="assets/gallery/rimini-3.jpg" alt="Rimini 3" loading="lazy">
+      <img src="assets/gallery/rimini-4.jpg" alt="Rimini 4" loading="lazy">
+    </div>
+  </div>
+
+  <div class="city-group">
+    <h2 class="city-name">Firenze</h2>
+    <div class="mosaic mosaic--c">
+      <img src="assets/gallery/firenze-1.jpg" alt="Firenze 1" loading="lazy">
+      <img src="assets/gallery/firenze-2.jpg" alt="Firenze 2" loading="lazy">
+      <img src="assets/gallery/firenze-3.jpg" alt="Firenze 3" loading="lazy">
+      <img src="assets/gallery/firenze-4.jpg" alt="Firenze 4" loading="lazy">
     </div>
   </div>
 
   <div class="city-group">
     <h2 class="city-name">Milano</h2>
-    <div class="mosaic">
-      <img src="assets/gallery/milano-1.jpg" alt="Milano 1" loading="lazy" onclick="openLightbox('assets/gallery/milano-1.jpg')" style="cursor:pointer">
-      <img src="assets/gallery/milano-2.jpg" alt="Milano 2" loading="lazy" onclick="openLightbox('assets/gallery/milano-2.jpg')" style="cursor:pointer">
-      <img src="assets/gallery/milano-3.jpg" alt="Milano 3" loading="lazy" onclick="openLightbox('assets/gallery/milano-3.jpg')" style="cursor:pointer">
-      <img src="assets/gallery/milano-4.jpg" alt="Milano 4" loading="lazy" onclick="openLightbox('assets/gallery/milano-4.jpg')" style="cursor:pointer">
+    <div class="mosaic mosaic--b">
+      <img src="assets/gallery/milano-1.jpg" alt="Milano 1" loading="lazy">
+      <img src="assets/gallery/milano-2.jpg" alt="Milano 2" loading="lazy">
+      <img src="assets/gallery/milano-3.jpg" alt="Milano 3" loading="lazy">
+      <img src="assets/gallery/milano-4.jpg" alt="Milano 4" loading="lazy">
+    </div>
+  </div>
+
+  <!-- Parma usa 6 foto (le altre città 4): il suo pattern (mosaic--d)
+       ha 2 quadratini + un rettangolo per riga, specularmente. -->
+  <div class="city-group">
+    <h2 class="city-name">Parma</h2>
+    <div class="mosaic mosaic--d">
+      <img src="assets/gallery/parma-1.jpg" alt="Parma 1" loading="lazy">
+      <img src="assets/gallery/parma-2.jpg" alt="Parma 2" loading="lazy">
+      <img src="assets/gallery/parma-3.jpg" alt="Parma 3" loading="lazy">
+      <img src="assets/gallery/parma-4.jpg" alt="Parma 4" loading="lazy">
+      <img src="assets/gallery/parma-5.jpg" alt="Parma 5" loading="lazy">
+      <img src="assets/gallery/parma-6.jpg" alt="Parma 6" loading="lazy">
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="footer-top">
-    <img src="assets/logo2.png" alt="U're Trappin" class="footer-logo">
-  </div>
+<div id="footer-mount"></div>
 
-  <div class="footer-columns">
-    <div class="footer-category">
-      <h3 class="footer-heading">Links</h3>
-      <a href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
-
-    <div class="footer-category">
-      <h3 class="footer-heading">Sezioni sito</h3>
-      <a href="index.html#shop">Shop</a>
-      <a href="index.html#gallery">Gallery</a>
-      <a href="index.html#eventi">Eventi</a>
-      <a href="index.html#music">Music</a>
-      <a href="index.html#about">About Us</a>
-    </div>
-
-    <div class="footer-category">
-      <h3 class="footer-heading">Contatti</h3>
-      <a href="mailto:info@uretrappin.com">info@uretrappin.com</a>
-    </div>
-
-    <div class="footer-category">
-      <h3 class="footer-heading">Info legali</h3>
-      <a href="legali/privacy.html">Privacy Policy</a>
-      <a href="legali/termini.html">Termini e Condizioni</a>
-      <a href="legali/recesso.html">Diritto di Recesso</a>
-    </div>
-  </div>
-</footer>
-
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">✕ Chiudi</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
-
-<script src="js/script.js"></script>
+<script src="js/common.js"></script>
 
 </body>
 </html>

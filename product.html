@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prodotto — U'RE TRAPPIN</title>
+<!-- Questi tag sono valori generici di partenza: js/product.js li
+     aggiorna col prodotto giusto (nome/prezzo/foto) non appena
+     data/products.json è caricato — vedi updateProductMeta(). -->
+<link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<meta name="description" content="Scopri i prodotti U're Trappin: T-shirt, felpe, cappelli e accessori.">
+<meta property="og:type" content="product">
+<meta property="og:site_name" content="U're Trappin">
+<meta property="og:title" content="Prodotto — U'RE TRAPPIN">
+<meta property="og:description" content="Scopri i prodotti U're Trappin.">
+<meta property="og:image" content="assets/brand/logo2.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prodotto — U'RE TRAPPIN">
+<meta name="twitter:description" content="Scopri i prodotti U're Trappin.">
+<meta name="twitter:image" content="assets/brand/logo2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -12,30 +26,16 @@
 
 <!-- ===== SCHERMATA DI CARICAMENTO =====
      Overlay a schermo intero, visibile finché la pagina non ha finito
-     di caricare (immagini incluse). Sparisce da solo via script.js
+     di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/logo2.png" alt="U're Trappin" class="loader-logo">
+  <img src="assets/brand/logo2.png" alt="U're Trappin" class="loader-logo">
 </div>
 
-<nav id="mainNav">
-  <a class="brand" href="index.html">U'RE TRAPPIN</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-  <ul id="navMenu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="index.html#eventi">Eventi</a></li>
-    <li><a href="index.html#music">Music</a></li>
-    <li><a href="index.html#about">About Us</a></li>
-  </ul>
-</nav>
-<div id="menuOverlay"></div>
+<div id="nav-mount"></div>
 
 <!-- ===== PAGINA PRODOTTO =====
-     Contenuto generato da js/script.js (funzione loadProductDetail),
+     Contenuto generato da js/product.js (funzione loadProductDetail),
      leggendo data/products.json in base al parametro ?id= nell'URL
      (es. product.html?id=1). Per aggiungere/modificare un prodotto
      basta editare products.json, non serve toccare questo HTML. -->
@@ -53,26 +53,16 @@
 
     <div class="product-field" id="sizeField">
       <label class="product-field-label" for="sizeSelect">Taglia</label>
-      <select class="product-size-select" id="sizeSelect"></select>
-    </div>
-
-    <div class="product-field">
-      <span class="product-field-label">Quantità</span>
-      <div class="product-qty">
-        <button class="qty-btn" id="qtyMinus" type="button" aria-label="Diminuisci quantità">−</button>
-        <span class="qty-value" id="qtyValue">1</span>
-        <button class="qty-btn" id="qtyPlus" type="button" aria-label="Aumenta quantità">+</button>
+      <div class="product-select-wrap">
+        <select class="product-size-select" id="sizeSelect"></select>
       </div>
     </div>
 
     <a class="product-buy-btn" id="buyButton" href="#" target="_blank" rel="noopener">Acquista</a>
 
-    <div class="payment-icons">
-      <span class="payment-icon">Visa</span>
-      <span class="payment-icon">Mastercard</span>
-      <span class="payment-icon">PayPal</span>
-      <span class="payment-icon">Apple Pay</span>
-    </div>
+    <!-- Badge metodi di pagamento (Visa/Mastercard/PayPal/Apple Pay)
+         rimossi finché non sappiamo quali attiverete su Stripe — da
+         rimettere quando saranno definitivi. -->
 
     <div class="product-accordion">
       <div class="accordion-item">
@@ -107,43 +97,20 @@
   </div>
 </section>
 
-<footer>
-  <div class="footer-top">
-    <img src="assets/logo2.png" alt="U're Trappin" class="footer-logo">
-  </div>
+<!-- ===== ALTRI PRODOTTI =====
+     Riga orizzontale scorrevole col resto dei prodotti (tutti tranne
+     quello in pagina), generata da js/product.js insieme al resto dei
+     dati (stessa fetch di products.json, nessuna richiesta in più). -->
+<section class="related-products">
+  <div class="eyebrow">// Altri prodotti</div>
+  <div class="products-scroll" id="relatedProducts"></div>
+</section>
 
-  <div class="footer-columns">
-    <div class="footer-category">
-      <h3 class="footer-heading">Links</h3>
-      <a href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">TikTok</a>
-      <a href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">WhatsApp</a>
-    </div>
+<div id="footer-mount"></div>
 
-    <div class="footer-category">
-      <h3 class="footer-heading">Sezioni sito</h3>
-      <a href="index.html#shop">Shop</a>
-      <a href="index.html#gallery">Gallery</a>
-      <a href="index.html#eventi">Eventi</a>
-      <a href="index.html#music">Music</a>
-      <a href="index.html#about">About Us</a>
-    </div>
-
-    <div class="footer-category">
-      <h3 class="footer-heading">Contatti</h3>
-      <a href="mailto:info@uretrappin.com">info@uretrappin.com</a>
-    </div>
-
-    <div class="footer-category">
-      <h3 class="footer-heading">Info legali</h3>
-      <a href="legali/privacy.html">Privacy Policy</a>
-      <a href="legali/termini.html">Termini e Condizioni</a>
-      <a href="legali/recesso.html">Diritto di Recesso</a>
-    </div>
-  </div>
-</footer>
-
-<script src="js/script.js"></script>
+<script src="js/common.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/product.js"></script>
 
 </body>
 </html>

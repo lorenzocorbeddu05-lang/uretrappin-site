@@ -36,19 +36,6 @@
 
   a{ color:inherit; text-decoration:none; }
 
-  /* Titoli con contorno verde neon (usato per "Shop", "Gallery", "Eventi", ecc.) */
-  .outline-heading{
-    font-family:'Bungee', sans-serif;
-    text-transform:uppercase;
-    color:var(--bg);
-    -webkit-text-stroke:1.5px var(--green);
-    text-shadow:
-      0 0 4px rgba(63,230,74,0.45),
-      0 0 10px rgba(63,230,74,0.25);
-    letter-spacing:0.02em;
-    font-style:italic;
-  }
-
   /* ===== NAV =====
      Barra di navigazione fissa in alto su tutte le pagine.
      Su desktop mostra i link normali; sotto i 720px si trasforma in
@@ -185,7 +172,7 @@
   .hero::before{
     content:"";
     position:absolute; inset:0;
-    background:url('../assets/crowd.png') center 30%/cover no-repeat;
+    background:url('../assets/brand/crowd.jpg') center 30%/cover no-repeat;
     filter:saturate(1.1) brightness(0.55); /* scurisce la foto */
     z-index:0;
   }
@@ -243,16 +230,6 @@
     color:var(--steel);
     margin-bottom:0.6rem;
   }
-  .section-head{
-    font-size:clamp(2.2rem, 5vw, 3.6rem);
-    margin-bottom:2.4rem;
-  }
-  @media (max-width:720px){
-    .section-head{
-      margin-bottom:1.2rem;
-      }
-  }
-
   /* ===== SEZIONI SHOP E GALLERY (sulla home) =====
      Foto a piena larghezza/altezza come sfondo della sezione stessa
      (background-image), con il pulsante sopra. Foto diverse per
@@ -286,20 +263,20 @@
 }
   /* Foto DESKTOP: una per sezione, selezionata tramite ID */
   #shop.teaser-banner{
-    background-image:url('../assets/shop-teaser-desktop.jpg');
+    background-image:url('../assets/teasers/shop-teaser-desktop.jpg');
   }
   #gallery.teaser-banner{
-    background-image:url('../assets/gallery-teaser-desktop.jpg');
+    background-image:url('../assets/teasers/gallery-teaser-desktop.jpg');
   }
   /* Sotto i 720px: swap automatico con le versioni verticali mobile.
      Per cambiare le foto: sostituisci questi 4 file in assets/,
      stessi nomi, non serve toccare questo CSS. */
   @media (max-width:720px){
     #shop.teaser-banner{
-      background-image:url('../assets/shop-teaser-mobile.jpg');
+      background-image:url('../assets/teasers/shop-teaser-mobile.jpg');
     }
     #gallery.teaser-banner{
-      background-image:url('../assets/gallery-teaser-mobile.jpg');
+      background-image:url('../assets/teasers/gallery-teaser-mobile.jpg');
     }
   }
   .teaser-cta{
@@ -376,7 +353,6 @@
     margin-bottom:0.8rem;
     break-inside:avoid;
     border:1px solid #1c1f1c;
-    cursor:pointer;
   }
   @media (min-width:721px){
     .mosaic{
@@ -388,43 +364,58 @@
         "a a c d";
       gap:0.8rem;
     }
-    /* Pattern speculare a città alterne, per varietà nel collage.
-       Uso il combinatore ~ (non nth-of-type) perché nth-of-type conta
-       i div fratelli per tag, non per classe: l'eyebrow prima dei
-       city-group sfaserebbe la numerazione pari/dispari. */
-    .city-group ~ .city-group .mosaic{
+    /* Pattern diversi per città, assegnati con una classe esplicita
+       sul singolo .mosaic (mosaic--b/c/d) invece che contando i
+       fratelli via CSS: coi selettori tipo ":nth-of-type" o "~" la
+       numerazione si sfasa facilmente (es. l'eyebrow prima dei
+       city-group non è un .city-group ma è comunque un <div>) e non
+       scala bene oltre 2 città. Una classe per gruppo è esplicita e
+       non si rompe aggiungendo nuove città.
+       Nota: la mappatura foto→area (nth-child sotto) resta identica
+       per tutti i pattern: cambia solo DOVE sta ogni area nella
+       griglia, non quale foto le corrisponde. */
+
+    /* Pattern A (default, es. Rimini): hero a sinistra */
+    /* — già coperto dal .mosaic sopra, nessuna regola aggiuntiva */
+
+    /* Pattern B (es. Milano): speculare, hero a destra */
+    .mosaic--b{
       grid-template-areas:
         "b b a a"
         "c d a a";
     }
+
+    /* Pattern C (es. Firenze): hero al centro, foto alta a sinistra,
+       due piccole impilate a destra — diverso da A/B (lì l'hero è
+       sempre su un lato, mai in mezzo). */
+    .mosaic--c{
+      grid-template-areas:
+        "b a a c"
+        "b a a d";
+    }
+
+    /* Pattern D (es. Parma): niente hero quadrato 2x2 come A/B/C —
+       2 quadratini + un rettangolo orizzontale per riga, specchiati
+       (rettangolo a destra sopra, a sinistra sotto). Usa 6 foto
+       invece di 4 (vedi nth-child(5)/(6) sotto e gallery.html). */
+    .mosaic--d{
+      grid-template-areas:
+        "a b c c"
+        "d d e f";
+    }
+
     .mosaic img:nth-child(1){ grid-area:a; }
     .mosaic img:nth-child(2){ grid-area:b; }
     .mosaic img:nth-child(3){ grid-area:c; }
     .mosaic img:nth-child(4){ grid-area:d; }
+    .mosaic img:nth-child(5){ grid-area:e; }
+    .mosaic img:nth-child(6){ grid-area:f; }
     .mosaic img{
       width:100%;
       height:100%;
       object-fit:cover;
       margin-bottom:0;
     }
-  }
-
-  /* ---------- LIGHTBOX ---------- */
-  .lightbox{
-    position:fixed; inset:0; z-index:200;
-    background:rgba(4,5,4,0.92);
-    display:none;
-    align-items:center; justify-content:center;
-    padding:3rem;
-  }
-  .lightbox.open{ display:flex; }
-  .lightbox img{ max-width:90vw; max-height:85vh; object-fit:contain; border:1px solid var(--green-dim); }
-  .lightbox-close{
-    position:absolute; top:1.5rem; right:2rem;
-    font-family:'Bungee', sans-serif;
-    color:var(--green-bright);
-    font-size:1.4rem;
-    cursor:pointer;
   }
 
   /* ---------- PLAYLIST PANEL (Music) ---------- */
@@ -477,11 +468,31 @@
     flex-direction:column;
     gap:0.5rem;
   }
-  .product-photo{
+  /* Contenitore della foto prodotto: tiene le proporzioni della
+     card e permette di sovrapporre la foto n.2, mostrata al passaggio
+     del mouse (solo dove il mouse esiste, vedi @media hover sotto). */
+  .product-photo-wrap{
+    position:relative;
+    display:block;
     width:100%;
     aspect-ratio:1/1;
+  }
+  .product-photo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
     object-fit:contain;
     display:block;
+  }
+  .product-photo--hover{
+    opacity:0;
+    transition:opacity 0.2s ease;
+  }
+  @media (hover:hover){
+    .product-card:hover .product-photo--hover{
+      opacity:1;
+    }
   }
   .product-name{
     font-family:'Barlow Condensed', sans-serif;
@@ -561,6 +572,7 @@
     font-family:'Barlow Condensed', sans-serif;
     font-size:1.4rem;
     color:var(--green-bright);
+    margin-top: -1rem;
   }
   .product-availability{
     font-family:'Barlow Condensed', sans-serif;
@@ -569,6 +581,7 @@
     letter-spacing:0.04em;
     font-size:0.85rem;
     color:var(--green-bright);
+    margin-top: -0.8rem;
   }
   .product-availability.is-soldout{
     color:var(--steel);
@@ -586,9 +599,30 @@
     letter-spacing:0.08em;
     font-size:0.8rem;
     color:var(--steel);
+    margin-top: -0.3rem;
+  }
+  /* Contenitore della select: la freccina è un ::after posizionato
+     sopra, perché una <select> non supporta pseudo-elementi propri
+     in modo affidabile tra browser diversi. Un "▾" ruotato con un ">"
+     per un chevron più sottile/stilizzato invece del triangolo pieno. */
+  .product-select-wrap{
+    position:relative;
+    max-width:110px;
+  }
+  .product-select-wrap::after{
+    content:">";
+    position:absolute;
+    top:50%; right:1rem;
+    transform:translateY(-50%) rotate(90deg);
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:700;
+    font-size:0.9rem;
+    color:var(--green-bright);
+    pointer-events:none; /* il click deve passare alla select sotto */
   }
   .product-size-select{
     -webkit-appearance:none;
+    -moz-appearance:none;
     appearance:none;
     border-radius:0;
     background:var(--panel);
@@ -596,42 +630,11 @@
     color:var(--off-white);
     font-family:'Barlow Condensed', sans-serif;
     font-size:1rem;
-    padding:0.6rem 1rem;
-    max-width:200px;
-  }
-  .product-qty{
-    display:flex;
-    align-items:center;
-    gap:0;
-    width:fit-content;
-  }
-  .qty-btn{
-    -webkit-appearance:none;
-    appearance:none;
-    width:2.4rem;
-    height:2.4rem;
-    border:1.5px solid var(--green);
-    background:none;
-    color:var(--green-bright);
-    font-size:1.2rem;
+    padding:0.6rem 2.2rem 0.6rem 1rem; /* spazio a destra per non finire sotto la freccina */
+    width:100%;
     cursor:pointer;
-    transition: background 0.2s, color 0.2s;
   }
-  @media (hover:hover){
-    .qty-btn:hover{ background:var(--green); color:var(--bg); }
-  }
-  .qty-value{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    min-width:3rem;
-    height:2.4rem;
-    border-top:1.5px solid var(--green-dim);
-    border-bottom:1.5px solid var(--green-dim);
-    font-family:'Barlow Condensed', sans-serif;
-    font-size:1.05rem;
-    color:var(--off-white);
-  }
+  .product-size-select::-ms-expand{ display:none; }
 
   .product-buy-btn{
     -webkit-appearance:none;
@@ -657,21 +660,6 @@
   }
   @media (hover:hover){
     .product-buy-btn:hover{ opacity:0.85; }
-  }
-
-  .payment-icons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:0.6rem;
-  }
-  .payment-icon{
-    font-family:'Barlow Condensed', sans-serif;
-    font-size:0.75rem;
-    text-transform:uppercase;
-    letter-spacing:0.05em;
-    color:var(--steel);
-    border:1px solid var(--green-dim);
-    padding:0.35rem 0.7rem;
   }
 
   .product-accordion{
@@ -738,6 +726,33 @@
     .product-gallery,
     .product-info{
       flex:1;
+    }
+  }
+
+  /* ---------- ALTRI PRODOTTI (sotto la pagina prodotto) ----------
+     Riga orizzontale scorrevole con gli altri prodotti (stesse card
+     dello shop, stesso hover foto n.2), sia su mobile che desktop —
+     a differenza della griglia dello shop, qui è sempre una sola riga
+     che scorre lateralmente. */
+  .related-products{
+    max-width:1400px;
+    margin:0 auto;
+  }
+  .products-scroll{
+    display:flex;
+    gap:1.5rem;
+    overflow-x:auto;
+    padding-bottom:0.5rem;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+  }
+  .products-scroll .product-card{
+    flex:0 0 160px;
+    scroll-snap-align:start;
+  }
+  @media (min-width:721px){
+    .products-scroll .product-card{
+      flex-basis:220px;
     }
   }
 
@@ -1044,10 +1059,10 @@
   }
 
   /* ===== SCHERMATA DI CARICAMENTO =====
-     Copre tutto lo schermo (z-index alto, sopra a tutto il resto,
-     incluso la lightbox che è a 200) finché la pagina non è pronta.
-     La classe "loaded" (aggiunta da script.js quando la pagina ha
-     finito di caricare) fa sparire l'overlay con una dissolvenza.
+     Copre tutto lo schermo (z-index alto, sopra a tutto il resto)
+     finché la pagina non è pronta. La classe "loaded" (aggiunta da
+     js/common.js quando la pagina ha finito di caricare) fa sparire
+     l'overlay con una dissolvenza.
   */
   #pageLoader{
     position:fixed;

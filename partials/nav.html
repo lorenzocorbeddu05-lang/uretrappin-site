@@ -1,0 +1,24 @@
+<!-- ===== NAVBAR CONDIVISA =====
+     Unica fonte per la navbar di tutte le pagine: js/common.js la
+     carica via fetch e la inserisce al posto di <div id="nav-mount">.
+     Per aggiungere/modificare una voce di menu basta editare questo
+     file, non le singole pagine.
+
+     I segnaposto {{ROOT}} vengono sostituiti da js/common.js con ''
+     (pagine alla radice) o '../' (pagine dentro legali/), così i link
+     funzionano da qualsiasi profondità senza duplicare il file. -->
+<nav id="mainNav">
+  <a class="brand" href="{{ROOT}}index.html">U'RE TRAPPIN</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="navMenu">
+    <li><a href="{{ROOT}}index.html">Home</a></li>
+    <li><a href="{{ROOT}}shop.html">Shop</a></li>
+    <li><a href="{{ROOT}}gallery.html">Gallery</a></li>
+    <li><a href="{{ROOT}}index.html#eventi">Eventi</a></li>
+    <li><a href="{{ROOT}}index.html#music">Music</a></li>
+    <li><a href="{{ROOT}}index.html#about">About Us</a></li>
+  </ul>
+</nav>
+<div id="menuOverlay"></div>

@@ -1,0 +1,44 @@
+<!-- ===== FOOTER CONDIVISO =====
+     Unica fonte per il footer di tutte le pagine, caricato via fetch
+     da js/common.js al posto di <div id="footer-mount">. Per
+     aggiungere una voce a una categoria, aggiungi un altro <a> dentro
+     il div.footer-category corrispondente, qui soltanto.
+
+     {{ROOT}} = '' (pagine alla radice) o '../' (pagine in legali/).
+     {{LEGALI}} = 'legali/' (dalla radice, per entrare nella cartella)
+     o '' (già dentro legali/, i file sono fratelli). -->
+<footer>
+  <div class="footer-top">
+    <img src="{{ROOT}}assets/brand/logo2.png" alt="U're Trappin" class="footer-logo">
+  </div>
+
+  <div class="footer-columns">
+    <div class="footer-category">
+      <h3 class="footer-heading">Links</h3>
+      <a href="https://www.instagram.com/u_are_trappin/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@u_are_trappin?_r=1&_t=ZG-9858OtERrCz" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://chat.whatsapp.com/CYRBDifHxEv5SmKfIKUwr1" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Sezioni sito</h3>
+      <a href="{{ROOT}}index.html#shop">Shop</a>
+      <a href="{{ROOT}}index.html#gallery">Gallery</a>
+      <a href="{{ROOT}}index.html#eventi">Eventi</a>
+      <a href="{{ROOT}}index.html#music">Music</a>
+      <a href="{{ROOT}}index.html#about">About Us</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Contatti</h3>
+      <a href="mailto:info@uretrappin.com">info@uretrappin.com</a>
+    </div>
+
+    <div class="footer-category">
+      <h3 class="footer-heading">Info legali</h3>
+      <a href="{{LEGALI}}privacy.html">Privacy Policy</a>
+      <a href="{{LEGALI}}termini.html">Termini e Condizioni</a>
+      <a href="{{LEGALI}}recesso.html">Diritto di Recesso</a>
+    </div>
+  </div>
+</footer>
