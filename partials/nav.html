@@ -7,6 +7,37 @@
      I segnaposto {{ROOT}} vengono sostituiti da js/common.js con ''
      (pagine alla radice) o '../' (pagine dentro legali/), così i link
      funzionano da qualsiasi profondità senza duplicare il file. -->
+
+<!-- ===== STRISCIA ANNUNCIO (sopra la navbar) =====
+     Testo che scorre in loop, stile/animazione in css/style.css
+     (.marquee, .marquee-track, .marquee-content, @keyframes
+     marquee-scroll). Decorativa (aria-hidden), quindi esclusa dagli
+     screen reader.
+
+     Per cambiare il testo: modifica .marquee-item qui sotto (le due
+     .marquee-content sono copie IDENTICHE — servono entrambe per il
+     loop senza scatti, quindi ogni modifica va fatta in entrambe). -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-content">
+      <span class="marquee-item">First Drop Out Now</span>
+      <span class="marquee-item">uretrappin@gmail.com</span>
+      <span class="marquee-item">First Drop Out Now</span>
+      <span class="marquee-item">uretrappin@gmail.com</span>
+      <span class="marquee-item">First Drop Out Now</span>
+      <span class="marquee-item">uretrappin@gmail.com</span>
+    </span>
+    <span class="marquee-content">
+      <span class="marquee-item">First Drop Out Now</span>
+      <span class="marquee-item">uretrappin@gmail.com</span>
+      <span class="marquee-item">First Drop Out Now</span>
+      <span class="marquee-item">uretrappin@gmail.com</span>
+      <span class="marquee-item">First Drop Out Now</span>
+      <span class="marquee-item">uretrappin@gmail.com</span>
+    </span>
+  </div>
+</div>
+
 <nav id="mainNav">
   <a class="brand" href="{{ROOT}}index.html">U'RE TRAPPIN</a>
   <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
@@ -16,7 +47,6 @@
     <li><a href="{{ROOT}}index.html">Home</a></li>
     <li><a href="{{ROOT}}shop.html">Shop</a></li>
     <li><a href="{{ROOT}}gallery.html">Gallery</a></li>
-    <li><a href="{{ROOT}}index.html#eventi">Eventi</a></li>
     <li><a href="{{ROOT}}index.html#music">Music</a></li>
     <li><a href="{{ROOT}}index.html#about">About Us</a></li>
   </ul>

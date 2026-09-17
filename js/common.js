@@ -73,5 +73,57 @@ function setupNav(){
   }
 }
 
-loadPartial('partials/nav.html', 'nav-mount', setupNav);
+/* ===== STRISCIA ANNUNCIO (marquee) =====
+   Il loop senza scatti (vedi @keyframes marquee-scroll in
+   css/style.css) funziona solo se ogni "metà" della striscia (i due
+   .marquee-content in partials/nav.html) è già larga almeno quanto lo
+   schermo: se il contenuto ripetuto è più STRETTO della finestra, a un
+   certo punto dello scorrimento non c'è più testo da mostrare finché
+   il loop non riparte da capo — è il vuoto/scatto che si vede su
+   schermi desktop larghi (sul cellulare non si notava perché lì il
+   contenuto era già più largo dello schermo).
+
+   Qui duplichiamo gli elementi delle due metà (stesso numero in
+   entrambe, per tenerle sempre della stessa identica larghezza) finché
+   ciascuna non supera la larghezza della striscia — qualunque sia,
+   anche su un futuro monitor ultra-wide. La durata dell'animazione
+   viene poi ricalcolata mantenendo la stessa velocità in pixel/secondo
+   di partenza, così la striscia non scorre più veloce su schermi che
+   hanno richiesto più duplicati. */
+function setupMarquee(){
+  const marquee = document.querySelector('.marquee');
+  const track = document.querySelector('.marquee-track');
+  if (!marquee || !track) return;
+
+  const halfA = track.children[0];
+  const halfB = track.children[1];
+  if (!halfA || !halfB) return;
+
+  const baseItems = Array.from(halfA.children);
+  const baseWidth = halfA.getBoundingClientRect().width;
+  if (!baseWidth) return; // niente contenuto o non ancora visibile: non c'è nulla da misurare
+  const pxPerSecond = baseWidth / 18; // velocità di riferimento: 18s per il contenuto di partenza
+
+  let guard = 0; // limite di sicurezza, evita loop infiniti in casi limite
+  while (halfA.getBoundingClientRect().width < marquee.getBoundingClientRect().width && guard < 20){
+    baseItems.forEach(item => {
+      halfA.appendChild(item.cloneNode(true));
+      halfB.appendChild(item.cloneNode(true));
+    });
+    guard++;
+  }
+
+  track.style.animationDuration = `${halfA.getBoundingClientRect().width / pxPerSecond}s`;
+}
+
+let marqueeResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(marqueeResizeTimer);
+  marqueeResizeTimer = setTimeout(setupMarquee, 200);
+});
+
+loadPartial('partials/nav.html', 'nav-mount', () => {
+  setupNav();
+  setupMarquee();
+});
 loadPartial('partials/footer.html', 'footer-mount');

@@ -86,7 +86,6 @@ async function loadProductDetail(){
 
     updateProductMeta(product);
 
-    document.getElementById('productVariant').textContent = `// ${product.variant}`;
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productPrice').textContent = product.price;
 

@@ -12,6 +12,7 @@
     --steel:#5b625b;        /* grigio neutro (testi secondari, pulsanti disattivati) */
     --off-white:#f2f2ea;    /* bianco sporco, colore testo principale */
     --gap: clamp(1.5rem, 4vw, 4rem); /* margine laterale standard di ogni sezione */
+    --marquee-h: 2.2rem; /* altezza della striscia che scorre sopra la navbar */
   }
 
   /* Reset di base: azzera margini/padding di default del browser */
@@ -36,14 +37,74 @@
 
   a{ color:inherit; text-decoration:none; }
 
+  /* ===== STRISCIA ANNUNCIO (sopra la navbar, su ogni pagina) =====
+     Testo che scorre in loop infinito, verde su nero. Caricata insieme
+     alla navbar (stesso frammento partials/nav.html), per questo sta
+     qui prima del blocco NAV. Per cambiare il testo: modifica
+     partials/nav.html (due copie identiche di .marquee-content, serve
+     il duplicato per il loop senza scatti). Per cambiare la velocità:
+     modifica la durata (18s) di @keyframes marquee-scroll qui sotto. */
+  .marquee{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:101; /* sopra la navbar (100) */
+    height:var(--marquee-h);
+    display:flex;
+    align-items:center;
+    overflow:hidden;
+    background:var(--bg);
+    border-bottom:1px solid var(--green-dim);
+  }
+  .marquee-track{
+    display:flex;
+    /* niente "width:max-content" qui: essendo l'unico figlio di un
+       flex container (.marquee) con contenuto che non va a capo
+       (white-space:nowrap sui figli), si dimensiona già automaticamente
+       al contenuto — testato: stessa identica larghezza in entrambi i
+       casi. La keyword max-content in più però fa sì che Safari
+       ricalcoli il layout più spesso durante un'animazione continua,
+       che è probabilmente la causa degli scatti/vuoti periodici
+       osservati. will-change forza l'animazione sul livello GPU
+       (compositor) invece di rientrare nel normale ciclo di layout. */
+    will-change:transform;
+    animation:marquee-scroll 18s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation:none; }
+  }
+  .marquee-content{
+    display:flex;
+    align-items:center;
+    white-space:nowrap;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.8rem;
+    color:var(--off-white);
+    /* NESSUN padding qui: tutta la spaziatura viene da .marquee-item
+       (vedi sotto), così lo spazio tra la fine di una copia e l'inizio
+       della successiva è identico a quello tra due elementi qualsiasi
+       — se no si crea un vuoto più grande proprio in quel punto, che
+       si vede come una "pausa" ogni volta che il loop si ripete. */
+  }
+  .marquee-item{
+    padding-right:2.4rem; /* spazio uniforme tra ogni elemento, incluso tra un blocco e il successivo: modifica questo valore per cambiarlo */
+  }
+  @keyframes marquee-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); } /* metà = una copia intera del testo, per il loop senza scatti */
+  }
+
   /* ===== NAV =====
-     Barra di navigazione fissa in alto su tutte le pagine.
+     Barra di navigazione fissa in alto su tutte le pagine, sotto la
+     striscia annuncio qui sopra (vedi --marquee-h).
      Su desktop mostra i link normali; sotto i 720px si trasforma in
      un menu a scomparsa con hamburger (vedi @media in fondo al blocco).
   */
   nav{
     position:fixed;
-    top:0; left:0; right:0;
+    top:var(--marquee-h); left:0; right:0;
     z-index:100;
     display:flex;
     justify-content:space-between;
@@ -66,8 +127,14 @@
     font-family:'Barlow Condensed', sans-serif;
     font-weight:600;
     text-transform:uppercase;
-    font-size:0.95rem;
+    font-size:0.95rem; /* dimensione voci menu su mobile */
     letter-spacing:0.04em;
+  }
+  /* Da desktop le voci del menu sono leggermente più grandi: modifica
+     questo font-size per cambiarne la dimensione (era 0.95rem come su
+     mobile). */
+  @media (min-width:721px){
+    nav ul{ font-size:1.2rem; }
   }
   nav ul a{ position:relative; padding-bottom:3px; }
   @media (hover:hover){
@@ -133,21 +200,31 @@
     .nav-toggle{ display:flex; }
     nav ul{
       position:fixed;
-      top:0; right:0;
-      height:100dvh;
+      top:var(--marquee-h); right:0;
+      height:calc(100dvh - var(--marquee-h));
       width:240px;
       flex-direction:column;
       justify-content:flex-start;
-      padding-top:7rem;
-      gap:1rem;
+      gap:0.7rem;
       background:rgba(7,8,10,0.98);
       border-left:1px solid var(--green-dim);
       transform:translateX(100%);
       transition:transform 0.3s ease;
       font-size:1.3rem;
-      padding:2rem;
+      padding:5rem 1rem 1rem; /* top 7rem (sotto la navbar), 2rem sugli altri lati */
     }
     nav.open ul{ transform:translateX(0); }
+    /* Linea verde sottile tra una voce di menu e l'altra (+ sopra la
+       prima voce e sotto l'ultima): resta inset dai bordi sx/dx del
+       menu grazie al padding di nav ul qui sopra. */
+    nav ul li{
+      padding-bottom:0.7rem;
+      border-bottom:1px solid var(--green-dim);
+    }
+    nav ul li:first-child{
+      padding-top:0.7rem;
+      border-top:1px solid var(--green-dim);
+    }
   }
 
   /* ---------- HERO ---------- */
@@ -166,7 +243,7 @@
     align-items:center;
     justify-content:center;
     text-align:center;
-    padding: 6rem var(--gap) 4rem;
+    padding: calc(6rem + var(--marquee-h)) var(--gap) 4rem;
     overflow:hidden;
   }
   .hero::before{
@@ -175,6 +252,18 @@
     background:url('../assets/brand/crowd.jpg') center 30%/cover no-repeat;
     filter:saturate(1.1) brightness(0.55); /* scurisce la foto */
     z-index:0;
+  }
+  /* ===== PROVA VIDEO DI SFONDO (temporaneo, vedi index.html) =====
+     Stesso trattamento della foto sopra: riempie l'hero, viene
+     ritagliato per coprire tutto lo spazio (object-fit:cover) e sta
+     allo stesso livello (z-index:0) della foto in .hero::before, ma
+     essendo un elemento vero (non uno pseudo-elemento) la dipinge
+     sopra — quindi la copre senza bisogno di toccare quella regola. */
+  .hero-video{
+    position:absolute; inset:0;
+    z-index:0;
+    width:100%; height:100%;
+    object-fit:cover;
   }
   .hero::after{
     content:"";
@@ -189,7 +278,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:1.6rem;
+    gap:1rem; /* distanza logo-tagline, uguale su mobile e desktop: modifica questo valore per cambiarla */
     margin-top:0vh; /* sposta il contenuto verso il basso rispetto al centro */
   }
   .hero img.logo{
@@ -199,8 +288,13 @@
     font-family:'Barlow Condensed', sans-serif;
     text-transform:uppercase;
     letter-spacing:0.35em;
-    font-size:0.95rem;
+    font-size:0.95rem; /* dimensione tagline su mobile */
     color:var(--green-bright);
+  }
+  /* Da desktop la tagline è leggermente più grande: modifica questo
+     font-size per cambiarne la dimensione (era 0.95rem come su mobile). */
+  @media (min-width:721px){
+    .hero .tag{ font-size:1.1rem; }
   }
   .scroll-cue{
     position:absolute;
@@ -229,6 +323,15 @@
     text-transform:uppercase;
     color:var(--steel);
     margin-bottom:0.6rem;
+  }
+  /* Da desktop "// Music" e "// About Us" sono leggermente più grandi
+     delle altre eyebrow del sito: modifica questo font-size per
+     cambiarne la dimensione (era 0.85rem come le altre). */
+  @media (min-width:721px){
+    #music .eyebrow,
+    #about .eyebrow{
+      font-size:1rem;
+    }
   }
   /* ===== SEZIONI SHOP E GALLERY (sulla home) =====
      Foto a piena larghezza/altezza come sfondo della sezione stessa
@@ -279,21 +382,93 @@
       background-image:url('../assets/teasers/gallery-teaser-mobile.jpg');
     }
   }
+  /* ===== PULSANTI TEASER SHOP/GALLERY — versioni provate =====
+     Sotto la regola ATTIVA (quella non commentata) tieni traccia delle
+     versioni scartate: per tornarci, commenta quella attiva e
+     scommenta la versione che vuoi. Nessuna versione tocca l'HTML,
+     solo questa regola .teaser-cta (+ il suo :hover).
+
+     VERSIONE 1 (originale) — riquadro pieno verde, testo nero:
+     .teaser-cta{
+       position:relative; z-index:1; display:inline-block;
+       background:var(--green); color:var(--bg);
+       font-family:'Bungee', sans-serif; font-size:0.9rem;
+       text-transform:uppercase; padding:0.9rem 1.8rem; letter-spacing:0.04em;
+       transition:transform 0.15s ease, box-shadow 0.15s ease;
+     }
+     @media (hover:hover){
+       .teaser-cta:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(63,230,74,0.35); }
+     }
+
+     VERSIONE 2 — riquadro con bordo verde, testo verde su nero:
+     .teaser-cta{
+       position:relative; z-index:1; display:inline-block;
+       background:var(--bg); color:var(--green-bright);
+       border:1.5px solid var(--green);
+       font-family:'Bungee', sans-serif; font-size:0.9rem;
+       text-transform:uppercase; padding:0.9rem 1.8rem; letter-spacing:0.04em;
+       transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+     }
+     @media (hover:hover){
+       .teaser-cta:hover{
+         background:var(--green); color:var(--bg);
+         transform:translateY(-2px); box-shadow:0 6px 18px rgba(63,230,74,0.35);
+       }
+     }
+
+     VERSIONE 3 — niente riquadro, solo scritta verde luminosa con
+     sottolineatura animata (scartata: poco leggibile su foto chiare):
+     .teaser-cta{
+       position:relative; z-index:1; display:inline-block;
+       background:none; border:none; padding:0 0 0.4rem;
+       color:var(--green-bright);
+       font-family:'Bungee', sans-serif; font-size:1.1rem;
+       text-transform:uppercase; letter-spacing:0.06em;
+       text-shadow:
+         0 0 10px rgba(63,230,74,0.6),
+         0 0 22px rgba(63,230,74,0.3),
+         0 2px 6px rgba(0,0,0,0.85);
+       transition:letter-spacing 0.2s ease;
+     }
+     .teaser-cta::after{
+       content:""; position:absolute; left:0; right:0; bottom:0; height:2px;
+       background:var(--green); box-shadow:0 0 8px rgba(63,230,74,0.6);
+       transform:scaleX(0); transform-origin:left; transition:transform 0.25s ease;
+     }
+     @media (hover:hover){
+       .teaser-cta:hover{ letter-spacing:0.1em; }
+       .teaser-cta:hover::after{ transform:scaleX(1); }
+     }
+  */
+
+  /* VERSIONE 4 (attiva) — pillola con sfondo scuro semi-trasparente
+     sfocato (leggibile sopra qualsiasi punto della foto, chiaro o
+     scuro) + bordo e testo verde. Stessa logica hover di V2 (inversione
+     colori), forma diversa (arrotondata invece che squadrata). */
   .teaser-cta{
     position:relative;
     z-index:1;
     display:inline-block;
-    background:var(--green);
-    color:var(--bg);
+    background:rgba(7,8,10,0.7);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    border:1.5px solid var(--green);
+    border-radius:999px;
+    color:var(--green-bright);
     font-family:'Bungee', sans-serif;
     font-size:0.9rem;
     text-transform:uppercase;
-    padding:0.9rem 1.8rem;
+    padding:0.9rem 1.9rem;
     letter-spacing:0.04em;
-    transition:transform 0.15s ease, box-shadow 0.15s ease;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
   }
   @media (hover:hover){
-    .teaser-cta:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(63,230,74,0.35); }
+    .teaser-cta:hover{
+      background:var(--green);
+      color:var(--bg);
+      transform:translateY(-2px);
+      box-shadow:0 6px 18px rgba(63,230,74,0.35);
+    }
   }
 
   /* ---------- CHI SIAMO / ABOUT ---------- */
@@ -321,7 +496,7 @@
 
   /* ---------- GALLERY PAGE (foto per città) ---------- */
   .gallery-page{
-    padding-top:7rem;
+    padding-top:calc(7rem + var(--marquee-h));
     max-width:1400px;
     margin:0 auto;
   }
@@ -454,7 +629,7 @@
      sfondo nero come il resto del sito, l'effetto voluto è di
      continuità con la pagina, non di "scheda" separata. */
   .shop-page{
-    padding-top:7rem;
+    padding-top:calc(7rem + var(--marquee-h));
     max-width:1400px;
     margin:0 auto;
   }
@@ -509,7 +684,9 @@
   }
   @media (min-width:721px){
     .products-grid{
-      grid-template-columns:repeat(3, minmax(0, 260px));
+      /* 320px = larghezza massima di ogni card: alzalo per ingrandire
+         ancora i prodotti e lasciare meno spazio vuoto ai lati. */
+      grid-template-columns:repeat(3, minmax(0, 320px));
       justify-content:center;
       gap:3rem 2rem;
     }
@@ -520,7 +697,7 @@
      data/products.json in base a ?id= nell'URL. Mobile: colonne
      impilate. Desktop: due colonne fianco a fianco (vedi @media). */
   .product-page{
-    padding-top:7rem;
+    padding-top:calc(7rem + var(--marquee-h));
     max-width:1100px;
     margin:0 auto;
     display:flex;
@@ -709,7 +886,7 @@
   .accordion-list{
     padding-bottom:1rem;
     color:#cfd4cd;
-    font-size:0.95rem;
+    font-size:1.05rem; /* testo di Dettagli/Spedizione (non i pulsanti, quelli sono .accordion-trigger) */
     line-height:1.5;
   }
   .accordion-list{
@@ -760,9 +937,9 @@
   /* ===== FOOTER =====
      Piè di pagina uguale su tutte le pagine.
      - .footer-top = logo piccolo, allineato a sinistra
-     - .footer-columns = le 3 categorie (Links, Sezioni sito, Contatti)
-       affiancate in colonne su desktop, impilate verticalmente sotto
-       i 720px (vedi @media in fondo al blocco)
+     - .footer-columns = le 4 categorie (Links, Sezioni sito, Contatti,
+       Info legali) affiancate in colonne su desktop, a 2 colonne
+       sotto i 720px (vedi @media in fondo al blocco)
   */
   footer{
     padding:3rem var(--gap) 2.4rem;
@@ -780,11 +957,24 @@
     height:auto;
     display:block;
   }
-  /* Le 3 categorie affiancate come colonne */
+  /* Le 4 categorie affiancate come colonne. Da desktop justify-content:
+     space-between le distribuisce su tutta la larghezza del footer
+     invece di tenerle raggruppate a sinistra (gap resta come spaziatura
+     minima se lo spazio si stringe). */
   .footer-columns{
     display:flex;
     flex-wrap:wrap;
+    justify-content:space-between;
     gap:3rem;
+  }
+  /* Da desktop: margine laterale aggiuntivo sulle colonne (oltre al
+     padding del footer) per restringerne la fascia e avvicinarle tra
+     loro invece di farle arrivare fino ai bordi del footer. Alza/abbassa
+     questo valore per allontanarle/avvicinarle ancora. */
+  @media (min-width:721px){
+    .footer-columns{
+      margin:0 4rem;
+    }
   }
   .footer-category{
     display:flex;
@@ -823,239 +1013,12 @@
     }
   }
 
-  /* =========================================================
-     SEZIONE EVENTI — locandine con effetto "flip" (fronte/retro)
-     Generata dinamicamente da js/script.js leggendo data/events.json.
-     ========================================================= */
-
-  /* Testo di caricamento/nessun evento, mostrato prima che il JS finisca */
+  /* Testo generico di stato (caricamento/vuoto/errore) — riusato da
+     js/shop.js e js/product.js per i loro messaggi. */
   .no-events{
     color:#b8beb6;
     font-style:italic;
     font-size:1.05rem;
-  }
-
-  /* Piccola scritta sotto le locandine, visibile solo su mobile (vedi media query) */
-  .events-swipe-hint{
-    display:none;
-    text-align:center;
-    color:var(--steel);
-    font-size:0.85rem;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    margin-top:1rem;
-  }
-
-  /* Contenitore di tutte le card evento: griglia su desktop */
-  .events-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(305px, 1fr));
-    gap:clamp(1.5rem, 4vw, 2.5rem);
-  }
-
-  /* Singola card evento: contiene fronte e retro, con prospettiva 3D per il flip */
-  .event-poster-card{
-    max-width:400px;
-    min-width:0; /* evita che il testo dei pulsanti allarghi la card oltre il previsto */
-    perspective:1600px;
-  }
-
-  /* Wrapper interno che ruota di 180° quando la card ha la classe "flipped" */
-  .card-inner{
-    position:relative;
-    width:100%;
-    transition:transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-    transform-style:preserve-3d;
-  }
-  .event-poster-card.flipped .card-inner{
-    transform:rotateY(180deg);
-  }
-
-  /* Stile comune a entrambe le facce (fronte e retro) */
-  .card-face{
-    background:var(--panel);
-    border:1px solid var(--steel);
-    position:relative;
-    backface-visibility:hidden;
-    -webkit-backface-visibility:hidden;
-    transition:border-color 0.25s ease, box-shadow 0.25s ease;
-  }
-  .card-face::before{
-    content:"";
-    position:absolute; inset:5px;
-    border:1px solid rgba(63,230,74,0.12);
-    pointer-events:none;
-  }
-  @media (hover:hover){
-    .event-poster-card:hover .card-face{
-      border-color:var(--green);
-      box-shadow:0 14px 32px rgba(63,230,74,0.18);
-    }
-  }
-
-  /* ----- FRONTE: locandina + pulsanti Iscriviti/Info ----- */
-  .card-front{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:1.1rem;
-    padding:0.75rem 0.75rem 1.1rem;
-  }
-  .card-front img{
-    width:100%;
-    height:auto;
-    display:block;
-    border:1px solid rgba(63,230,74,0.25);
-  }
-
-  /* ----- RETRO: info evento (posizione, orario, dettagli extra) ----- */
-  .card-back{
-    position:absolute;
-    inset:0;
-    transform:rotateY(180deg);
-    display:flex;
-    flex-direction:column;
-    padding:1.5rem 1.3rem;
-  }
-  .info-back-header{
-    font-family:'Bungee', sans-serif;
-    font-size:1.1rem;
-    color:var(--green-bright);
-    text-shadow:0 0 8px rgba(63,230,74,0.5);
-    text-transform:uppercase;
-    margin-bottom:1rem;
-  }
-  .info-back-rows{
-    flex:1;
-    overflow-y:auto;
-  }
-  .info-back-row{
-    display:flex;
-    justify-content:space-between;
-    gap:1rem;
-    padding:0.5rem 0;
-    border-bottom:1px dashed #232823;
-    font-size:0.95rem;
-  }
-  .info-back-row:last-child{ border-bottom:none; }
-  .info-back-label{
-    color:var(--off-white);
-    text-transform:uppercase;
-    font-weight:600;
-    letter-spacing:0.03em;
-    white-space:nowrap;
-    flex-shrink:0;
-  }
-  .info-back-value{
-    flex:1;
-    color:var(--green-bright);
-    text-align:right;
-    min-width:0;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis; /* testo troppo lungo -> troncato con "…" invece di andare a capo */
-  }
-  .card-back .event-actions{
-    margin-top:1rem;
-    padding:0;
-  }
-
-  /* ----- Pulsanti Iscriviti / Info / Indietro (riga sotto la locandina) ----- */
-  .event-actions{
-    display:flex;
-    gap:0.8rem;
-    width:100%;
-    padding:0 0.4rem;
-  }
-  .event-cta{
-    -webkit-appearance:none; /* toglie lo stile nativo Safari sui <button>, altrimenti il testo non si centra bene */
-    appearance:none;
-    border-radius:0;
-    margin:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex:1; /* "Iscriviti" prende più spazio di "Info"/"Indietro", vedi sotto per il rapporto su mobile */
-    min-width:0;
-    text-align:center;
-    font-family:'Barlow Condensed', sans-serif;
-    font-size:1rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.05em;
-    border:1.5px solid var(--green);
-    background:none;
-    color:var(--green-bright);
-    padding:0.7rem 1.2rem;
-    white-space:nowrap;
-    cursor:pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-  @media (hover:hover){
-    .event-cta:hover{ background:var(--green); color:var(--bg); }
-  }
-
-  /* Pulsante "Info" — grigio, per distinguerlo da "Iscriviti" */
-  .event-cta--info{
-    border-color:var(--steel);
-    color:var(--steel);
-  }
-  @media (hover:hover){
-    .event-cta--info:hover{ background:var(--steel); color:var(--bg); }
-  }
-
-  /* "Iscrizioni a breve" quando l'evento non ha ancora un link di prenotazione */
-  .event-cta--disabled{
-    border-color:var(--steel);
-    color:var(--steel);
-    cursor:not-allowed;
-  }
-
-  /* ----- Mobile: locandine a carosello orizzontale invece che impilate ----- */
-  @media (max-width:640px){
-    .events-grid{
-      display:flex;
-      flex-direction:row;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory; /* lo scroll si "blocca" su ogni locandina */
-      -webkit-overflow-scrolling:touch;
-      gap:1.1rem;
-      padding-bottom:0.4rem;
-      margin:0 calc(-1 * var(--gap));
-      padding-left:var(--gap);
-      padding-right:var(--gap);
-      scrollbar-width:none;
-    }
-    .events-grid::-webkit-scrollbar{ display:none; }
-    .events-grid.single-event{
-      justify-content:center; /* centra la locandina se c'è un solo evento */
-    }
-    .event-poster-card{
-      flex:0 0 85%;
-      max-width:none;
-      scroll-snap-align:center;
-    }
-    .card-front{
-      padding:0.75rem 0.75rem 1.1rem;
-    }
-    .card-back{
-      padding:1.1rem 0.8rem;
-    }
-    .info-back-row{
-      font-size:0.85rem;
-      gap:0.6rem;
-    }
-    .events-swipe-hint{
-      display:block;
-    }
-    /* Su mobile "Iscriviti" è molto più largo di "Info"/"Indietro" (su desktop restano uguali) */
-    .event-cta{
-      flex:1.8;
-    }
-    .event-cta--info,
-    .card-flip-back{
-      flex:0.6;
-    }
   }
 
   /* ===== SCHERMATA DI CARICAMENTO =====
@@ -1093,7 +1056,7 @@
      es. lo snippet generato da Iubenda.
   */
   .legal-page{
-    padding-top:7rem;
+    padding-top:calc(7rem + var(--marquee-h));
     max-width:800px;
     margin:0 auto;
   }

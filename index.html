@@ -55,7 +55,7 @@
      di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/brand/logo2.png" alt="U're Trappin" class="loader-logo">
+  <img src="assets/brand/logo3.png" alt="U're Trappin" class="loader-logo">
 </div>
 
 <!-- ===== NAVBAR (condivisa, vedi partials/nav.html) ===== -->
@@ -65,9 +65,17 @@
      Foto di sfondo + logo. Per cambiare la foto: modifica il
      percorso in css/style.css alla regola .hero::before -->
 <section class="hero">
+  <!-- ===== PROVA VIDEO DI SFONDO (temporaneo) =====
+       assets/brand/prova sfondo.mp4 al posto della foto di sfondo
+       (quella di .hero::before in css/style.css resta lì sotto, non
+       serve toccarla: il video sopra la copre). Per togliere la prova
+       e tornare alla foto: elimina questo tag <video>. -->
+  <video class="hero-video" src="assets/brand/prova%20sfondo.mp4" autoplay muted loop playsinline></video>
   <div class="hero-content">
-    <img class="logo" src="assets/brand/logo2.png" alt="U're Trappin">
-    <div class="tag">Lifestyle · Music · Trappin</div>
+    <!-- Logo nascosto temporaneamente per questa prova: il video sopra
+         ha già il logo dentro. Per rimetterlo, togli il commento. -->
+    <!-- <img class="logo" src="assets/brand/logo3.png" alt="U're Trappin"> -->
+    <div class="tag">Events · Clothing · Music</div>
   </div>
   <div class="scroll-cue">Scroll ↓</div>
 </section>
@@ -87,19 +95,9 @@
 </section>
 
 <!-- ===== SEZIONE EVENTI =====
-     Le card evento sono generate automaticamente da js/events.js,
-     leggendo i dati da data/events.json. Non serve modificare questo
-     HTML per aggiungere un nuovo evento: basta editare events.json.
-     Ogni card ha un fronte (locandina + pulsanti) e un retro (info),
-     che si alternano con un effetto "flip" al click su "Info".
--->
-<section id="eventi">
-  <div class="eyebrow">// Eventi</div>
-  <div class="events-grid" id="eventsGrid">
-    <p class="no-events">Caricamento eventi…</p>
-  </div>
-  <p class="events-swipe-hint">← Scorri per vedere altri eventi →</p>
-</section>
+     Rimossa temporaneamente (non eliminata dal progetto: recuperabile
+     dalla cronologia Git — commit prima della rimozione — se e quando
+     servirà di nuovo). ===== -->
 
 <!-- ===== SEZIONE MUSIC =====
      Player Spotify incorporato. Per cambiare playlist: sostituisci
@@ -134,7 +132,6 @@
 <div id="footer-mount"></div>
 
 <script src="js/common.js"></script>
-<script src="js/events.js"></script>
 
 </body>
 </html>
