@@ -10,6 +10,24 @@ window.addEventListener('load', () => {
   if (loader) loader.classList.add('loaded');
 });
 
+/* ===== VIDEO DI SFONDO HERO (prova, vedi index.html) =====
+   L'attributo "autoplay" da solo a volte non basta (alcuni browser
+   sono più affidabili se il play() viene richiamato anche via JS).
+   Se il browser blocca l'autoplay di proposito (es. iOS con Risparmio
+   energetico attivo) o il video fallisce per un altro motivo, invece
+   di lasciar vedere il video fermo col pulsante play ci nascondiamo:
+   sotto c'è già la foto di sfondo originale (.hero::before, la stessa
+   usata prima di aggiungere il video), quindi torna visibile da sola,
+   senza dover caricare nient'altro. */
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo){
+  heroVideo.muted = true;
+  const hideVideo = () => heroVideo.classList.add('hero-video--hidden');
+  const playPromise = heroVideo.play();
+  if (playPromise !== undefined) playPromise.catch(hideVideo);
+  heroVideo.addEventListener('error', hideVideo);
+}
+
 /* =========================================================
    NAV E FOOTER CONDIVISI — un solo file sorgente ciascuno
    (partials/nav.html, partials/footer.html) invece di una copia

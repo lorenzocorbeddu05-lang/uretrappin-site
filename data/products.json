@@ -1,6 +1,6 @@
 [
   {
-    "name": "Get Rich Or Die Trappin' T-Shirt",
+    "name": "Get Rich Or Die Trappin' Black T-Shirt",
     "variant": "Black",
     "price": "40€",
     "available": true,
@@ -25,7 +25,7 @@
     ]
   },
   {
-    "name": "Get Rich Or Die Trappin' T-Shirt",
+    "name": "Get Rich Or Die Trappin' White T-Shirt",
     "variant": "White",
     "price": "40€",
     "available": true,
@@ -50,7 +50,7 @@
     ]
   },
   {
-    "name": "Get Rich Or Die Trappin' Long Sleeve",
+    "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
     "variant": "Heather Black",
     "price": "40€",
     "available": true,
@@ -77,7 +77,7 @@
     ]
   },
   {
-    "name": "Get Rich Or Die Trappin' Long Sleeve",
+    "name": "Get Rich Or Die Trappin' White Long Sleeve",
     "variant": "White",
     "price": "40€",
     "available": true,

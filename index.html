@@ -8,19 +8,19 @@
      favicon segnaposto (assets/brand/favicon.png, sostituibile con
      un'icona vera quando ce n'è una). og:image è un percorso relativo:
      una volta online il sito con un dominio vero, va reso assoluto
-     (https://tuodominio.it/assets/brand/logo.jpg) perché WhatsApp/
+     (https://tuodominio.it/assets/brand/logo.png) perché WhatsApp/
      Instagram/Twitter leggano l'anteprima correttamente. -->
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
-<meta name="description" content="U're Trappin — lifestyle, eventi e musica trap. Scopri gli ultimi drop, la gallery degli eventi e la nostra musica.">
+<meta name="description" content="U're Trappin — lifestyle, eventi e musica trap. Scopri gli ultimi drop, l'archivio degli eventi e la nostra musica.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="U're Trappin">
 <meta property="og:title" content="U're Trappin">
-<meta property="og:description" content="Lifestyle, eventi e musica trap. Scopri gli ultimi drop, la gallery e la nostra musica.">
-<meta property="og:image" content="assets/brand/logo.jpg">
+<meta property="og:description" content="Lifestyle, eventi e musica trap. Scopri gli ultimi drop, l'archivio e la nostra musica.">
+<meta property="og:image" content="assets/brand/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="U're Trappin">
 <meta name="twitter:description" content="Lifestyle, eventi e musica trap.">
-<meta name="twitter:image" content="assets/brand/logo.jpg">
+<meta name="twitter:image" content="assets/brand/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bungee&family=Baloo+2:wght@600;800&family=Barlow+Condensed:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
@@ -70,7 +70,9 @@
        (quella di .hero::before in css/style.css resta lì sotto, non
        serve toccarla: il video sopra la copre). Per togliere la prova
        e tornare alla foto: elimina questo tag <video>. -->
-  <video class="hero-video" src="assets/brand/prova%20sfondo.mp4" autoplay muted loop playsinline></video>
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+    <source src="assets/brand/prova%20sfondo.mp4" type="video/mp4">
+  </video>
   <div class="hero-content">
     <!-- Logo nascosto temporaneamente per questa prova: il video sopra
          ha già il logo dentro. Per rimetterlo, togli il commento. -->
@@ -85,7 +87,7 @@
      sopra. Foto diverse per mobile/desktop, gestite automaticamente
      da una media query in CSS — non serve toccare l'HTML per quello. -->
 <section id="shop" class="teaser-banner">
-  <a class="teaser-cta" href="shop.html">Vai allo Shop →</a>
+  <a class="teaser-cta" href="shop.html">Vai al Negozio →</a>
 </section>
 
 <!-- ===== SEZIONE GALLERY (anteprima sulla home) =====
@@ -104,7 +106,7 @@
      l'URL nel src dell'iframe con quello della tua playlist Spotify
      (Condividi > Incorpora playlist, sul sito/app di Spotify) -->
 <section id="music">
-  <div class="eyebrow">// Music</div>
+  <div class="eyebrow">// Musica</div>
   <div class="panel">
     <div class="panel-label">Spotify · U're Trappin</div>
     <div class="playlist-wrap">
@@ -115,7 +117,7 @@
 
 <!-- ===== SEZIONE ABOUT US ===== -->
 <section id="about">
-  <div class="eyebrow">// About Us</div>
+  <div class="eyebrow">// Chi Siamo</div>
   <div class="about">
     <div class="about-photo">
       <img src="assets/brand/coconuts-halftone.png" alt="U're Trappin crew">
