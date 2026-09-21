@@ -18,14 +18,32 @@ window.addEventListener('load', () => {
    di lasciar vedere il video fermo col pulsante play ci nascondiamo:
    sotto c'è già la foto di sfondo originale (.hero::before, la stessa
    usata prima di aggiungere il video), quindi torna visibile da sola,
-   senza dover caricare nient'altro. */
+   senza dover caricare nient'altro.
+
+   Il file video è diverso per mobile e desktop (data-src-mobile /
+   data-src-desktop in index.html): lo scegliamo qui in base alla
+   larghezza, così il browser scarica solo quello che serve. Se la
+   finestra attraversa i 720px (es. rotazione del telefono) si cambia
+   file al volo. */
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo){
+  const mobileQuery = window.matchMedia('(max-width:720px)');
   heroVideo.muted = true;
+
   const hideVideo = () => heroVideo.classList.add('hero-video--hidden');
-  const playPromise = heroVideo.play();
-  if (playPromise !== undefined) playPromise.catch(hideVideo);
+
+  const loadHeroVideo = () => {
+    const src = mobileQuery.matches ? heroVideo.dataset.srcMobile : heroVideo.dataset.srcDesktop;
+    if (!src) return hideVideo();
+    heroVideo.classList.remove('hero-video--hidden');
+    heroVideo.src = src;
+    const playPromise = heroVideo.play();
+    if (playPromise !== undefined) playPromise.catch(hideVideo);
+  };
+
   heroVideo.addEventListener('error', hideVideo);
+  mobileQuery.addEventListener('change', loadHeroVideo);
+  loadHeroVideo();
 }
 
 /* =========================================================

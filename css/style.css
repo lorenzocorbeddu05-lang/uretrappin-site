@@ -109,19 +109,25 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding: 0.9rem var(--gap);
+    padding: 0.9rem var(--gap); /* margine verticale della navbar su mobile */
     background:linear-gradient(to bottom, rgba(7,8,10,0.92), rgba(7,8,10,0));
     backdrop-filter:blur(2px);
+  }
+  /* Da desktop la navbar è più bassa: riduce solo il margine sopra/sotto
+     (non tocca logo o voci di menu, che restano della stessa dimensione).
+     Modifica questi due valori per cambiarne l'altezza. */
+  @media (min-width:721px){
+    nav{ padding-top:0.8rem; padding-bottom:0.8rem; }
   }
   nav .brand{
     display:flex;
     align-items:center;
   }
   .brand-logo{
-    height:1.7rem; /* dimensione del logo in navbar su mobile: modifica questo valore per cambiarla */
+    height:2.2rem; /* dimensione del logo in navbar su mobile: modifica questo valore per cambiarla */
     width:auto;
     display:block;
-    filter:drop-shadow(0 0 6px rgba(63,230,74,0.6)); /* stesso glow verde che aveva la scritta prima */
+    /*filter:drop-shadow(0 0 6px rgba(63,230,74,0.6)); /* stesso glow verde che aveva la scritta prima */
   }
   /* Da desktop il logo è più grande: modifica questo valore (era
      1.7rem come su mobile). */

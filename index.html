@@ -66,17 +66,18 @@
      percorso in css/style.css alla regola .hero::before -->
 <section class="hero">
   <!-- ===== PROVA VIDEO DI SFONDO (temporaneo) =====
-       assets/brand/prova sfondo.mp4 al posto della foto di sfondo
-       (quella di .hero::before in css/style.css resta lì sotto, non
-       serve toccarla: il video sopra la copre). Per togliere la prova
-       e tornare alla foto: elimina questo tag <video>. -->
-  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
-    <source src="assets/brand/prova%20sfondo.mp4" type="video/mp4">
-  </video>
+       Due video diversi: uno per desktop e uno per mobile (sotto i
+       720px). Il src NON è scritto qui ma scelto da js/common.js in base
+       alla larghezza dello schermo, così il browser scarica solo quello
+       che serve (un <source media> dentro <video> non funziona, quello
+       vale solo per <picture>). La foto di .hero::before in
+       css/style.css resta lì sotto, e torna visibile da sola se il
+       video non parte. Per togliere la prova: elimina questo <video>. -->
+  <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+         data-src-desktop="assets/brand/prova%20sfondo%20no%20logo.mp4"
+         data-src-mobile="assets/brand/BASE%20NEGRO.mp4"></video>
   <div class="hero-content">
-    <!-- Logo nascosto temporaneamente per questa prova: il video sopra
-         ha già il logo dentro. Per rimetterlo, togli il commento. -->
-    <!-- <img class="logo" src="assets/brand/logo3.png" alt="U're Trappin"> -->
+    <img class="logo" src="assets/brand/logo3.png" alt="U're Trappin">
     <div class="tag">Events · Clothing · Music</div>
   </div>
   <div class="scroll-cue">Scroll ↓</div>
