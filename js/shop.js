@@ -39,11 +39,12 @@ async function loadProducts(){
 
     grid.innerHTML = products.length
       ? products.map((product, i) => renderProductCard(product, i + 1)).join('')
-      : '<p class="no-events">Prodotti in arrivo.</p>';
+      : '<p class="no-events" data-i18n="shop.empty">Prodotti in arrivo.</p>';
   } catch (err) {
     console.error('Errore nel caricamento di data/products.json:', err);
-    grid.innerHTML = '<p class="no-events">Impossibile caricare i prodotti al momento.</p>';
+    grid.innerHTML = '<p class="no-events" data-i18n="shop.error">Impossibile caricare i prodotti al momento.</p>';
   }
+  translate(grid);
 }
 
 loadProducts();

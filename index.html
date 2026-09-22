@@ -11,7 +11,7 @@
      (https://tuodominio.it/assets/brand/og-image.png) perché WhatsApp/
      Instagram/Twitter leggano l'anteprima correttamente. -->
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
-<meta name="description" content="U're Trappin — lifestyle, eventi e musica trap. Scopri gli ultimi drop, l'archivio degli eventi e la nostra musica.">
+<meta name="description" content="U're Trappin — lifestyle, eventi e musica trap. Scopri gli ultimi drop, l'archivio degli eventi e la nostra musica." data-i18n-attr="content:meta.home.desc">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="U're Trappin">
 <meta property="og:title" content="U're Trappin">
@@ -55,7 +55,7 @@
      di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/brand/logo3.png" alt="U're Trappin" class="loader-logo">
+  <img src="assets/brand/logo3.webp" alt="U're Trappin" class="loader-logo">
 </div>
 
 <!-- ===== NAVBAR (condivisa, vedi partials/nav.html) ===== -->
@@ -77,7 +77,7 @@
          data-src-desktop="assets/brand/prova%20sfondo%20no%20logo.mp4"
          data-src-mobile="assets/brand/BASE%20NEGRO.mp4"></video>
   <div class="hero-content">
-    <img class="logo" src="assets/brand/logo3.png" alt="U're Trappin">
+    <img class="logo" src="assets/brand/logo3.webp" alt="U're Trappin">
     <div class="tag">Events · Clothing · Music</div>
   </div>
   <div class="scroll-cue">Scroll ↓</div>
@@ -85,16 +85,23 @@
 
 <!-- ===== SEZIONE SHOP (anteprima sulla home) =====
      Foto a piena larghezza (sfondo CSS, vedi style.css) + pulsante
-     sopra. Foto diverse per mobile/desktop, gestite automaticamente
-     da una media query in CSS — non serve toccare l'HTML per quello. -->
+     grafico sopra (vedi .tribal-btn in style.css: usa PNG forniti dal
+     grafico, assets/brand/pulsante-negozio.png). Foto diverse per
+     mobile/desktop, gestite automaticamente da una media query in CSS
+     — non serve toccare l'HTML per quello. -->
 <section id="shop" class="teaser-banner">
-  <a class="teaser-cta" href="shop.html">Vai al Negozio →</a>
+  <a class="tribal-btn tribal-btn--negozio" href="shop.html">
+    <span class="tribal-btn-label" data-i18n="nav.shop">Negozio</span>
+  </a>
 </section>
 
 <!-- ===== SEZIONE GALLERY (anteprima sulla home) =====
-     Stessa logica della sezione Shop qui sopra. -->
+     Stessa logica della sezione Shop qui sopra, con
+     assets/brand/pulsante-archivio.png. -->
 <section id="gallery" class="teaser-banner">
-  <a class="teaser-cta" href="gallery.html">Vedi tutte le foto →</a>
+  <a class="tribal-btn tribal-btn--archivio" href="gallery.html">
+    <span class="tribal-btn-label" data-i18n="nav.gallery">Archivio</span>
+  </a>
 </section>
 
 <!-- ===== SEZIONE EVENTI =====
@@ -107,7 +114,7 @@
      l'URL nel src dell'iframe con quello della tua playlist Spotify
      (Condividi > Incorpora playlist, sul sito/app di Spotify) -->
 <section id="music">
-  <div class="eyebrow">// Musica</div>
+  <div class="eyebrow" data-i18n="home.music">// Musica</div>
   <div class="panel">
     <div class="panel-label">Spotify · U're Trappin</div>
     <div class="playlist-wrap">
@@ -118,14 +125,14 @@
 
 <!-- ===== SEZIONE ABOUT US ===== -->
 <section id="about">
-  <div class="eyebrow">// Chi Siamo</div>
+  <div class="eyebrow" data-i18n="home.about">// Chi Siamo</div>
   <div class="about">
     <div class="about-photo">
-      <img src="assets/brand/coconuts-halftone.png" alt="U're Trappin crew">
+      <img src="assets/brand/coconuts-halftone.webp" alt="U're Trappin crew">
     </div>
     <div>
-      <p>CHI SIAMO</p>
-      <p>Breve descrizione/presentazione</p>
+      <p data-i18n="home.aboutTitle">CHI SIAMO</p>
+      <p data-i18n="home.aboutBody">Breve descrizione/presentazione</p>
       <p>...</p>
     </div>
   </div>

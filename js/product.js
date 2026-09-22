@@ -2,15 +2,17 @@
    PAGINA PRODOTTO — lettura di data/products.json in base al
    parametro ?id= nell'URL (product.html?id=1) e popolamento del
    template in product.html. id è 1-based, nello stesso ordine
-   della lista in products.json (e dei nomi file product-N-*.jpg).
+   della lista in products.json (le foto di ogni prodotto sono invece
+   elencate esplicitamente nel campo "photos", quindi i nomi file non
+   devono per forza seguire l'ordine).
 
    Usa renderProductCard() definita in js/shop.js per la lista
    "Altri prodotti" — questo file va incluso DOPO shop.js.
    ========================================================= */
 
-function setupProductThumbs(photos, mainPhotoEl, thumbsEl){
+function setupProductThumbs(photos, name, mainPhotoEl, thumbsEl){
   thumbsEl.innerHTML = photos.map((src, i) => `
-    <img src="${src}" alt="Foto ${i + 1}" class="${i === 0 ? 'active' : ''}" loading="lazy">
+    <img src="${src}" alt="${name} ${i + 1}" class="${i === 0 ? 'active' : ''}" loading="lazy">
   `).join('');
 
   thumbsEl.querySelectorAll('img').forEach(thumb => {
@@ -53,7 +55,7 @@ function updateBuyButton(product, buyButton, sizeSelect){
 function updateProductMeta(product){
   document.title = `${product.name} — U'RE TRAPPIN`;
 
-  const description = `${product.name} (${product.variant}) — ${product.price}. Disponibile su U're Trappin.`;
+  const description = `${product.name} (${product.variant}) — ${product.price}. ${t('product.metaAvailable')}`;
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) metaDescription.setAttribute('content', description);
 
@@ -74,29 +76,35 @@ async function loadProductDetail(){
   const id = Number(new URLSearchParams(location.search).get('id'));
 
   try {
+    // t() (testi tradotti) è utilizzabile solo dopo che il dizionario è caricato
+    await i18nReady;
     const response = await fetch('data/products.json');
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const products = await response.json();
     const product = products[id - 1];
 
     if (!product){
-      page.innerHTML = '<p class="no-events">Prodotto non trovato.</p>';
+      page.innerHTML = '<p class="no-events" data-i18n="product.notFound">Prodotto non trovato.</p>';
+      translate(page);
       return;
     }
 
     updateProductMeta(product);
+    // la description dipende dalla lingua: va rigenerata se l'utente la cambia
+    document.addEventListener('langchange', () => updateProductMeta(product));
 
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productPrice').textContent = product.price;
 
     const availabilityEl = document.getElementById('productAvailability');
-    availabilityEl.textContent = product.available ? 'Disponibile' : 'Esaurito';
+    availabilityEl.dataset.i18n = product.available ? 'product.available' : 'product.soldOut';
+    availabilityEl.textContent = t(availabilityEl.dataset.i18n);
     availabilityEl.classList.toggle('is-soldout', !product.available);
 
     const mainPhotoEl = document.getElementById('productMainPhoto');
     mainPhotoEl.src = product.photos[0];
     mainPhotoEl.alt = product.name;
-    setupProductThumbs(product.photos, mainPhotoEl, document.getElementById('productThumbs'));
+    setupProductThumbs(product.photos, product.name, mainPhotoEl, document.getElementById('productThumbs'));
 
     document.getElementById('productDetails').innerHTML = product.details.map(d => `<li>${d}</li>`).join('');
 
@@ -128,7 +136,8 @@ async function loadProductDetail(){
     }
   } catch (err) {
     console.error('Errore nel caricamento di data/products.json:', err);
-    page.innerHTML = '<p class="no-events">Impossibile caricare il prodotto al momento.</p>';
+    page.innerHTML = '<p class="no-events" data-i18n="product.error">Impossibile caricare il prodotto al momento.</p>';
+    translate(page);
   }
 }
 

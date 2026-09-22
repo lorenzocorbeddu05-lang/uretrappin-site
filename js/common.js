@@ -4,10 +4,16 @@
    DOMContentLoaded, che scatta prima, quando magari le foto sono
    ancora in caricamento. Aggiungendo la classe "loaded", il CSS
    (vedi #pageLoader in style.css) fa sparire l'overlay con una
-   dissolvenza di 0.5s. */
+   dissolvenza di 0.5s.
+
+   Aspetta anche che le traduzioni siano applicate (i18nReady, vedi
+   sotto): se no chi ha scelto l'inglese vedrebbe per un attimo la
+   pagina in italiano appena tolto il loader. */
 window.addEventListener('load', () => {
-  const loader = document.getElementById('pageLoader');
-  if (loader) loader.classList.add('loaded');
+  i18nReady.then(() => {
+    const loader = document.getElementById('pageLoader');
+    if (loader) loader.classList.add('loaded');
+  });
 });
 
 /* ===== VIDEO DI SFONDO HERO (prova, vedi index.html) =====
@@ -60,6 +66,102 @@ const inLegali = location.pathname.includes('/legali/');
 const ROOT = inLegali ? '../' : '';
 const LEGALI = inLegali ? '' : 'legali/';
 
+/* =========================================================
+   LINGUA (italiano / inglese)
+   Ogni testo traducibile nell'HTML ha un attributo data-i18n="chiave"
+   (il testo scritto lì dentro è quello italiano, di riserva); le
+   traduzioni vere stanno in data/i18n.json, una sezione per lingua.
+   - data-i18n="chiave"            → sostituisce il testo dell'elemento
+   - data-i18n-attr="attr:chiave"  → sostituisce un attributo (es.
+     "aria-label:nav.menuOpen", "content:meta.home.desc"); più coppie
+     separate da virgola.
+   Cosa NON viene tradotto di proposito: striscia scorrevole, tagline
+   dell'hero, nomi/dettagli prodotto (già in inglese in products.json).
+
+   La lingua scelta viene ricordata nel browser (localStorage); se non
+   c'è una scelta salvata si parte in italiano. Per aggiungere/cambiare
+   una traduzione basta editare data/i18n.json (stessa chiave in
+   entrambe le lingue), non questo file. */
+const SUPPORTED_LANGS = ['it', 'en'];
+let currentLang = 'it';
+try {
+  const saved = localStorage.getItem('lang');
+  if (SUPPORTED_LANGS.includes(saved)) currentLang = saved;
+} catch (err) { /* localStorage non disponibile (es. navigazione privata): resta l'italiano */ }
+document.documentElement.lang = currentLang;
+
+let i18nDict = {};
+
+/* Non fallisce mai: se il dizionario non si carica, la pagina resta
+   semplicemente nel testo italiano scritto nell'HTML. */
+const i18nReady = fetch(ROOT + 'data/i18n.json')
+  .then(response => {
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
+  })
+  .then(dict => {
+    i18nDict = dict;
+    applyTranslations(document);
+  })
+  .catch(err => console.error('Errore nel caricamento di data/i18n.json:', err));
+
+function lookup(key){
+  const inCurrent = i18nDict[currentLang] && i18nDict[currentLang][key];
+  if (inCurrent !== undefined) return inCurrent;
+  return i18nDict.it ? i18nDict.it[key] : undefined;
+}
+
+/* Come lookup ma restituisce sempre una stringa: per il testo generato
+   da JS (js/product.js). Da usare solo dopo "await i18nReady". */
+function t(key){
+  const value = lookup(key);
+  return value !== undefined ? value : key;
+}
+
+function applyTranslations(root){
+  root.querySelectorAll('[data-i18n]').forEach(el => {
+    const value = lookup(el.dataset.i18n);
+    if (value !== undefined) el.textContent = value;
+  });
+
+  root.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    el.dataset.i18nAttr.split(',').forEach(pair => {
+      const [attr, key] = pair.split(':').map(part => part.trim());
+      const value = lookup(key);
+      if (attr && value !== undefined) el.setAttribute(attr, value);
+    });
+  });
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    const active = btn.dataset.lang === currentLang;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-pressed', active);
+  });
+}
+
+/* Per il contenuto inserito dopo il caricamento (es. i messaggi
+   generati da js/shop.js e js/product.js): appena inserito, chiamare
+   translate(elementoContenitore). */
+function translate(root){
+  return i18nReady.then(() => applyTranslations(root));
+}
+
+function setLang(lang){
+  if (!SUPPORTED_LANGS.includes(lang) || lang === currentLang) return;
+  currentLang = lang;
+  try { localStorage.setItem('lang', lang); } catch (err) { /* vedi sopra */ }
+  document.documentElement.lang = lang;
+  applyTranslations(document);
+  document.dispatchEvent(new CustomEvent('langchange', { detail: { lang } }));
+}
+
+/* Delegato sul document: i bottoni lingua stanno nella navbar, che
+   viene inserita dopo il caricamento della pagina. */
+document.addEventListener('click', event => {
+  const button = event.target.closest('[data-lang]');
+  if (button) setLang(button.dataset.lang);
+});
+
 function fillTokens(html){
   return html.replaceAll('{{ROOT}}', ROOT).replaceAll('{{LEGALI}}', LEGALI);
 }
@@ -72,6 +174,7 @@ async function loadPartial(path, mountId, afterInject){
     const response = await fetch(ROOT + path);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     mount.outerHTML = fillTokens(await response.text());
+    translate(document);
     if (afterInject) afterInject();
   } catch (err) {
     console.error(`Errore nel caricamento di ${path}:`, err);

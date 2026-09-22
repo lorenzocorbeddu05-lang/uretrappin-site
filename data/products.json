@@ -11,10 +11,10 @@
     ],
     "sizes": ["S", "M", "L", "XL"],
     "stripeLinksBySize": {
-      "S": "https://buy.stripe.com/REPLACE_ME",
-      "M": "https://buy.stripe.com/REPLACE_ME",
-      "L": "https://buy.stripe.com/REPLACE_ME",
-      "XL": "https://buy.stripe.com/REPLACE_ME"
+      "S": "https://buy.stripe.com/00weVf63g21j11MfiPa3u05",
+      "M": "https://buy.stripe.com/fZufZjgHUdK139U1rZa3u06",
+      "L": "https://buy.stripe.com/9B68wR2R4bBTaCm5Ifa3u07",
+      "XL": "https://buy.stripe.com/5kQ14pfDQ5dv11M3A7a3u08"
     },
     "details": [
       "Silk-screen printed graphic",
@@ -36,10 +36,10 @@
     ],
     "sizes": ["S", "M", "L", "XL"],
     "stripeLinksBySize": {
-      "S": "https://buy.stripe.com/REPLACE_ME",
-      "M": "https://buy.stripe.com/REPLACE_ME",
-      "L": "https://buy.stripe.com/REPLACE_ME",
-      "XL": "https://buy.stripe.com/REPLACE_ME"
+      "S": "https://buy.stripe.com/eVqfZjfDQ8pHaCmfiPa3u04",
+      "M": "https://buy.stripe.com/28E3cxezMgWd9yi5Ifa3u09",
+      "L": "https://buy.stripe.com/14A8wR9fsbBTcKugmTa3u0c",
+      "XL": "https://buy.stripe.com/7sYbJ363g0Xf8ue1rZa3u0e"
     },
     "details": [
       "Silk-screen printed graphic",
@@ -51,7 +51,7 @@
   },
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
-    "variant": "Heather Black",
+    "variant": "Heather Black, pink print",
     "price": "40€",
     "available": true,
     "photos": [
@@ -61,13 +61,40 @@
     ],
     "sizes": ["S", "M", "L", "XL"],
     "stripeLinksBySize": {
-      "S": "https://buy.stripe.com/REPLACE_ME",
-      "M": "https://buy.stripe.com/REPLACE_ME",
-      "L": "https://buy.stripe.com/REPLACE_ME",
-      "XL": "https://buy.stripe.com/REPLACE_ME"
+      "S": "https://buy.stripe.com/bJe8wRcrEdK139U4Eba3u0r",
+      "M": "https://buy.stripe.com/00w7sN63gaxPh0Kc6Da3u0t",
+      "L": "https://buy.stripe.com/28EaEZ77k9tL11Mb2za3u0v",
+      "XL": "https://buy.stripe.com/cNieVfdvI21j5i27Qna3u0x"
     },
     "details": [
-      "Digital printed graphic, Purple or White",
+      "Digital printed graphic, Pink",
+      "\"U'RE TRAPPIN'\" logo label",
+      "Distressed by hand, one by one",
+      "Each piece is unique",
+      "50% Polyester, 25% Viscose, 25% Cotton",
+      "Cropped Fit",
+      "Designed and Customized in Italy"
+    ]
+  },
+  {
+    "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
+    "variant": "Heather Black, white print",
+    "price": "40€",
+    "available": true,
+    "photos": [
+      "assets/products/product-3-1.jpg",
+      "assets/products/product-3-2.jpg",
+      "assets/products/product-3-3.jpg"
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "stripeLinksBySize": {
+      "S": "https://buy.stripe.com/aFa00l8bodK19yi8Ura3u0q",
+      "M": "https://buy.stripe.com/4gM3cx1N0eO539U7Qna3u0s",
+      "L": "https://buy.stripe.com/dRmeVf0IWaxPeSC1rZa3u0u",
+      "XL": "https://buy.stripe.com/00wdRb8bo7lD39Uc6Da3u0w"
+    },
+    "details": [
+      "Digital printed graphic, White",
       "\"U'RE TRAPPIN'\" logo label",
       "Distressed by hand, one by one",
       "Each piece is unique",
@@ -78,7 +105,7 @@
   },
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
-    "variant": "White",
+    "variant": "White, black print",
     "price": "40€",
     "available": true,
     "photos": [
@@ -88,13 +115,40 @@
     ],
     "sizes": ["S", "M", "L", "XL"],
     "stripeLinksBySize": {
-      "S": "https://buy.stripe.com/REPLACE_ME",
-      "M": "https://buy.stripe.com/REPLACE_ME",
-      "L": "https://buy.stripe.com/REPLACE_ME",
-      "XL": "https://buy.stripe.com/REPLACE_ME"
+      "S": "https://buy.stripe.com/dRm28t4ZcbBT11M7Qna3u0j",
+      "M": "https://buy.stripe.com/bJe7sN0IW21j6m6gmTa3u0l",
+      "L": "https://buy.stripe.com/9B6bJ39fs21j4dY2w3a3u0n",
+      "XL": "https://buy.stripe.com/dRmdRb4Zc5dv9yi0nVa3u0p"
     },
     "details": [
-      "Digital printed graphic, Purple or Black",
+      "Digital printed graphic, Black",
+      "\"U'RE TRAPPIN'\" logo label",
+      "Distressed by hand, one by one",
+      "Each piece is unique",
+      "50% Polyester, 25% Viscose, 25% Cotton",
+      "Cropped Fit",
+      "Designed and Customized in Italy"
+    ]
+  },
+  {
+    "name": "Get Rich Or Die Trappin' White Long Sleeve",
+    "variant": "White, pink print",
+    "price": "40€",
+    "available": true,
+    "photos": [
+      "assets/products/product-4-1.jpg",
+      "assets/products/product-4-2.jpg",
+      "assets/products/product-4-3.jpg"
+    ],
+    "sizes": ["S", "M", "L", "XL"],
+    "stripeLinksBySize": {
+      "S": "https://buy.stripe.com/bJedRb3V85dv5i24Eba3u0i",
+      "M": "https://buy.stripe.com/7sY7sN2R4fS9dOy8Ura3u0k",
+      "L": "https://buy.stripe.com/00w14pdvI8pHcKub2za3u0m",
+      "XL": "https://buy.stripe.com/3cIfZjajw49rdOy7Qna3u0o"
+    },
+    "details": [
+      "Digital printed graphic, Pink",
       "\"U'RE TRAPPIN'\" logo label",
       "Distressed by hand, one by one",
       "Each piece is unique",
@@ -114,7 +168,7 @@
       "assets/products/product-5-3.jpg"
     ],
     "sizes": [],
-    "stripeLink": "https://buy.stripe.com/REPLACE_ME",
+    "stripeLink": "https://buy.stripe.com/6oU3cxdvIdK1aCmdaHa3u01",
     "details": [
       "\"U'RE TRAPPIN'\" embroidered logo label",
       "Handmade, one by one",
@@ -133,7 +187,7 @@
       "assets/products/product-6-3.jpg"
     ],
     "sizes": [],
-    "stripeLink": "https://buy.stripe.com/REPLACE_ME",
+    "stripeLink": "https://buy.stripe.com/4gMdRb1N021jeSCeeLa3u00",
     "details": [
       "\"U'RE TRAPPIN'\" embroidered logo label",
       "Handmade, one by one",

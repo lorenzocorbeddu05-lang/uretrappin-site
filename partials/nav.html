@@ -21,19 +21,19 @@
   <div class="marquee-track">
     <span class="marquee-content">
       <span class="marquee-item">First Drop Out Now</span>
-      <span class="marquee-item">@_u_are_trappin</span>
+      <span class="marquee-item">@u_are_trappin</span>
       <span class="marquee-item">First Drop Out Now</span>
-      <span class="marquee-item">@_u_are_trappin</span>
+      <span class="marquee-item">@u_are_trappin</span>
       <span class="marquee-item">First Drop Out Now</span>
-      <span class="marquee-item">@_u_are_trappin</span>
+      <span class="marquee-item">@u_are_trappin</span>
     </span>
     <span class="marquee-content">
       <span class="marquee-item">First Drop Out Now</span>
-      <span class="marquee-item">@_u_are_trappin</span>
+      <span class="marquee-item">@u_are_trappin</span>
       <span class="marquee-item">First Drop Out Now</span>
-      <span class="marquee-item">@_u_are_trappin</span>
+      <span class="marquee-item">@u_are_trappin</span>
       <span class="marquee-item">First Drop Out Now</span>
-      <span class="marquee-item">@_u_are_trappin</span>
+      <span class="marquee-item">@u_are_trappin</span>
     </span>
   </div>
 </div>
@@ -42,15 +42,24 @@
   <a class="brand" href="{{ROOT}}index.html">
     <img src="{{ROOT}}assets/brand/logo-verde.png" alt="U're Trappin" class="brand-logo">
   </a>
-  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+  <button class="nav-toggle" id="navToggle" aria-label="Apri menu" data-i18n-attr="aria-label:nav.menuOpen" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
+  <!-- I testi delle voci sono quelli italiani (di riserva): quelli
+       mostrati vengono da data/i18n.json tramite data-i18n, vedi
+       js/common.js. L'ultima voce è il selettore di lingua IT/EN: su
+       desktop sta a destra della navbar, su mobile in fondo al menu. -->
   <ul id="navMenu">
-    <li><a href="{{ROOT}}index.html">Home</a></li>
-    <li><a href="{{ROOT}}shop.html">Negozio</a></li>
-    <li><a href="{{ROOT}}gallery.html">Archivio</a></li>
-    <li><a href="{{ROOT}}index.html#music">Musica</a></li>
-    <li><a href="{{ROOT}}index.html#about">Chi Siamo</a></li>
+    <li><a href="{{ROOT}}index.html" data-i18n="nav.home">Home</a></li>
+    <li><a href="{{ROOT}}shop.html" data-i18n="nav.shop">Negozio</a></li>
+    <li><a href="{{ROOT}}gallery.html" data-i18n="nav.gallery">Archivio</a></li>
+    <li><a href="{{ROOT}}index.html#music" data-i18n="nav.music">Musica</a></li>
+    <li><a href="{{ROOT}}index.html#about" data-i18n="nav.about">Chi Siamo</a></li>
+    <li class="lang-switch">
+      <button type="button" class="lang-btn" data-lang="it" lang="it" aria-label="Italiano">IT</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button type="button" class="lang-btn" data-lang="en" lang="en" aria-label="English">EN</button>
+    </li>
   </ul>
 </nav>
 <div id="menuOverlay"></div>

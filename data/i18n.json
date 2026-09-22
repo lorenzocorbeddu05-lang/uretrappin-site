@@ -1,0 +1,103 @@
+{
+  "it": {
+    "nav.home": "Home",
+    "nav.shop": "Negozio",
+    "nav.gallery": "Archivio",
+    "nav.music": "Musica",
+    "nav.about": "Chi Siamo",
+    "nav.menuOpen": "Apri menu",
+
+    "footer.sections": "Sezioni sito",
+    "footer.contacts": "Contatti",
+    "footer.legal": "Info legali",
+    "footer.terms": "Termini e Condizioni",
+    "footer.withdrawal": "Diritto di Recesso",
+
+    "home.music": "// Musica",
+    "home.about": "// Chi Siamo",
+    "home.aboutTitle": "CHI SIAMO",
+    "home.aboutBody": "Breve descrizione/presentazione",
+    "meta.home.desc": "U're Trappin — lifestyle, eventi e musica trap. Scopri gli ultimi drop, l'archivio degli eventi e la nostra musica.",
+
+    "meta.shop.title": "Negozio — U'RE TRAPPIN",
+    "meta.shop.desc": "Negozio ufficiale U're Trappin — T-shirt, felpe, cappelli e accessori del brand.",
+    "shop.loading": "Caricamento prodotti…",
+    "shop.empty": "Prodotti in arrivo.",
+    "shop.error": "Impossibile caricare i prodotti al momento.",
+
+    "meta.gallery.title": "Archivio — U'RE TRAPPIN",
+    "meta.gallery.desc": "Archivio U're Trappin — foto dagli eventi in giro per l'Italia.",
+
+    "product.size": "Taglia",
+    "product.buy": "Acquista",
+    "product.details": "Dettagli",
+    "product.shipping": "Spedizione",
+    "product.shippingText": "Verrai contattato dal team entro 24 ore dall’acquisto. Consegna in 2-5 giorni lavorativi.",
+    "product.related": "// Altri prodotti",
+    "product.available": "Disponibile",
+    "product.soldOut": "Esaurito",
+    "product.notFound": "Prodotto non trovato.",
+    "product.error": "Impossibile caricare il prodotto al momento.",
+    "product.metaAvailable": "Disponibile su U're Trappin.",
+
+    "meta.privacy.desc": "Privacy Policy di U're Trappin.",
+    "meta.terms.title": "Termini e Condizioni — U'RE TRAPPIN",
+    "meta.terms.desc": "Termini e Condizioni di U're Trappin.",
+    "meta.withdrawal.title": "Diritto di Recesso — U'RE TRAPPIN",
+    "meta.withdrawal.desc": "Diritto di Recesso — U're Trappin.",
+    "legal.terms": "// Termini e Condizioni",
+    "legal.withdrawal": "// Diritto di Recesso",
+    "legal.placeholder": "Testo segnaposto — sostituire con il contenuto reale."
+  },
+
+  "en": {
+    "nav.home": "Home",
+    "nav.shop": "Shop",
+    "nav.gallery": "Gallery",
+    "nav.music": "Music",
+    "nav.about": "About Us",
+    "nav.menuOpen": "Open menu",
+
+    "footer.sections": "Site sections",
+    "footer.contacts": "Contact",
+    "footer.legal": "Legal info",
+    "footer.terms": "Terms & Conditions",
+    "footer.withdrawal": "Right of Withdrawal",
+
+    "home.music": "// Music",
+    "home.about": "// About Us",
+    "home.aboutTitle": "ABOUT US",
+    "home.aboutBody": "Short description/introduction",
+    "meta.home.desc": "U're Trappin — lifestyle, events and trap music. Discover the latest drops, the events gallery and our music.",
+
+    "meta.shop.title": "Shop — U'RE TRAPPIN",
+    "meta.shop.desc": "Official U're Trappin shop — T-shirts, hoodies, hats and accessories from the brand.",
+    "shop.loading": "Loading products…",
+    "shop.empty": "Products coming soon.",
+    "shop.error": "Unable to load products right now.",
+
+    "meta.gallery.title": "Gallery — U'RE TRAPPIN",
+    "meta.gallery.desc": "U're Trappin Gallery — photos from events around Italy.",
+
+    "product.size": "Size",
+    "product.buy": "Buy",
+    "product.details": "Details",
+    "product.shipping": "Shipping",
+    "product.shippingText": "UT’s team will contact you within 24 hours after the purchase. Shipping time 2-5 business days.",
+    "product.related": "// More products",
+    "product.available": "Available",
+    "product.soldOut": "Sold out",
+    "product.notFound": "Product not found.",
+    "product.error": "Unable to load the product right now.",
+    "product.metaAvailable": "Available at U're Trappin.",
+
+    "meta.privacy.desc": "U're Trappin Privacy Policy.",
+    "meta.terms.title": "Terms & Conditions — U'RE TRAPPIN",
+    "meta.terms.desc": "U're Trappin Terms & Conditions.",
+    "meta.withdrawal.title": "Right of Withdrawal — U'RE TRAPPIN",
+    "meta.withdrawal.desc": "Right of Withdrawal — U're Trappin.",
+    "legal.terms": "// Terms & Conditions",
+    "legal.withdrawal": "// Right of Withdrawal",
+    "legal.placeholder": "Placeholder text — replace with the actual content."
+  }
+}

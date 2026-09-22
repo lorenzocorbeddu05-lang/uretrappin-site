@@ -29,7 +29,7 @@
      di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/brand/logo3.png" alt="U're Trappin" class="loader-logo">
+  <img src="assets/brand/logo3.webp" alt="U're Trappin" class="loader-logo">
 </div>
 
 <div id="nav-mount"></div>
@@ -51,13 +51,13 @@
     <p class="product-availability" id="productAvailability"></p>
 
     <div class="product-field" id="sizeField">
-      <label class="product-field-label" for="sizeSelect">Taglia</label>
+      <label class="product-field-label" for="sizeSelect" data-i18n="product.size">Taglia</label>
       <div class="product-select-wrap">
         <select class="product-size-select" id="sizeSelect"></select>
       </div>
     </div>
 
-    <a class="product-buy-btn" id="buyButton" href="#" target="_blank" rel="noopener">Acquista</a>
+    <a class="product-buy-btn" id="buyButton" href="#" target="_blank" rel="noopener" data-i18n="product.buy">Acquista</a>
 
     <!-- Badge metodi di pagamento (Visa/Mastercard/PayPal/Apple Pay)
          rimossi finché non sappiamo quali attiverete su Stripe — da
@@ -65,7 +65,7 @@
 
     <div class="product-accordion">
       <div class="accordion-item">
-        <button class="accordion-trigger" type="button">Dettagli</button>
+        <button class="accordion-trigger" type="button" data-i18n="product.details">Dettagli</button>
         <div class="accordion-panel">
           <div class="accordion-panel-inner">
             <ul class="accordion-list" id="productDetails"></ul>
@@ -77,10 +77,10 @@
            di data/products.json. Per modificarlo basta editare questo
            blocco. -->
       <div class="accordion-item">
-        <button class="accordion-trigger" type="button">Spedizione</button>
+        <button class="accordion-trigger" type="button" data-i18n="product.shipping">Spedizione</button>
         <div class="accordion-panel">
           <div class="accordion-panel-inner">
-            <p>Testo spedizione.</p>
+            <p data-i18n="product.shippingText">Verrai contattato dal team entro 24 ore dall’acquisto. Consegna in 2-5 giorni lavorativi.</p>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
      quello in pagina), generata da js/product.js insieme al resto dei
      dati (stessa fetch di products.json, nessuna richiesta in più). -->
 <section class="related-products">
-  <div class="eyebrow">// Altri prodotti</div>
+  <div class="eyebrow" data-i18n="product.related">// Altri prodotti</div>
   <div class="products-scroll" id="relatedProducts"></div>
 </section>
 
