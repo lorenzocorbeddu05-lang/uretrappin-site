@@ -69,6 +69,15 @@ function updateProductMeta(product){
   if (ogImage && product.photos[0]) ogImage.setAttribute('content', product.photos[0]);
 }
 
+/* product.details è {it:[...], en:[...]} (non una singola lista, a
+   differenza di nome/prezzo/foto che sono uguali in entrambe le lingue)
+   — currentLang viene da js/common.js. Il fallback a .it copre il caso
+   di un prodotto senza traduzione inglese ancora scritta. */
+function renderProductDetails(product){
+  const list = product.details[currentLang] || product.details.it;
+  document.getElementById('productDetails').innerHTML = list.map(d => `<li>${d}</li>`).join('');
+}
+
 async function loadProductDetail(){
   const page = document.getElementById('productPage');
   if (!page) return;
@@ -90,8 +99,12 @@ async function loadProductDetail(){
     }
 
     updateProductMeta(product);
-    // la description dipende dalla lingua: va rigenerata se l'utente la cambia
-    document.addEventListener('langchange', () => updateProductMeta(product));
+    renderProductDetails(product);
+    // description e dettagli dipendono dalla lingua: vanno rigenerati se l'utente la cambia
+    document.addEventListener('langchange', () => {
+      updateProductMeta(product);
+      renderProductDetails(product);
+    });
 
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productPrice').textContent = product.price;
@@ -106,7 +119,6 @@ async function loadProductDetail(){
     mainPhotoEl.alt = product.name;
     setupProductThumbs(product.photos, product.name, mainPhotoEl, document.getElementById('productThumbs'));
 
-    document.getElementById('productDetails').innerHTML = product.details.map(d => `<li>${d}</li>`).join('');
 
     const sizeField = document.getElementById('sizeField');
     const sizeSelect = document.getElementById('sizeSelect');

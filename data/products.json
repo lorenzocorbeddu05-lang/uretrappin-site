@@ -9,20 +9,34 @@
       "assets/products/product-1-2.jpg",
       "assets/products/product-1-3.jpg"
     ],
-    "sizes": ["S", "M", "L", "XL"],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/00weVf63g21j11MfiPa3u05",
       "M": "https://buy.stripe.com/fZufZjgHUdK139U1rZa3u06",
       "L": "https://buy.stripe.com/9B68wR2R4bBTaCm5Ifa3u07",
       "XL": "https://buy.stripe.com/5kQ14pfDQ5dv11M3A7a3u08"
     },
-    "details": [
-      "Silk-screen printed graphic",
-      "\"U'RE TRAPPIN'\" logo label",
-      "100% Organic Cotton",
-      "Boxy Fit",
-      "Designed and Customized in Italy"
-    ]
+    "details": {
+      "en": [
+        "Silk-screen printed graphic",
+        "\"U'RE TRAPPIN'\" logo label",
+        "100% Organic Cotton",
+        "Boxy Fit",
+        "Designed and Customized in Italy"
+      ],
+      "it": [
+        "Stampa serigrafica",
+        "Etichetta con logo \"U'RE TRAPPIN'\"",
+        "100% Cotone Organico",
+        "Boxy Fit",
+        "Progettata e Sviluppata in Italia"
+      ]
+    }
   },
   {
     "name": "Get Rich Or Die Trappin' White T-Shirt",
@@ -34,20 +48,34 @@
       "assets/products/product-2-2.jpg",
       "assets/products/product-2-3.jpg"
     ],
-    "sizes": ["S", "M", "L", "XL"],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/eVqfZjfDQ8pHaCmfiPa3u04",
       "M": "https://buy.stripe.com/28E3cxezMgWd9yi5Ifa3u09",
       "L": "https://buy.stripe.com/14A8wR9fsbBTcKugmTa3u0c",
       "XL": "https://buy.stripe.com/7sYbJ363g0Xf8ue1rZa3u0e"
     },
-    "details": [
-      "Silk-screen printed graphic",
-      "\"U'RE TRAPPIN'\" logo label",
-      "100% Organic Cotton",
-      "Boxy Fit",
-      "Designed and Customized in Italy"
-    ]
+    "details": {
+      "en": [
+        "Silk-screen printed graphic",
+        "\"U'RE TRAPPIN'\" logo label",
+        "100% Organic Cotton",
+        "Boxy Fit",
+        "Designed and Customized in Italy"
+      ],
+      "it": [
+        "Stampa serigrafica",
+        "Etichetta con logo \"U'RE TRAPPIN'\"",
+        "100% Cotone Organico",
+        "Boxy Fit",
+        "Progettata e Sviluppata in Italia"
+      ]
+    }
   },
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
@@ -59,22 +87,38 @@
       "assets/products/product-3-2.jpg",
       "assets/products/product-3-3.jpg"
     ],
-    "sizes": ["S", "M", "L", "XL"],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/bJe8wRcrEdK139U4Eba3u0r",
       "M": "https://buy.stripe.com/00w7sN63gaxPh0Kc6Da3u0t",
       "L": "https://buy.stripe.com/28EaEZ77k9tL11Mb2za3u0v",
       "XL": "https://buy.stripe.com/cNieVfdvI21j5i27Qna3u0x"
     },
-    "details": [
-      "Digital printed graphic, Pink",
-      "\"U'RE TRAPPIN'\" logo label",
-      "Distressed by hand, one by one",
-      "Each piece is unique",
-      "50% Polyester, 25% Viscose, 25% Cotton",
-      "Cropped Fit",
-      "Designed and Customized in Italy"
-    ]
+    "details": {
+      "en": [
+        "Digital printed graphic, Pink",
+        "\"U'RE TRAPPIN'\" logo label",
+        "Distressed by hand, one by one",
+        "Each piece is unique",
+        "50% Polyester, 25% Viscose, 25% Cotton",
+        "Cropped Fit",
+        "Designed and Customized in Italy"
+      ],
+      "it": [
+        "Stampa digitale, Rosa",
+        "Etichetta con logo \"U'RE TRAPPIN'\"",
+        "Distressate a mano, una ad una",
+        "Ogni capo è unico",
+        "50% Poliestere, 25% Viscosa, 25% Cotone",
+        "Cropped Fit",
+        "Progettata e Sviluppata in Italia"
+      ]
+    }
   },
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
@@ -86,22 +130,38 @@
       "assets/products/product-3-2.jpg",
       "assets/products/product-3-3.jpg"
     ],
-    "sizes": ["S", "M", "L", "XL"],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/aFa00l8bodK19yi8Ura3u0q",
       "M": "https://buy.stripe.com/4gM3cx1N0eO539U7Qna3u0s",
       "L": "https://buy.stripe.com/dRmeVf0IWaxPeSC1rZa3u0u",
       "XL": "https://buy.stripe.com/00wdRb8bo7lD39Uc6Da3u0w"
     },
-    "details": [
-      "Digital printed graphic, White",
-      "\"U'RE TRAPPIN'\" logo label",
-      "Distressed by hand, one by one",
-      "Each piece is unique",
-      "50% Polyester, 25% Viscose, 25% Cotton",
-      "Cropped Fit",
-      "Designed and Customized in Italy"
-    ]
+    "details": {
+      "en": [
+        "Digital printed graphic, White",
+        "\"U'RE TRAPPIN'\" logo label",
+        "Distressed by hand, one by one",
+        "Each piece is unique",
+        "50% Polyester, 25% Viscose, 25% Cotton",
+        "Cropped Fit",
+        "Designed and Customized in Italy"
+      ],
+      "it": [
+        "Stampa digitale, Bianca",
+        "Etichetta con logo \"U'RE TRAPPIN'\"",
+        "Distressate a mano, una ad una",
+        "Ogni capo è unico",
+        "50% Poliestere, 25% Viscosa, 25% Cotone",
+        "Cropped Fit",
+        "Progettata e Sviluppata in Italia"
+      ]
+    }
   },
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
@@ -113,22 +173,38 @@
       "assets/products/product-4-2.jpg",
       "assets/products/product-4-3.jpg"
     ],
-    "sizes": ["S", "M", "L", "XL"],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/dRm28t4ZcbBT11M7Qna3u0j",
       "M": "https://buy.stripe.com/bJe7sN0IW21j6m6gmTa3u0l",
       "L": "https://buy.stripe.com/9B6bJ39fs21j4dY2w3a3u0n",
       "XL": "https://buy.stripe.com/dRmdRb4Zc5dv9yi0nVa3u0p"
     },
-    "details": [
-      "Digital printed graphic, Black",
-      "\"U'RE TRAPPIN'\" logo label",
-      "Distressed by hand, one by one",
-      "Each piece is unique",
-      "50% Polyester, 25% Viscose, 25% Cotton",
-      "Cropped Fit",
-      "Designed and Customized in Italy"
-    ]
+    "details": {
+      "en": [
+        "Digital printed graphic, Black",
+        "\"U'RE TRAPPIN'\" logo label",
+        "Distressed by hand, one by one",
+        "Each piece is unique",
+        "50% Polyester, 25% Viscose, 25% Cotton",
+        "Cropped Fit",
+        "Designed and Customized in Italy"
+      ],
+      "it": [
+        "Stampa digitale, Nera",
+        "Etichetta con logo \"U'RE TRAPPIN'\"",
+        "Distressate a mano, una ad una",
+        "Ogni capo è unico",
+        "50% Poliestere, 25% Viscosa, 25% Cotone",
+        "Cropped Fit",
+        "Progettata e Sviluppata in Italia"
+      ]
+    }
   },
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
@@ -140,22 +216,38 @@
       "assets/products/product-4-2.jpg",
       "assets/products/product-4-3.jpg"
     ],
-    "sizes": ["S", "M", "L", "XL"],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/bJedRb3V85dv5i24Eba3u0i",
       "M": "https://buy.stripe.com/7sY7sN2R4fS9dOy8Ura3u0k",
       "L": "https://buy.stripe.com/00w14pdvI8pHcKub2za3u0m",
       "XL": "https://buy.stripe.com/3cIfZjajw49rdOy7Qna3u0o"
     },
-    "details": [
-      "Digital printed graphic, Pink",
-      "\"U'RE TRAPPIN'\" logo label",
-      "Distressed by hand, one by one",
-      "Each piece is unique",
-      "50% Polyester, 25% Viscose, 25% Cotton",
-      "Cropped Fit",
-      "Designed and Customized in Italy"
-    ]
+    "details": {
+      "en": [
+        "Digital printed graphic, Pink",
+        "\"U'RE TRAPPIN'\" logo label",
+        "Distressed by hand, one by one",
+        "Each piece is unique",
+        "50% Polyester, 25% Viscose, 25% Cotton",
+        "Cropped Fit",
+        "Designed and Customized in Italy"
+      ],
+      "it": [
+        "Stampa digitale, Rosa",
+        "Etichetta con logo \"U'RE TRAPPIN'\"",
+        "Distressate a mano, una ad una",
+        "Ogni capo è unico",
+        "50% Poliestere, 25% Viscosa, 25% Cotone",
+        "Cropped Fit",
+        "Progettata e Sviluppata in Italia"
+      ]
+    }
   },
   {
     "name": "UT Crochet Mesh Cap",
@@ -169,12 +261,22 @@
     ],
     "sizes": [],
     "stripeLink": "https://buy.stripe.com/6oU3cxdvIdK1aCmdaHa3u01",
-    "details": [
-      "\"U'RE TRAPPIN'\" embroidered logo label",
-      "Handmade, one by one",
-      "50% Cotton, 50% Polyester",
-      "Designed and Made in Italy"
-    ]
+    "details": {
+      "en": [
+        "Black and Green",
+        "\"U'RE TRAPPIN'\" embroidered logo label",
+        "Handmade, one by one",
+        "50% Cotton, 50% Polyester",
+        "Designed and Made in Italy"
+      ],
+      "it": [
+        "Nera e Verde",
+        "Etichetta ricamata con logo \"U'RE TRAPPIN'\"",
+        "Fatta a mano, una ad una",
+        "50% Cotone, 50% Poliestere",
+        "Progettata e Prodotta in Italia"
+      ]
+    }
   },
   {
     "name": "UT Balaclava",
@@ -188,11 +290,21 @@
     ],
     "sizes": [],
     "stripeLink": "https://buy.stripe.com/4gMdRb1N021jeSCeeLa3u00",
-    "details": [
-      "\"U'RE TRAPPIN'\" embroidered logo label",
-      "Handmade, one by one",
-      "50% Cotton, 50% Polyester",
-      "Designed and Made in Italy"
-    ]
+    "details": {
+      "en": [
+        "Black and Green",
+        "\"U'RE TRAPPIN'\" embroidered logo label",
+        "Handmade, one by one",
+        "50% Cotton, 50% Polyester",
+        "Designed and Made in Italy"
+      ],
+      "it": [
+        "Nera e Verde",
+        "Etichetta ricamata con logo \"U'RE TRAPPIN'\"",
+        "Fatto a mano, una ad una",
+        "50% Cotone, 50% Poliestere",
+        "Progettato e Prodotto in Italia"
+      ]
+    }
   }
 ]
