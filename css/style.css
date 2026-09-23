@@ -306,9 +306,19 @@
   .hero::before{
     content:"";
     position:absolute; inset:0;
-    background:url('../assets/brand/crowd.jpg') center 30%/cover no-repeat;
+    background:url('../assets/brand/hero-fallback-mobile.jpg') center 30%/cover no-repeat;
     filter:saturate(1.1) brightness(0.55); /* scurisce la foto */
     z-index:0;
+  }
+  /* Da desktop, se il video non parte, la foto di fallback è questa
+     (fotogramma dello stesso video) invece di hero-fallback-mobile.jpg qui sopra —
+     su mobile resta hero-fallback-mobile.jpg. Per cambiarla: sostituisci il file
+     assets/brand/hero-fallback-desktop.jpg (stesso nome) oppure
+     modifica il percorso qui sotto. */
+  @media (min-width:721px){
+    .hero::before{
+      background-image:url('../assets/brand/hero-fallback-desktop.jpg');
+    }
   }
   /* ===== PROVA VIDEO DI SFONDO (temporaneo, vedi index.html) =====
      Stesso trattamento della foto sopra: riempie l'hero, viene

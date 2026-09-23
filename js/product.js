@@ -33,34 +33,71 @@ function setupProductAccordion(){
 }
 
 /**
- * Aggiorna il pulsante "Acquista" in base alla taglia selezionata
- * (product.stripeLinksBySize) o al link unico (product.stripeLink)
- * per i prodotti senza taglie.
+ * Elenco delle taglie di un prodotto con lo stato di ciascuna
+ * (product.soldOutSizes in data/products.json — vuoto se nessuna
+ * taglia è esaurita). Usato sia per popolare il <select> sia da
+ * updateAvailability per sapere se la taglia scelta è disponibile.
  */
-function updateBuyButton(product, buyButton, sizeSelect){
-  if (product.sizes && product.sizes.length){
-    const size = sizeSelect.value;
-    buyButton.href = (product.stripeLinksBySize && product.stripeLinksBySize[size]) || '#';
-  } else {
-    buyButton.href = product.stripeLink || '#';
-  }
+function isSizeSoldOut(product, size){
+  return (product.soldOutSizes || []).includes(size);
+}
+
+/**
+ * Rigenera le <option> del <select> taglia, segnando quelle esaurite
+ * (testo diverso, restano comunque selezionabili — così chi guarda
+ * vede che esistono ma non sono disponibili, invece di sparire dalla
+ * lista). Richiamata anche al cambio lingua, perché "Esaurito"/"Sold
+ * out" è tradotto: mantiene la taglia già scelta dall'utente.
+ */
+function renderSizeSelect(product, sizeSelect){
+  const previous = sizeSelect.value;
+  sizeSelect.innerHTML = product.sizes.map(s => {
+    const label = isSizeSoldOut(product, s) ? `${s} — ${t('product.soldOut')}` : s;
+    return `<option value="${s}">${label}</option>`;
+  }).join('');
+  if (product.sizes.includes(previous)) sizeSelect.value = previous;
+}
+
+/**
+ * Aggiorna INSIEME il badge "Disponibile/Esaurito" sotto il prezzo e
+ * il pulsante Acquista (testo, link, stato disabilitato) — devono
+ * sempre dire la stessa cosa, quindi li calcola in un punto solo
+ * invece di due funzioni separate che potrebbero disallinearsi.
+ * "Esaurito" scatta se il prodotto intero non è disponibile, oppure
+ * (per i prodotti con taglie) se lo è la taglia scelta al momento.
+ * Richiamata al cambio taglia e al cambio lingua.
+ */
+function updateAvailability(product, sizeSelect, availabilityEl, buyButton){
+  const hasSizes = product.sizes && product.sizes.length;
+  const size = hasSizes ? sizeSelect.value : null;
+  const soldOut = !product.available || (hasSizes && isSizeSoldOut(product, size));
+
+  availabilityEl.dataset.i18n = soldOut ? 'product.soldOut' : 'product.available';
+  availabilityEl.textContent = t(availabilityEl.dataset.i18n);
+  availabilityEl.classList.toggle('is-soldout', soldOut);
+
+  buyButton.href = hasSizes
+    ? (product.stripeLinksBySize && product.stripeLinksBySize[size]) || '#'
+    : product.stripeLink || '#';
+  buyButton.classList.toggle('is-disabled', soldOut);
+  buyButton.textContent = t(soldOut ? 'product.soldOut' : 'product.buy');
 }
 
 /**
  * Aggiorna titolo e meta description in base al prodotto caricato —
- * l'HTML statico ha valori generici ("Prodotto — U'RE TRAPPIN") per
+ * l'HTML statico ha valori generici ("Prodotto — U'RE TRAPPIN'") per
  * chi non esegue JS, ma la maggior parte dei visitatori/anteprime
  * social vede questi, più utili.
  */
 function updateProductMeta(product){
-  document.title = `${product.name} — U'RE TRAPPIN`;
+  document.title = `${product.name} — U'RE TRAPPIN'`;
 
   const description = `${product.name} (${product.variant}) — ${product.price}. ${t('product.metaAvailable')}`;
   const metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) metaDescription.setAttribute('content', description);
 
   const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute('content', `${product.name} — U'RE TRAPPIN`);
+  if (ogTitle) ogTitle.setAttribute('content', `${product.name} — U'RE TRAPPIN'`);
 
   const ogDescription = document.querySelector('meta[property="og:description"]');
   if (ogDescription) ogDescription.setAttribute('content', description);
@@ -100,41 +137,39 @@ async function loadProductDetail(){
 
     updateProductMeta(product);
     renderProductDetails(product);
-    // description e dettagli dipendono dalla lingua: vanno rigenerati se l'utente la cambia
-    document.addEventListener('langchange', () => {
-      updateProductMeta(product);
-      renderProductDetails(product);
-    });
 
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productPrice').textContent = product.price;
 
     const availabilityEl = document.getElementById('productAvailability');
-    availabilityEl.dataset.i18n = product.available ? 'product.available' : 'product.soldOut';
-    availabilityEl.textContent = t(availabilityEl.dataset.i18n);
-    availabilityEl.classList.toggle('is-soldout', !product.available);
-
     const mainPhotoEl = document.getElementById('productMainPhoto');
     mainPhotoEl.src = product.photos[0];
     mainPhotoEl.alt = product.name;
     setupProductThumbs(product.photos, product.name, mainPhotoEl, document.getElementById('productThumbs'));
-
 
     const sizeField = document.getElementById('sizeField');
     const sizeSelect = document.getElementById('sizeSelect');
     const buyButton = document.getElementById('buyButton');
 
     if (product.sizes && product.sizes.length){
-      sizeSelect.innerHTML = product.sizes.map(s => `<option value="${s}">${s}</option>`).join('');
-      sizeSelect.addEventListener('change', () => updateBuyButton(product, buyButton, sizeSelect));
+      renderSizeSelect(product, sizeSelect);
+      // Cambiando taglia possono cambiare sia il badge sopra il prezzo
+      // che il pulsante, quindi si aggiornano sempre insieme.
+      sizeSelect.addEventListener('change', () => updateAvailability(product, sizeSelect, availabilityEl, buyButton));
     } else {
       sizeField.style.display = 'none';
     }
-    updateBuyButton(product, buyButton, sizeSelect);
+    updateAvailability(product, sizeSelect, availabilityEl, buyButton);
 
-    if (!product.available){
-      buyButton.classList.add('is-disabled');
-    }
+    // Testi che dipendono dalla lingua ("Esaurito"/"Sold out" compreso,
+    // sia nel badge sopra sia nelle taglie e nel pulsante): vanno
+    // rigenerati se l'utente cambia lingua.
+    document.addEventListener('langchange', () => {
+      updateProductMeta(product);
+      renderProductDetails(product);
+      if (product.sizes && product.sizes.length) renderSizeSelect(product, sizeSelect);
+      updateAvailability(product, sizeSelect, availabilityEl, buyButton);
+    });
 
     setupProductAccordion();
 

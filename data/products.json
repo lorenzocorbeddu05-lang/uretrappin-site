@@ -36,7 +36,8 @@
         "Boxy Fit",
         "Progettata e Sviluppata in Italia"
       ]
-    }
+    },
+    "soldOutSizes": ["M"]
   },
   {
     "name": "Get Rich Or Die Trappin' White T-Shirt",
@@ -75,7 +76,8 @@
         "Boxy Fit",
         "Progettata e Sviluppata in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   },
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
@@ -90,14 +92,12 @@
     "sizes": [
       "S",
       "M",
-      "L",
-      "XL"
+      "L"
     ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/bJe8wRcrEdK139U4Eba3u0r",
       "M": "https://buy.stripe.com/00w7sN63gaxPh0Kc6Da3u0t",
-      "L": "https://buy.stripe.com/28EaEZ77k9tL11Mb2za3u0v",
-      "XL": "https://buy.stripe.com/cNieVfdvI21j5i27Qna3u0x"
+      "L": "https://buy.stripe.com/28EaEZ77k9tL11Mb2za3u0v"
     },
     "details": {
       "en": [
@@ -118,7 +118,8 @@
         "Cropped Fit",
         "Progettata e Sviluppata in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   },
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
@@ -133,14 +134,12 @@
     "sizes": [
       "S",
       "M",
-      "L",
-      "XL"
+      "L"
     ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/aFa00l8bodK19yi8Ura3u0q",
       "M": "https://buy.stripe.com/4gM3cx1N0eO539U7Qna3u0s",
-      "L": "https://buy.stripe.com/dRmeVf0IWaxPeSC1rZa3u0u",
-      "XL": "https://buy.stripe.com/00wdRb8bo7lD39Uc6Da3u0w"
+      "L": "https://buy.stripe.com/dRmeVf0IWaxPeSC1rZa3u0u"
     },
     "details": {
       "en": [
@@ -161,7 +160,8 @@
         "Cropped Fit",
         "Progettata e Sviluppata in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   },
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
@@ -176,14 +176,12 @@
     "sizes": [
       "S",
       "M",
-      "L",
-      "XL"
+      "L"
     ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/dRm28t4ZcbBT11M7Qna3u0j",
       "M": "https://buy.stripe.com/bJe7sN0IW21j6m6gmTa3u0l",
-      "L": "https://buy.stripe.com/9B6bJ39fs21j4dY2w3a3u0n",
-      "XL": "https://buy.stripe.com/dRmdRb4Zc5dv9yi0nVa3u0p"
+      "L": "https://buy.stripe.com/9B6bJ39fs21j4dY2w3a3u0n"
     },
     "details": {
       "en": [
@@ -204,7 +202,8 @@
         "Cropped Fit",
         "Progettata e Sviluppata in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   },
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
@@ -219,14 +218,12 @@
     "sizes": [
       "S",
       "M",
-      "L",
-      "XL"
+      "L"
     ],
     "stripeLinksBySize": {
       "S": "https://buy.stripe.com/bJedRb3V85dv5i24Eba3u0i",
       "M": "https://buy.stripe.com/7sY7sN2R4fS9dOy8Ura3u0k",
-      "L": "https://buy.stripe.com/00w14pdvI8pHcKub2za3u0m",
-      "XL": "https://buy.stripe.com/3cIfZjajw49rdOy7Qna3u0o"
+      "L": "https://buy.stripe.com/00w14pdvI8pHcKub2za3u0m"
     },
     "details": {
       "en": [
@@ -247,7 +244,8 @@
         "Cropped Fit",
         "Progettata e Sviluppata in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   },
   {
     "name": "UT Crochet Mesh Cap",
@@ -276,7 +274,8 @@
         "50% Cotone, 50% Poliestere",
         "Progettata e Prodotta in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   },
   {
     "name": "UT Balaclava",
@@ -305,6 +304,7 @@
         "50% Cotone, 50% Poliestere",
         "Progettato e Prodotto in Italia"
       ]
-    }
+    },
+    "soldOutSizes": []
   }
 ]

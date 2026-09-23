@@ -1,0 +1,115 @@
+=====================================================================
+BOZZA — PRIVACY POLICY / INFORMATIVA SUL TRATTAMENTO DEI DATI
+=====================================================================
+QUESTO È UN TESTO DI PARTENZA, NON REVISIONATO DA UN LEGALE.
+Prima di pubblicarlo sul sito, fatelo controllare da un commercialista/
+avvocato, oppure generatelo con un servizio come Iubenda (consigliato:
+si aggiorna da solo quando cambia la legge). Riempite tutti i campi
+tra [PARENTESI QUADRE] prima di usarlo.
+=====================================================================
+
+
+INFORMATIVA SULLA PRIVACY
+
+Ultimo aggiornamento: [DATA]
+
+
+1. TITOLARE DEL TRATTAMENTO
+
+Il Titolare del trattamento dei dati raccolti tramite il sito
+uretrappin.com è:
+
+[RAGIONE SOCIALE / NOME E COGNOME TITOLARE]
+[FORMA GIURIDICA — es. ditta individuale, S.r.l., ecc.]
+Partita IVA: [PARTITA IVA]
+Sede legale: [INDIRIZZO COMPLETO]
+Email di contatto: uretrappin@gmail.com
+
+
+2. QUALI DATI RACCOGLIAMO
+
+- Dati forniti volontariamente per completare un acquisto: nome,
+  cognome, indirizzo di spedizione, email, numero di telefono.
+- Dati di pagamento: NON passano né vengono conservati da noi — il
+  pagamento avviene interamente su Stripe, che agisce come
+  responsabile del trattamento per questi dati (informativa Stripe:
+  https://stripe.com/privacy).
+- Dati di navigazione: indirizzo IP, tipo di browser, pagine visitate
+  — raccolti automaticamente dal sito e dal hosting (GitHub Pages).
+- Preferenza di lingua (IT/EN): salvata solo nel browser di chi
+  visita (localStorage), non viene inviata a noi.
+
+
+3. PERCHÉ TRATTIAMO QUESTI DATI (FINALITÀ)
+
+- Evadere gli ordini e gestire le spedizioni.
+- Rispondere a richieste di assistenza clienti.
+- Adempiere a obblighi fiscali e di legge (fatturazione, contabilità).
+[ ] - Inviare comunicazioni promozionali/newsletter (SOLO se avete
+      raccolto un consenso esplicito separato — se non fate
+      newsletter, cancellate questa riga)
+
+
+4. BASE GIURIDICA
+
+- Esecuzione di un contratto (evadere il vostro ordine).
+- Obbligo legale (fatturazione).
+- Consenso (solo per eventuale newsletter/marketing).
+
+
+5. CONSERVAZIONE DEI DATI
+
+I dati relativi agli ordini sono conservati per [DURATA — es. 10 anni,
+il termine di legge per la documentazione fiscale/contabile in
+Italia]. I dati di eventuali richieste di assistenza sono conservati
+per il tempo necessario a gestirle, salvo obblighi di legge diversi.
+
+
+6. A CHI COMUNICHIAMO I DATI
+
+I vostri dati possono essere comunicati a:
+- Stripe (elaborazione pagamenti) — con sede negli USA: il
+  trasferimento è coperto dalle clausole contrattuali standard
+  approvate dalla Commissione Europea.
+- [CORRIERE/I USATI PER LE SPEDIZIONI] (consegna del pacco).
+- GitHub Pages (hosting del sito).
+[ ] - [EVENTUALE SERVIZIO EMAIL/NEWSLETTER, se lo usate]
+Non vendiamo né cediamo i vostri dati a terzi per finalità di
+marketing di terze parti.
+
+
+7. I VOSTRI DIRITTI
+
+In quanto interessati, avete diritto di chiedere in qualsiasi momento
+a [EMAIL DI CONTATTO]:
+- accesso ai vostri dati personali;
+- rettifica di dati inesatti;
+- cancellazione ("diritto all'oblio"), nei limiti consentiti dagli
+  obblighi fiscali;
+- limitazione del trattamento;
+- portabilità dei dati;
+- opposizione al trattamento.
+Avete inoltre diritto di proporre reclamo al Garante per la
+Protezione dei Dati Personali (www.garanteprivacy.it).
+
+
+8. COOKIE E TECNOLOGIE SIMILI
+
+Il sito carica i font da Google Fonts (fonts.googleapis.com), che
+comporta una connessione a server Google — non installiamo cookie di
+profilazione/marketing. Il sito usa il localStorage del browser solo
+per ricordare la lingua scelta (IT/EN): non è un cookie e non
+raccoglie dati identificativi.
+
+
+9. MODIFICHE A QUESTA INFORMATIVA
+
+Possiamo aggiornare questa informativa nel tempo; la versione in
+vigore è sempre quella pubblicata su questa pagina, con indicata la
+data dell'ultimo aggiornamento in cima.
+
+
+10. CONTATTI
+
+Per qualsiasi domanda su questa informativa o per esercitare i vostri
+diritti: uretrappin@gmail.com

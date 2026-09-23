@@ -1,0 +1,123 @@
+=====================================================================
+BOZZA — TERMINI E CONDIZIONI DI VENDITA
+=====================================================================
+QUESTO È UN TESTO DI PARTENZA, NON REVISIONATO DA UN LEGALE.
+Prima di pubblicarlo sul sito, fatelo controllare da un commercialista/
+avvocato, oppure generatelo con un servizio come Iubenda. Riempite
+tutti i campi tra [PARENTESI QUADRE] prima di usarlo.
+=====================================================================
+
+
+TERMINI E CONDIZIONI DI VENDITA
+
+Ultimo aggiornamento: [DATA]
+
+
+1. CHI SIAMO
+
+uretrappin.com è gestito da:
+[RAGIONE SOCIALE / NOME E COGNOME TITOLARE]
+[FORMA GIURIDICA]
+Partita IVA: [PARTITA IVA]
+Sede legale: [INDIRIZZO COMPLETO]
+Email: uretrappin@gmail.com
+
+L'utilizzo del sito e l'acquisto dei prodotti implica l'accettazione
+integrale dei presenti Termini e Condizioni.
+
+
+2. PRODOTTI
+
+Il sito vende capi di abbigliamento e accessori streetwear a marchio
+U'RE TRAPPIN'. Le immagini dei prodotti sono indicative: colori e
+dettagli possono variare leggermente rispetto a quanto mostrato a
+schermo, per via di differenze tra i dispositivi di visualizzazione.
+
+
+3. PREZZI
+
+I prezzi indicati sul sito sono in Euro (€) e si intendono
+[IVA INCLUSA / IVA ESCLUSA — specificare]. Eventuali costi di
+spedizione sono [INCLUSI NEL PREZZO / AGGIUNTI AL CHECKOUT —
+specificare quanto costano e se c'è una soglia di spedizione
+gratuita].
+
+
+4. COME SI ACQUISTA
+
+Selezionato il prodotto (e la taglia, se prevista), si viene
+reindirizzati a una pagina di pagamento sicura gestita da Stripe.
+L'ordine si considera confermato al completamento del pagamento.
+Dopo l'acquisto, il nostro team vi contatterà entro 24 ore per i
+dettagli della spedizione.
+
+
+5. MODALITÀ DI PAGAMENTO
+
+I pagamenti sono gestiti interamente da Stripe. Accettiamo
+[CARTE DI CREDITO/DEBITO, APPLE PAY, ECC. — specificare i metodi
+attivati su Stripe]. Non entriamo mai in possesso dei dati della
+vostra carta.
+
+
+6. SPEDIZIONE
+
+- Zone servite: [SOLO ITALIA / ANCHE ESTERO — specificare i paesi]
+- Corriere: [NOME CORRIERE/I]
+- Tempi: il team vi contatta entro 24 ore dall'acquisto; consegna
+  prevista in 2-5 giorni lavorativi dalla spedizione.
+- Costi: [specificare, o "vedi sezione Prezzi"]
+
+Il rischio di perdita o danneggiamento dei prodotti passa
+all'acquirente nel momento della consegna al corriere indicato, salvo
+diversi accordi.
+
+
+7. DIRITTO DI RECESSO
+
+Per gli acquisti effettuati come consumatori (persone fisiche che
+acquistano per uso personale), si applica il diritto di recesso di 14
+giorni previsto dal Codice del Consumo — vedi la pagina dedicata
+"Diritto di Recesso" per tutti i dettagli.
+
+
+8. GARANZIA LEGALE DI CONFORMITÀ
+
+I prodotti venduti sono coperti dalla garanzia legale di conformità di
+24 mesi prevista per i consumatori dal Codice del Consumo (artt. 128 e
+seguenti), per difetti di conformità esistenti al momento della
+consegna.
+
+
+9. PROPRIETÀ INTELLETTUALE
+
+Marchio, logo, grafiche, fotografie e contenuti del sito sono di
+proprietà di [RAGIONE SOCIALE / TITOLARE] e non possono essere
+riprodotti senza autorizzazione scritta.
+
+
+10. LIMITAZIONE DI RESPONSABILITÀ
+
+Nei limiti consentiti dalla legge, non siamo responsabili per ritardi
+o disservizi dovuti a cause di forza maggiore (es. scioperi dei
+corrieri, eventi imprevedibili).
+
+
+11. LEGGE APPLICABILE E FORO COMPETENTE
+
+I presenti Termini sono regolati dalla legge italiana. Per i
+consumatori, è competente il foro del luogo di residenza o domicilio
+del consumatore stesso, se ubicato in Italia (foro del consumatore,
+art. 66-bis Codice del Consumo).
+
+
+12. MODIFICHE AI TERMINI
+
+Ci riserviamo il diritto di modificare questi Termini in qualsiasi
+momento; la versione in vigore è sempre quella pubblicata su questa
+pagina.
+
+
+13. CONTATTI
+
+Per assistenza: uretrappin@gmail.com
