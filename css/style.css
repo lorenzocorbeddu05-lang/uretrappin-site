@@ -1,4 +1,37 @@
 /* =========================================================
+   PROVA FONT (TEMPORANEA — NON METTERE ONLINE)
+   Druk Text (Super/Heavy) e Impact sono font a licenza di prova
+   (Commercial Type / Microsoft): funzionano ma non si possono
+   pubblicare su un sito pubblico senza comprare la licenza — vedi le
+   note già discusse. I file .woff2 stanno in assets/fonts/, FUORI dal
+   commit di git apposta. Questo blocco @font-face + le righe
+   "font-family" marcate "PROVA FONT" qui sotto sono l'unica cosa da
+   togliere per tornare alla versione pubblicabile (Bungee): basta
+   cancellare da qui fino alla riga corrispondente, e ripristinare
+   'Bungee' dove serve.
+   ========================================================= */
+@font-face{
+  font-family:'Druk Text Super';
+  src:url('../assets/fonts/druk-text-super.woff2') format('woff2');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Druk Text Heavy';
+  src:url('../assets/fonts/druk-text-heavy.woff2') format('woff2');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Impact Test';
+  src:url('../assets/fonts/impact.woff2') format('woff2');
+  font-display:swap;
+}
+@font-face{
+  font-family:'Druk Text Medium';
+  src:url('../assets/fonts/druk-text-medium.woff2') format('woff2');
+  font-display:swap;
+}
+
+/* =========================================================
    VARIABILI GLOBALI (colori, spaziature)
    Cambiando questi valori cambi il colore/stile in tutto il sito
    senza dover cercare ogni singola regola.
@@ -76,10 +109,10 @@
     display:flex;
     align-items:center;
     white-space:nowrap;
-    font-family:'Barlow Condensed', sans-serif;
+    font-family:'Druk Text Medium', 'Barlow Condensed', sans-serif; /* PROVA FONT: era solo 'Barlow Condensed' (provato anche Impact, troppo spesso per un testo piccolo — vedi sotto) */
     font-weight:600;
     text-transform:uppercase;
-    letter-spacing:0.1em;
+    letter-spacing:0.05em; /* PROVA FONT: era 0.1em */
     font-size:0.8rem;
     color:var(--off-white);
     /* NESSUN padding qui: tutta la spaziatura viene da .marquee-item
@@ -530,7 +563,7 @@
     border:1.5px solid var(--green);
     border-radius:999px;
     color:var(--green-bright);
-    font-family:'Bungee', sans-serif;
+    font-family:'Druk Text Heavy', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
     font-size:0.9rem;
     text-transform:uppercase;
     padding:0.9rem 1.9rem;
@@ -586,7 +619,7 @@
     align-items:center;
     justify-content:center;
     white-space:nowrap;
-    font-family:'Bungee', sans-serif;
+    font-family:'Druk Text Heavy', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
     text-transform:uppercase;
     letter-spacing:0.02em;
     color:var(--bg); /* nero: leggibile sul verde pieno della grafica */
@@ -634,10 +667,9 @@
     margin-bottom:3rem;
   }
   .city-name{
-    font-family:'Bungee', sans-serif;
+    font-family:'Druk Text Super', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
     font-size:1.4rem;
-    color:var(--green-bright);
-    text-shadow:0 0 8px rgba(63,230,74,0.5);
+    color:var(--green);
     text-transform:uppercase;
     margin-bottom:1.2rem;
   }
@@ -744,7 +776,7 @@
     filter:grayscale(0.1);
   }
   .panel-label{
-    font-family:'Bungee', sans-serif;
+    font-family:'Druk Text Heavy', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
     font-size:0.85rem;
     color:var(--green-bright);
     text-transform:uppercase;
@@ -869,7 +901,7 @@
     gap:1.1rem;
   }
   .product-title{
-    font-family:'Bungee', sans-serif;
+    font-family:'Druk Text Super', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
     font-size:clamp(1.4rem, 3vw, 2rem);
     text-transform:uppercase;
     color:var(--off-white);
@@ -1113,7 +1145,7 @@
     gap:0.5rem;
   }
   .footer-heading{
-    font-family:'Bungee', sans-serif;
+    font-family:'Druk Text Heavy', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
     font-size:0.8rem;
     color:var(--steel);
     text-transform:uppercase;
