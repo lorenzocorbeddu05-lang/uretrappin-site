@@ -39,7 +39,7 @@
 :root{
     --bg:#000000;           /* nero di sfondo del sito precedente #07080a */
     --panel:#101211;        /* grigio scuro usato per pannelli/card */
-    --green:#75fb4d;        /* verde principale (bordi, accenti) */
+    --green:#00ff00;        /* verde principale (bordi, accenti) */
     --green-bright:#a6ffb4; /* verde chiaro (testi, glow) */
     --green-dim:#1f8a2a;    /* verde spento (bordi sottili, dettagli) */
     --steel:#5b625b;        /* grigio neutro (testi secondari, pulsanti disattivati) */
@@ -457,7 +457,17 @@
   */
   .teaser-banner{
     position:relative;
-    height:85vh;              /* altezza fissa e definita: niente ambiguità di layout */
+    /* Proporzione fissa (2000x1362 su desktop, 4:5 su mobile) invece
+       di un'altezza calcolata dalla finestra: larghezza sempre al
+       100%, altezza SEMPRE derivata solo da questa proporzione — niente
+       max-height qui apposta: un tetto massimo bloccherebbe l'altezza
+       lasciando la larghezza al 100%, ricreando esattamente il
+       problema che questa regola vuole evitare (due misure
+       indipendenti = ritaglio che cambia ad ogni resize). Su schermi
+       molto larghi il riquadro sarà quindi anche piuttosto alto — è il
+       prezzo per avere SEMPRE lo stesso identico ritaglio della foto. */
+    aspect-ratio:2000/1362;
+    width:100%;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -469,7 +479,7 @@
   }
   @media (max-width:720px){
   .teaser-banner{
-    height:60vh;
+    aspect-ratio:4/5;
   }
 }
   /* Foto DESKTOP: una per sezione, selezionata tramite ID */

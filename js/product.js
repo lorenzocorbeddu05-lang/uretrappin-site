@@ -102,8 +102,28 @@ function updateProductMeta(product){
   const ogDescription = document.querySelector('meta[property="og:description"]');
   if (ogDescription) ogDescription.setAttribute('content', description);
 
+  // twitter:* seguono og:* (prima restavano sul testo generico anche
+  // sulla pagina di un prodotto specifico — X/Twitter li legge al
+  // posto di og:* quando entrambi sono presenti, quindi andavano
+  // aggiornati anche questi).
+  const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twitterTitle) twitterTitle.setAttribute('content', `${product.name} — U'RE TRAPPIN'`);
+
+  const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+  if (twitterDescription) twitterDescription.setAttribute('content', description);
+
+  // Assoluti apposta (non solo il percorso relativo): i crawler dei
+  // social a volte non risolvono correttamente un URL relativo nei
+  // meta tag, vedi anche i commenti in cima a index.html e alle altre
+  // pagine su questo stesso punto.
   const ogImage = document.querySelector('meta[property="og:image"]');
-  if (ogImage && product.photos[0]) ogImage.setAttribute('content', product.photos[0]);
+  if (ogImage && product.photos[0]) ogImage.setAttribute('content', `https://uretrappin.com/${product.photos[0]}`);
+
+  const twitterImage = document.querySelector('meta[name="twitter:image"]');
+  if (twitterImage && product.photos[0]) twitterImage.setAttribute('content', `https://uretrappin.com/${product.photos[0]}`);
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.setAttribute('content', `https://uretrappin.com/product.html${location.search}`);
 }
 
 /* product.details è {it:[...], en:[...]} (non una singola lista, a
