@@ -32,6 +32,35 @@ function setupProductAccordion(){
   });
 }
 
+/* ===== GOOGLE FORM "PAGA ALLA CONSEGNA" =====
+   URL del form + ID dei due campi a scelta multipla (Capo da
+   acquistare, Taglia), presi da un link "Modulo precompilato" generato
+   una volta sola da Google Forms. Il valore passato in ogni entry.ID
+   deve corrispondere ESATTAMENTE (stessa stringa) a una delle opzioni
+   del campo nel form, altrimenti Google Forms lo ignora e lascia il
+   campo vuoto — per questo ogni prodotto in data/products.json ha un
+   campo "codLabel" con il testo esatto dell'opzione "Capo da
+   acquistare" corrispondente. */
+const COD_FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLScStdwj81nifp4x2Q7r-nHLb9FbIpHv0bsJsCET9aMKNkIcwQ/viewform';
+const COD_ENTRY_CAPO = 'entry.1789331922';
+const COD_ENTRY_TAGLIA = 'entry.1313420110';
+// Testo esatto dell'opzione "Taglia" per i prodotti senza taglie
+// (Balaclava, Mesh Cap) — deve combaciare con l'opzione nel form.
+const COD_TAGLIA_STANDARD = 'Standard (Balaclava o Mesh Cap)';
+
+/**
+ * Link al Google Form già compilato con il capo (e la taglia, se il
+ * prodotto ne ha) scelti dal cliente — così chi risponde agli ordini
+ * sa subito cosa spedire, senza doverlo ricavare da un campo libero.
+ */
+function buildCodFormUrl(product, size){
+  const taglia = (product.sizes && product.sizes.length) ? size : COD_TAGLIA_STANDARD;
+  const params = new URLSearchParams({ usp: 'pp_url' });
+  params.set(COD_ENTRY_CAPO, product.codLabel);
+  params.set(COD_ENTRY_TAGLIA, taglia);
+  return `${COD_FORM_BASE}?${params.toString()}`;
+}
+
 /**
  * Elenco delle taglie di un prodotto con lo stato di ciascuna
  * (product.soldOutSizes in data/products.json — vuoto se nessuna
@@ -82,10 +111,13 @@ function updateAvailability(product, sizeSelect, availabilityEl, buyButton, codB
   buyButton.classList.toggle('is-disabled', soldOut);
   buyButton.textContent = t(soldOut ? 'product.soldOut' : 'product.buy');
 
-  // Il pulsante "Paga alla consegna" punta sempre allo stesso Google
-  // Form (non dipende dalla taglia, il cliente la scrive lui sul
-  // form) — qui si disabilita solo, stessa logica del pulsante Stripe.
-  if (codButton) codButton.classList.toggle('is-disabled', soldOut);
+  // Il pulsante "Paga alla consegna" punta al Google Form già
+  // precompilato con capo e taglia scelti (vedi buildCodFormUrl) —
+  // stessa logica di disabilitazione del pulsante Stripe.
+  if (codButton){
+    codButton.href = buildCodFormUrl(product, size);
+    codButton.classList.toggle('is-disabled', soldOut);
+  }
 }
 
 /**

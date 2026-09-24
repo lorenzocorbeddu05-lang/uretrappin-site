@@ -2,6 +2,7 @@
   {
     "name": "Get Rich Or Die Trappin' Black T-Shirt",
     "variant": "Black",
+    "codLabel": "T-Shirt Nera",
     "price": "40€",
     "available": true,
     "photos": [
@@ -42,6 +43,7 @@
   {
     "name": "Get Rich Or Die Trappin' White T-Shirt",
     "variant": "White",
+    "codLabel": "T-Shirt Bianca",
     "price": "40€",
     "available": true,
     "photos": [
@@ -82,6 +84,7 @@
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
     "variant": "Heather Black, pink print",
+    "codLabel": "Long Sleeve Nera scritta rosa",
     "price": "40€",
     "available": true,
     "photos": [
@@ -124,6 +127,7 @@
   {
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
     "variant": "Heather Black, white print",
+    "codLabel": "Long Sleeve Nera scritta bianca",
     "price": "40€",
     "available": true,
     "photos": [
@@ -166,6 +170,7 @@
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
     "variant": "White, black print",
+    "codLabel": "Long Sleeve Bianca scritta nera",
     "price": "40€",
     "available": true,
     "photos": [
@@ -208,6 +213,7 @@
   {
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
     "variant": "White, pink print",
+    "codLabel": "Long Sleeve Bianca scritta rosa",
     "price": "40€",
     "available": true,
     "photos": [
@@ -250,6 +256,7 @@
   {
     "name": "UT Crochet Mesh Cap",
     "variant": "Black and Green",
+    "codLabel": "Mesh Cap",
     "price": "45€",
     "available": true,
     "photos": [
@@ -280,6 +287,7 @@
   {
     "name": "UT Balaclava",
     "variant": "Black and Green",
+    "codLabel": "Balaclava",
     "price": "45€",
     "available": true,
     "photos": [

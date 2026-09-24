@@ -696,6 +696,16 @@
     color:var(--off-white);
     margin-bottom:0.6rem;
   }
+  /* Tag collaborazione accanto al nome del locale (es. "@ Spazio Diaz
+     w/ CVLTURE") — stesso font e colore del nome del locale, nessuna
+     differenziazione voluta. */
+  .venue-collab{
+    font-family:inherit;
+    font-weight:inherit;
+    font-size:inherit;
+    color:inherit;
+    letter-spacing:inherit;
+  }
   /* Il "mosaico": su mobile column-count:1 = foto impilate in singola
      colonna (sempre una sotto l'altra, come richiesto). Da 721px in su
      (vedi @media sotto) diventa un collage "bento" a griglia fissa che
@@ -1121,9 +1131,8 @@
     font-size:0.75rem;
     font-weight:400;
     letter-spacing:0.03em;
-    color:var(--steel);
-    text-transform:none;
-    margin-top:0.15rem;
+    color:var(--green);
+    margin-bottom:0.15rem;
   }
   .product-cod-btn.is-disabled{
     pointer-events:none;
