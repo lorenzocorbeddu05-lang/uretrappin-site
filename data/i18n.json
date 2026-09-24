@@ -34,6 +34,8 @@
 
     "product.size": "Taglia",
     "product.buy": "Acquista",
+    "product.cod": "Paga alla consegna",
+    "product.codNote": "Solo Rimini e dintorni",
     "product.details": "Dettagli",
     "product.shipping": "Spedizione",
     "product.shippingText": "Verrai contattato dal team entro 24 ore dall’acquisto. Consegna in 2-5 giorni lavorativi.",
@@ -50,8 +52,7 @@
     "meta.withdrawal.title": "Diritto di Recesso — U'RE TRAPPIN'",
     "meta.withdrawal.desc": "Diritto di Recesso — U're Trappin'.",
     "legal.terms": "// Termini e Condizioni",
-    "legal.withdrawal": "// Diritto di Recesso",
-    "legal.placeholder": "Testo segnaposto — sostituire con il contenuto reale."
+    "legal.withdrawal": "// Diritto di Recesso"
   },
 
   "en": {
@@ -84,6 +85,8 @@
 
     "product.size": "Size",
     "product.buy": "Buy",
+    "product.cod": "Cash on delivery",
+    "product.codNote": "Rimini area only",
     "product.details": "Details",
     "product.shipping": "Shipping",
     "product.shippingText": "UT’s team will contact you within 24 hours after the purchase. Shipping time 2-5 business days.",
@@ -100,7 +103,6 @@
     "meta.withdrawal.title": "Right of Withdrawal — U'RE TRAPPIN'",
     "meta.withdrawal.desc": "Right of Withdrawal — U're Trappin'.",
     "legal.terms": "// Terms & Conditions",
-    "legal.withdrawal": "// Right of Withdrawal",
-    "legal.placeholder": "Placeholder text — replace with the actual content."
+    "legal.withdrawal": "// Right of Withdrawal"
   }
 }

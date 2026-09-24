@@ -16,10 +16,7 @@ Ultimo aggiornamento: [DATA]
 1. CHI SIAMO
 
 uretrappin.com è gestito da:
-[RAGIONE SOCIALE / NOME E COGNOME TITOLARE]
-[FORMA GIURIDICA]
-Partita IVA: [PARTITA IVA]
-Sede legale: [INDIRIZZO COMPLETO]
+UT CLOTHING
 Email: uretrappin@gmail.com
 
 L'utilizzo del sito e l'acquisto dei prodotti implica l'accettazione
@@ -29,7 +26,7 @@ integrale dei presenti Termini e Condizioni.
 2. PRODOTTI
 
 Il sito vende capi di abbigliamento e accessori streetwear a marchio
-U'RE TRAPPIN'. Le immagini dei prodotti sono indicative: colori e
+UT CLOTHING. Le immagini dei prodotti sono indicative: colori e
 dettagli possono variare leggermente rispetto a quanto mostrato a
 schermo, per via di differenze tra i dispositivi di visualizzazione.
 
@@ -37,10 +34,7 @@ schermo, per via di differenze tra i dispositivi di visualizzazione.
 3. PREZZI
 
 I prezzi indicati sul sito sono in Euro (€) e si intendono
-[IVA INCLUSA / IVA ESCLUSA — specificare]. Eventuali costi di
-spedizione sono [INCLUSI NEL PREZZO / AGGIUNTI AL CHECKOUT —
-specificare quanto costano e se c'è una soglia di spedizione
-gratuita].
+IVA INCLUSA. Eventuali costi di spedizione sono inclusi nel prezzo.
 
 
 4. COME SI ACQUISTA
@@ -54,19 +48,17 @@ dettagli della spedizione.
 
 5. MODALITÀ DI PAGAMENTO
 
-I pagamenti sono gestiti interamente da Stripe. Accettiamo
-[CARTE DI CREDITO/DEBITO, APPLE PAY, ECC. — specificare i metodi
-attivati su Stripe]. Non entriamo mai in possesso dei dati della
+I pagamenti sono gestiti interamente da Stripe. Accettiamo carte di credito/debito, Apple Pay, Google Pay, Amazon Pay, Revolut, Link, Klarna, Satispay. Non entriamo mai in possesso dei dati della
 vostra carta.
 
 
 6. SPEDIZIONE
 
-- Zone servite: [SOLO ITALIA / ANCHE ESTERO — specificare i paesi]
-- Corriere: [NOME CORRIERE/I]
+- Zone servite: Italia
+- Corriere: da concordare
 - Tempi: il team vi contatta entro 24 ore dall'acquisto; consegna
   prevista in 2-5 giorni lavorativi dalla spedizione.
-- Costi: [specificare, o "vedi sezione Prezzi"]
+- Costi: inclusa.
 
 Il rischio di perdita o danneggiamento dei prodotti passa
 all'acquirente nel momento della consegna al corriere indicato, salvo

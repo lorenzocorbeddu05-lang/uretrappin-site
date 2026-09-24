@@ -682,13 +682,29 @@
     text-transform:uppercase;
     margin-bottom:1.2rem;
   }
+  /* Locale dentro una città (es. "@ Coconuts" sotto "Rimini") — per
+     ora è solo un'etichetta, sotto ci andrà il mosaico delle foto di
+     quel locale specifico quando sarà pronto. */
+  .venue-group{
+    margin-bottom:1.2rem;
+  }
+  .venue-name{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:0.04em;
+    color:var(--off-white);
+    margin-bottom:0.6rem;
+  }
   /* Il "mosaico": su mobile column-count:1 = foto impilate in singola
-     colonna. Da 721px in su (vedi @media sotto) diventa un collage
-     "bento" a griglia fissa: 4 celle nominate (a=hero 2x2, b=larga 2x1,
-     c/d=piccole 1x1) che riempiono sempre l'intero rettangolo, qualunque
-     sia il formato reale delle foto (vedi object-fit:cover sotto).
-     Pensato per gruppi di 4 foto per città — se una città avrà un
-     numero diverso di foto andrà definito un pattern dedicato. */
+     colonna (sempre una sotto l'altra, come richiesto). Da 721px in su
+     (vedi @media sotto) diventa un collage "bento" a griglia fissa che
+     riempie sempre l'intero rettangolo, qualunque sia il formato reale
+     delle foto (object-fit:cover). Il pattern dipende dal NUMERO di
+     foto del locale — una classe modificatrice per ogni numero usato
+     in galleria (mosaic--3/5/7/8/9; il pattern base senza modificatore
+     e mosaic--b/c/d coprono i gruppi da 4 foto, vedi gallery.html per
+     quale classe usa ogni locale). */
   .mosaic{
     column-count:1;
     column-gap:0.8rem;
@@ -704,7 +720,7 @@
     .mosaic{
       display:grid;
       grid-template-columns:repeat(4, 1fr);
-      grid-template-rows:repeat(2, clamp(160px, 18vw, 260px));
+      grid-template-rows:repeat(2, clamp(280px, 30vw, 440px));
       grid-template-areas:
         "a a b b"
         "a a c d";
@@ -750,12 +766,74 @@
         "d d e f";
     }
 
+    /* Pattern per 3 foto (es. Parma/Fuori Orario): hero orizzontale
+       sopra, 2 verticali affiancate sotto. Griglia a 2 colonne invece
+       di 4 (basta per 3 celle). Riga dell'hero più alta delle altre
+       "righe piccole" del sito: una foto orizzontale schiacciata in
+       una riga bassa mostra troppo poco del fotogramma. */
+    .mosaic--3{
+      grid-template-columns:repeat(2, 1fr);
+      grid-template-rows:
+        clamp(320px, 40vw, 500px)
+        clamp(320px, 36vw, 480px);
+      grid-template-areas:
+        "a a"
+        "b c";
+    }
+
+    /* Pattern per 5 foto (es. Riccione/Space): come il pattern A ma
+       con la cella "d" divisa in due (d/e) per usare la quinta foto. */
+    .mosaic--5{
+      grid-template-areas:
+        "a a b c"
+        "a a d e";
+    }
+
+    /* Pattern per 7 foto (es. Milano/Spazio Diaz): hero 2x2 + 4 celle
+       piccole + 2 celle larghe in fondo. 3 righe invece di 2. */
+    .mosaic--7{
+      grid-template-rows:repeat(3, clamp(230px, 26vw, 360px));
+      grid-template-areas:
+        "a a b c"
+        "a a d e"
+        "f f g g";
+    }
+
+    /* Pattern per 8 foto (es. Rimini/Wonderland, che ha una foto
+       orizzontale + 7 verticali): banner orizzontale a piena larghezza
+       in alto (riga più alta apposta, per mostrare bene la foto
+       orizzontale) + 4 celle piccole + una riga con una cella larga
+       e due piccole. 3 righe, griglia 4 colonne. */
+    .mosaic--8{
+      grid-template-rows:
+        clamp(320px, 36vw, 500px)
+        clamp(230px, 26vw, 360px)
+        clamp(230px, 26vw, 360px);
+      grid-template-areas:
+        "a a a a"
+        "b c d e"
+        "f f g h";
+    }
+
+    /* Pattern per 9 foto (es. Rimini/Coconuts): hero 2x2 + 5 celle
+       piccole + 3 celle piccole in fondo (griglia 4x3). */
+    .mosaic--9{
+      grid-template-rows:repeat(3, clamp(230px, 26vw, 360px));
+      grid-template-areas:
+        "a a b c"
+        "a a d e"
+        "f g h i";
+    }
+
     .mosaic img:nth-child(1){ grid-area:a; }
     .mosaic img:nth-child(2){ grid-area:b; }
     .mosaic img:nth-child(3){ grid-area:c; }
     .mosaic img:nth-child(4){ grid-area:d; }
     .mosaic img:nth-child(5){ grid-area:e; }
     .mosaic img:nth-child(6){ grid-area:f; }
+    .mosaic img:nth-child(7){ grid-area:g; }
+    .mosaic img:nth-child(8){ grid-area:h; }
+    .mosaic img:nth-child(9){ grid-area:i; }
     .mosaic img{
       width:100%;
       height:100%;
@@ -1010,6 +1088,51 @@
     .product-buy-btn:hover{ opacity:0.85; }
   }
 
+  /* I due modi di pagare (Stripe con carta / alla consegna, vedi
+     product.html): stessa larghezza, uno sopra l'altro. Il pulsante
+     Stripe resta quello "pieno" (verde) come azione principale, questo
+     è il secondario (solo bordo) per non confonderli a colpo d'occhio. */
+  .product-buy-options{
+    display:flex;
+    flex-direction:column;
+    gap:0.8rem;
+  }
+  .product-cod-btn{
+    -webkit-appearance:none;
+    appearance:none;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    border-radius:0;
+    border:1.5px solid var(--green);
+    background:none;
+    color:var(--green);
+    font-family:'Barlow Condensed', sans-serif;
+    font-size:1.1rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:0.9rem 1.5rem;
+    cursor:pointer;
+    transition: opacity 0.2s;
+  }
+  .product-cod-note{
+    font-size:0.75rem;
+    font-weight:400;
+    letter-spacing:0.03em;
+    color:var(--steel);
+    text-transform:none;
+    margin-top:0.15rem;
+  }
+  .product-cod-btn.is-disabled{
+    pointer-events:none;
+    opacity:0.4;
+  }
+  @media (hover:hover){
+    .product-cod-btn:hover{ opacity:0.85; }
+  }
+
   .product-accordion{
     border-top:1px solid #1c1f1c;
   }
@@ -1238,4 +1361,50 @@
   }
   .legal-content p{
     margin-bottom:1rem;
+  }
+  .legal-content h1{
+    font-family:'Druk Text Super', 'Bungee', sans-serif; /* PROVA FONT: era solo 'Bungee' */
+    font-size:clamp(1.4rem, 3vw, 2rem);
+    text-transform:uppercase;
+    color:var(--off-white);
+    letter-spacing:0.02em;
+    margin-bottom:0.5rem;
+  }
+  .legal-updated{
+    color:var(--steel);
+    font-size:0.9rem;
+    margin-bottom:2.2rem;
+  }
+  .legal-content h2{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    font-size:1.2rem;
+    letter-spacing:0.02em;
+    color:var(--green);
+    margin:2.2rem 0 0.8rem;
+  }
+  .legal-content ul{
+    margin:0 0 1rem 1.2rem;
+    padding:0;
+  }
+  .legal-content li{
+    margin-bottom:0.4rem;
+  }
+  .legal-content a{
+    color:var(--green);
+  }
+  /* Modello di recesso (recesso.html): riquadro staccato dal resto del
+     testo, per far capire che è un modulo da copiare/compilare, non
+     testo informativo normale. */
+  .legal-form-box{
+    border:1.5px solid var(--steel);
+    padding: clamp(1rem, 3vw, 1.6rem);
+    margin-top:1rem;
+  }
+  .legal-form-box h2{
+    margin-top:0;
+  }
+  .legal-form-box .legal-field{
+    border-bottom:1px solid #2a2e29;
+    padding:0.5rem 0;
   }

@@ -67,7 +67,7 @@ function renderSizeSelect(product, sizeSelect){
  * (per i prodotti con taglie) se lo è la taglia scelta al momento.
  * Richiamata al cambio taglia e al cambio lingua.
  */
-function updateAvailability(product, sizeSelect, availabilityEl, buyButton){
+function updateAvailability(product, sizeSelect, availabilityEl, buyButton, codButton){
   const hasSizes = product.sizes && product.sizes.length;
   const size = hasSizes ? sizeSelect.value : null;
   const soldOut = !product.available || (hasSizes && isSizeSoldOut(product, size));
@@ -81,6 +81,11 @@ function updateAvailability(product, sizeSelect, availabilityEl, buyButton){
     : product.stripeLink || '#';
   buyButton.classList.toggle('is-disabled', soldOut);
   buyButton.textContent = t(soldOut ? 'product.soldOut' : 'product.buy');
+
+  // Il pulsante "Paga alla consegna" punta sempre allo stesso Google
+  // Form (non dipende dalla taglia, il cliente la scrive lui sul
+  // form) — qui si disabilita solo, stessa logica del pulsante Stripe.
+  if (codButton) codButton.classList.toggle('is-disabled', soldOut);
 }
 
 /**
@@ -170,25 +175,26 @@ async function loadProductDetail(){
     const sizeField = document.getElementById('sizeField');
     const sizeSelect = document.getElementById('sizeSelect');
     const buyButton = document.getElementById('buyButton');
+    const codButton = document.getElementById('codButton');
 
     if (product.sizes && product.sizes.length){
       renderSizeSelect(product, sizeSelect);
       // Cambiando taglia possono cambiare sia il badge sopra il prezzo
-      // che il pulsante, quindi si aggiornano sempre insieme.
-      sizeSelect.addEventListener('change', () => updateAvailability(product, sizeSelect, availabilityEl, buyButton));
+      // che i pulsanti, quindi si aggiornano sempre insieme.
+      sizeSelect.addEventListener('change', () => updateAvailability(product, sizeSelect, availabilityEl, buyButton, codButton));
     } else {
       sizeField.style.display = 'none';
     }
-    updateAvailability(product, sizeSelect, availabilityEl, buyButton);
+    updateAvailability(product, sizeSelect, availabilityEl, buyButton, codButton);
 
     // Testi che dipendono dalla lingua ("Esaurito"/"Sold out" compreso,
-    // sia nel badge sopra sia nelle taglie e nel pulsante): vanno
+    // sia nel badge sopra sia nelle taglie e nei pulsanti): vanno
     // rigenerati se l'utente cambia lingua.
     document.addEventListener('langchange', () => {
       updateProductMeta(product);
       renderProductDetails(product);
       if (product.sizes && product.sizes.length) renderSizeSelect(product, sizeSelect);
-      updateAvailability(product, sizeSelect, availabilityEl, buyButton);
+      updateAvailability(product, sizeSelect, availabilityEl, buyButton, codButton);
     });
 
     setupProductAccordion();

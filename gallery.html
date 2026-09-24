@@ -27,53 +27,122 @@
      di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/brand/logo-principale.webp" alt="U're Trappin'" class="loader-logo">
+  <img src="assets/brand/logo-hero-footer.webp" alt="U're Trappin'" class="loader-logo">
 </div>
 
 <div id="nav-mount"></div>
 
 <section class="gallery-page">
+  <!-- Città con sotto uno o più locali (@ Nome), ognuno col suo mosaico
+       di foto. Il pattern del mosaico (classe mosaic--N) dipende dal
+       numero di foto del locale — vedi css/style.css per i pattern
+       disponibili. Su mobile tutte le foto si impilano in verticale
+       (column-count:1), da desktop in su formano il collage "bento". -->
   <div class="city-group">
     <h2 class="city-name">Rimini</h2>
-    <div class="mosaic">
-      <img src="assets/gallery/rimini-1.jpg" alt="Rimini 1" loading="lazy">
-      <img src="assets/gallery/rimini-2.jpg" alt="Rimini 2" loading="lazy">
-      <img src="assets/gallery/rimini-3.jpg" alt="Rimini 3" loading="lazy">
-      <img src="assets/gallery/rimini-4.jpg" alt="Rimini 4" loading="lazy">
+    <div class="venue-group">
+      <h3 class="venue-name">@ Coconuts</h3>
+      <div class="mosaic mosaic--9">
+        <img src="assets/gallery/rimini-coconuts-1.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-2.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-3.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-4.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-5.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-6.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-7.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-8.webp" alt="Coconuts, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-coconuts-9.webp" alt="Coconuts, Rimini" loading="lazy">
+      </div>
+    </div>
+    <div class="venue-group">
+      <h3 class="venue-name">@ Wonderland</h3>
+      <div class="mosaic mosaic--8">
+        <img src="assets/gallery/rimini-wonderland-1.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-2.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-3.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-4.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-5.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-6.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-7.webp" alt="Wonderland, Rimini" loading="lazy">
+        <img src="assets/gallery/rimini-wonderland-8.webp" alt="Wonderland, Rimini" loading="lazy">
+      </div>
     </div>
   </div>
 
   <div class="city-group">
-    <h2 class="city-name">Firenze</h2>
-    <div class="mosaic mosaic--c">
-      <img src="assets/gallery/firenze-1.jpg" alt="Firenze 1" loading="lazy">
-      <img src="assets/gallery/firenze-2.jpg" alt="Firenze 2" loading="lazy">
-      <img src="assets/gallery/firenze-3.jpg" alt="Firenze 3" loading="lazy">
-      <img src="assets/gallery/firenze-4.jpg" alt="Firenze 4" loading="lazy">
+    <h2 class="city-name">Riccione</h2>
+    <div class="venue-group">
+      <h3 class="venue-name">@ Space</h3>
+      <div class="mosaic mosaic--5">
+        <img src="assets/gallery/riccione-space-1.webp" alt="Space, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-space-2.webp" alt="Space, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-space-3.webp" alt="Space, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-space-4.webp" alt="Space, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-space-5.webp" alt="Space, Riccione" loading="lazy">
+      </div>
+    </div>
+    <div class="venue-group">
+      <h3 class="venue-name">@ Peter</h3>
+      <div class="mosaic">
+        <img src="assets/gallery/riccione-peter-1.webp" alt="Peter, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-peter-2.webp" alt="Peter, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-peter-3.webp" alt="Peter, Riccione" loading="lazy">
+        <img src="assets/gallery/riccione-peter-4.webp" alt="Peter, Riccione" loading="lazy">
+      </div>
     </div>
   </div>
 
   <div class="city-group">
     <h2 class="city-name">Milano</h2>
-    <div class="mosaic mosaic--b">
-      <img src="assets/gallery/milano-1.jpg" alt="Milano 1" loading="lazy">
-      <img src="assets/gallery/milano-2.jpg" alt="Milano 2" loading="lazy">
-      <img src="assets/gallery/milano-3.jpg" alt="Milano 3" loading="lazy">
-      <img src="assets/gallery/milano-4.jpg" alt="Milano 4" loading="lazy">
+    <div class="venue-group">
+      <h3 class="venue-name">@ Spazio Diaz</h3>
+      <div class="mosaic mosaic--7">
+        <img src="assets/gallery/milano-spaziodiaz-1.webp" alt="Spazio Diaz, Milano" loading="lazy">
+        <img src="assets/gallery/milano-spaziodiaz-2.webp" alt="Spazio Diaz, Milano" loading="lazy">
+        <img src="assets/gallery/milano-spaziodiaz-3.webp" alt="Spazio Diaz, Milano" loading="lazy">
+        <img src="assets/gallery/milano-spaziodiaz-4.webp" alt="Spazio Diaz, Milano" loading="lazy">
+        <img src="assets/gallery/milano-spaziodiaz-5.webp" alt="Spazio Diaz, Milano" loading="lazy">
+        <img src="assets/gallery/milano-spaziodiaz-6.webp" alt="Spazio Diaz, Milano" loading="lazy">
+        <img src="assets/gallery/milano-spaziodiaz-7.webp" alt="Spazio Diaz, Milano" loading="lazy">
+      </div>
     </div>
   </div>
 
-  <!-- Parma usa 6 foto (le altre città 4): il suo pattern (mosaic--d)
-       ha 2 quadratini + un rettangolo per riga, specularmente. -->
+  <div class="city-group">
+    <h2 class="city-name">Cesenatico</h2>
+    <div class="venue-group">
+      <h3 class="venue-name">@ Energy</h3>
+      <div class="mosaic mosaic--b">
+        <img src="assets/gallery/cesenatico-energy-1.webp" alt="Energy, Cesenatico" loading="lazy">
+        <img src="assets/gallery/cesenatico-energy-2.webp" alt="Energy, Cesenatico" loading="lazy">
+        <img src="assets/gallery/cesenatico-energy-3.webp" alt="Energy, Cesenatico" loading="lazy">
+        <img src="assets/gallery/cesenatico-energy-4.webp" alt="Energy, Cesenatico" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="city-group">
+    <h2 class="city-name">Bellaria-Igea Marina</h2>
+    <div class="venue-group">
+      <h3 class="venue-name">@ Beky Bay</h3>
+      <div class="mosaic mosaic--c">
+        <img src="assets/gallery/bellaria-bekybay-1.webp" alt="Beky Bay, Bellaria-Igea Marina" loading="lazy">
+        <img src="assets/gallery/bellaria-bekybay-2.webp" alt="Beky Bay, Bellaria-Igea Marina" loading="lazy">
+        <img src="assets/gallery/bellaria-bekybay-4.webp" alt="Beky Bay, Bellaria-Igea Marina" loading="lazy">
+        <img src="assets/gallery/bellaria-bekybay-3.webp" alt="Beky Bay, Bellaria-Igea Marina" loading="lazy">
+      </div>
+    </div>
+  </div>
+
   <div class="city-group">
     <h2 class="city-name">Parma</h2>
-    <div class="mosaic mosaic--d">
-      <img src="assets/gallery/parma-1.jpg" alt="Parma 1" loading="lazy">
-      <img src="assets/gallery/parma-2.jpg" alt="Parma 2" loading="lazy">
-      <img src="assets/gallery/parma-3.jpg" alt="Parma 3" loading="lazy">
-      <img src="assets/gallery/parma-4.jpg" alt="Parma 4" loading="lazy">
-      <img src="assets/gallery/parma-5.jpg" alt="Parma 5" loading="lazy">
-      <img src="assets/gallery/parma-6.jpg" alt="Parma 6" loading="lazy">
+    <div class="venue-group">
+      <h3 class="venue-name">@ Fuori Orario</h3>
+      <div class="mosaic mosaic--3">
+        <img src="assets/gallery/parma-fuoriorario-3.webp" alt="Fuori Orario, Parma" loading="lazy">
+        <img src="assets/gallery/parma-fuoriorario-1.webp" alt="Fuori Orario, Parma" loading="lazy">
+        <img src="assets/gallery/parma-fuoriorario-2.webp" alt="Fuori Orario, Parma" loading="lazy">
+      </div>
     </div>
   </div>
 </section>

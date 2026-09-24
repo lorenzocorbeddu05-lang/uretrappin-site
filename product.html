@@ -32,7 +32,7 @@
      di caricare (immagini incluse). Sparisce da solo via js/common.js
      (vedi funzione hidePageLoader). -->
 <div id="pageLoader">
-  <img src="assets/brand/logo-principale.webp" alt="U're Trappin'" class="loader-logo">
+  <img src="assets/brand/logo-hero-footer.webp" alt="U're Trappin'" class="loader-logo">
 </div>
 
 <div id="nav-mount"></div>
@@ -60,10 +60,20 @@
       </div>
     </div>
 
-    <!-- Niente data-i18n qui: il testo (Acquista/Esaurito) lo scrive
-         js/product.js (updateBuyButton), perché dipende anche dalla
+    <!-- Due modi di pagare: Stripe (con carta) o alla consegna tramite
+         un Google Form (solo zona Rimini). Niente data-i18n sui due
+         pulsanti: il testo (Acquista/Esaurito ecc.) lo scrive
+         js/product.js (updateAvailability), perché dipende anche dalla
          disponibilità della taglia scelta, non solo dalla lingua. -->
-    <a class="product-buy-btn" id="buyButton" href="#" target="_blank" rel="noopener">Acquista</a>
+    <div class="product-buy-options">
+      <a class="product-buy-btn" id="buyButton" href="#" target="_blank" rel="noopener">Acquista</a>
+      <!-- LINK PROVVISORIO: sostituire con l'URL vero del Google Form
+           non appena pronto (cercare "REPLACE_ME" in questo file). -->
+      <a class="product-cod-btn" id="codButton" href="https://forms.gle/REPLACE_ME" target="_blank" rel="noopener">
+        <span data-i18n="product.cod">Paga alla consegna</span>
+        <span class="product-cod-note" data-i18n="product.codNote">Solo Rimini e dintorni</span>
+      </a>
+    </div>
 
     <!-- Badge metodi di pagamento (Visa/Mastercard/PayPal/Apple Pay)
          rimossi finché non sappiamo quali attiverete su Stripe — da

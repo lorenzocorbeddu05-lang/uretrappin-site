@@ -11,7 +11,7 @@ tra [PARENTESI QUADRE] prima di usarlo.
 
 INFORMATIVA SULLA PRIVACY
 
-Ultimo aggiornamento: [DATA]
+Ultimo aggiornamento: 25/09/2026
 
 
 1. TITOLARE DEL TRATTAMENTO
@@ -19,10 +19,7 @@ Ultimo aggiornamento: [DATA]
 Il Titolare del trattamento dei dati raccolti tramite il sito
 uretrappin.com è:
 
-[RAGIONE SOCIALE / NOME E COGNOME TITOLARE]
-[FORMA GIURIDICA — es. ditta individuale, S.r.l., ecc.]
-Partita IVA: [PARTITA IVA]
-Sede legale: [INDIRIZZO COMPLETO]
+UT CLOTHING
 Email di contatto: uretrappin@gmail.com
 
 
@@ -45,10 +42,6 @@ Email di contatto: uretrappin@gmail.com
 - Evadere gli ordini e gestire le spedizioni.
 - Rispondere a richieste di assistenza clienti.
 - Adempiere a obblighi fiscali e di legge (fatturazione, contabilità).
-[ ] - Inviare comunicazioni promozionali/newsletter (SOLO se avete
-      raccolto un consenso esplicito separato — se non fate
-      newsletter, cancellate questa riga)
-
 
 4. BASE GIURIDICA
 
@@ -59,9 +52,7 @@ Email di contatto: uretrappin@gmail.com
 
 5. CONSERVAZIONE DEI DATI
 
-I dati relativi agli ordini sono conservati per [DURATA — es. 10 anni,
-il termine di legge per la documentazione fiscale/contabile in
-Italia]. I dati di eventuali richieste di assistenza sono conservati
+I dati relativi agli ordini sono conservati per 10 anni. I dati di eventuali richieste di assistenza sono conservati
 per il tempo necessario a gestirle, salvo obblighi di legge diversi.
 
 
@@ -71,9 +62,7 @@ I vostri dati possono essere comunicati a:
 - Stripe (elaborazione pagamenti) — con sede negli USA: il
   trasferimento è coperto dalle clausole contrattuali standard
   approvate dalla Commissione Europea.
-- [CORRIERE/I USATI PER LE SPEDIZIONI] (consegna del pacco).
 - GitHub Pages (hosting del sito).
-[ ] - [EVENTUALE SERVIZIO EMAIL/NEWSLETTER, se lo usate]
 Non vendiamo né cediamo i vostri dati a terzi per finalità di
 marketing di terze parti.
 
@@ -81,7 +70,7 @@ marketing di terze parti.
 7. I VOSTRI DIRITTI
 
 In quanto interessati, avete diritto di chiedere in qualsiasi momento
-a [EMAIL DI CONTATTO]:
+a uretrappin@gmail.com
 - accesso ai vostri dati personali;
 - rettifica di dati inesatti;
 - cancellazione ("diritto all'oblio"), nei limiti consentiti dagli

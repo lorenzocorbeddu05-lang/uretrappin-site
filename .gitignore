@@ -1,2 +1,7 @@
 .DS_Store
 
+# File non più usati dal sito (originali sostituiti, versioni scartate,
+# ecc.) — tenuti sul disco come riferimento, ma non hanno senso su un
+# repository pubblico.
+**/non-usati/
+
