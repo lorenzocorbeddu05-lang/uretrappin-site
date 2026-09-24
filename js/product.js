@@ -47,6 +47,13 @@ const COD_ENTRY_TAGLIA = 'entry.1313420110';
 // Testo esatto dell'opzione "Taglia" per i prodotti senza taglie
 // (Balaclava, Mesh Cap) — deve combaciare con l'opzione nel form.
 const COD_TAGLIA_STANDARD = 'Standard (Balaclava o Mesh Cap)';
+// Taglie il cui testo nel form NON è la sigla nuda (product.sizes usa
+// solo "XL", ma l'opzione nel form si chiama "XL (solo per T-Shirt)")
+// — senza questa mappa il pre-fill fallisce in silenzio perché il
+// valore non combacia esattamente con nessuna opzione.
+const COD_TAGLIA_LABELS = {
+  XL: 'XL (solo per T-Shirt)'
+};
 
 /**
  * Link al Google Form già compilato con il capo (e la taglia, se il
@@ -54,7 +61,9 @@ const COD_TAGLIA_STANDARD = 'Standard (Balaclava o Mesh Cap)';
  * sa subito cosa spedire, senza doverlo ricavare da un campo libero.
  */
 function buildCodFormUrl(product, size){
-  const taglia = (product.sizes && product.sizes.length) ? size : COD_TAGLIA_STANDARD;
+  const taglia = (product.sizes && product.sizes.length)
+    ? (COD_TAGLIA_LABELS[size] || size)
+    : COD_TAGLIA_STANDARD;
   const params = new URLSearchParams({ usp: 'pp_url' });
   params.set(COD_ENTRY_CAPO, product.codLabel);
   params.set(COD_ENTRY_TAGLIA, taglia);
