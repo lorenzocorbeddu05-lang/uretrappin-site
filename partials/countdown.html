@@ -1,9 +1,10 @@
 <!-- ===== FRAMMENTO COUNTDOWN DROP =====
      Unico file dedicato alla funzione (markup + stile + logica).
-     index.html lo carica via fetch e lo inserisce dentro
-     <div id="countdown-root">. Per rimuovere il countdown dal sito:
-     cancella questo file e il blocco marcato "COUNTDOWN DROP" dentro
-     index.html (link nessuno, div + script inline). -->
+     Caricato su OGNI pagina da js/common.js (loadCountdown) dentro il
+     rispettivo <div id="countdown-root">. Per rimuovere il countdown
+     dal sito dopo il lancio vero: cancella questo file, la funzione
+     loadCountdown (+ chiamata) in js/common.js, e i vari
+     <div id="countdown-root"> dalle pagine. -->
 
 <style>
   #countdown-overlay{
@@ -24,25 +25,6 @@
       0 0 10px rgba(63,230,74,0.6),
       0 0 24px rgba(63,230,74,0.35);*/
   }
-  /* Pulsante DI SERVIZIO, solo per lavorare al sito senza dover
-     continuamente mettere COUNTDOWN_ENABLED a true/false — bordo
-     tratteggiato apposta per essere riconoscibile come temporaneo.
-     Da togliere (insieme a #countdown-skip in HTML/JS) prima del
-     lancio vero. */
-  #countdown-skip{
-    position:absolute;
-    bottom:1.5rem;
-    left:50%;
-    transform:translateX(-50%);
-    background:none;
-    border:1px dashed #666;
-    color:#888;
-    font-family:'Barlow Condensed', sans-serif;
-    font-size:0.8rem;
-    letter-spacing:0.04em;
-    padding:0.5rem 1rem;
-    cursor:pointer;
-  }
 </style>
 
 <script>
@@ -57,9 +39,11 @@
      parte da 0, quindi 8 = settembre. */
   const DROP_DATE = new Date(2026, 8, 28, 14, 0, 0);
 
-  /* Scorciatoia per sbirciare il sito senza modificare il codice:
-     aprendo la pagina con "?preview" in fondo all'URL (es.
-     index.html?preview) il countdown viene saltato per quella visita. */
+  /* Scorciatoia per sbirciare il sito senza modificare il codice e
+     senza un pulsante pubblico visibile a chiunque: aprendo la pagina
+     con "?preview" in fondo all'URL (es. index.html?preview) il
+     countdown viene saltato per quella visita. Non condividere URL con
+     ?preview prima del lancio vero. */
   const previewBypass = new URLSearchParams(location.search).has('preview');
 
   if (!COUNTDOWN_ENABLED || previewBypass || Date.now() >= DROP_DATE.getTime()){
@@ -73,7 +57,6 @@
   overlay.id = 'countdown-overlay';
   overlay.innerHTML = `
     <div id="countdown-timer">00:00:00:00</div>
-    <button id="countdown-skip" type="button">Salta countdown (pulsante temporaneo, da rimuovere prima del lancio)</button>
   `;
   root.appendChild(overlay);
 
@@ -92,8 +75,6 @@
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
   }
-
-  overlay.querySelector('#countdown-skip').addEventListener('click', revealSite);
 
   function tick(){
     const diff = DROP_DATE.getTime() - Date.now();

@@ -28,28 +28,11 @@
 </head>
 <body>
 
-<!-- ===== COUNTDOWN DROP (rimuovi questo blocco + partials/countdown.html
-     dopo il 28/09 — tutto lo stile e la logica sono dentro
-     countdown.html, qui c'è solo il caricamento generico del
-     frammento) ===== -->
+<!-- ===== COUNTDOWN DROP =====
+     Caricato da js/common.js (loadCountdown, condiviso da TUTTE le
+     pagine) dentro questo div — vedi il commento lì per come
+     rimuoverlo dopo il lancio vero. -->
 <div id="countdown-root"></div>
-<script>
-  fetch('partials/countdown.html')
-    .then(res => res.text())
-    .then(html => {
-      const root = document.getElementById('countdown-root');
-      root.innerHTML = html;
-      // Uno <script> inserito via innerHTML non si esegue da solo:
-      // va ricreato e reinserito nel DOM per farlo partire.
-      root.querySelectorAll('script').forEach(oldScript => {
-        const newScript = document.createElement('script');
-        newScript.textContent = oldScript.textContent;
-        oldScript.replaceWith(newScript);
-      });
-    })
-    .catch(err => console.error('Errore nel caricamento di partials/countdown.html:', err));
-</script>
-<!-- ===== FINE COUNTDOWN DROP ===== -->
 
 <!-- ===== SCHERMATA DI CARICAMENTO =====
      Overlay a schermo intero, visibile finché la pagina non ha finito

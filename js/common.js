@@ -266,3 +266,37 @@ loadPartial('partials/nav.html', 'nav-mount', () => {
   setupMarquee();
 });
 loadPartial('partials/footer.html', 'footer-mount');
+
+/* =========================================================
+   COUNTDOWN DROP — condiviso su TUTTE le pagine (non solo index.html):
+   ogni pagina ha un <div id="countdown-root"></div> subito dopo <body>,
+   questa funzione ci carica dentro partials/countdown.html, così
+   nessuna pagina è raggiungibile per intero (shop/gallery/prodotto
+   compresi, link Stripe veri inclusi) prima della data di drop, anche
+   a chi apre un URL diretto invece di passare dalla home.
+
+   Per rimuovere il countdown dopo il lancio vero: cancella questa
+   funzione (e la chiamata subito sotto), partials/countdown.html, e i
+   <div id="countdown-root"> dalle pagine — non serve altro.
+
+   fetch+innerHTML non esegue da solo gli <script> del frammento
+   (a differenza di come li scrive il browser leggendo l'HTML), quindi
+   vanno ricreati e reinseriti a mano, come già faceva il blocco che
+   c'era prima solo dentro index.html. */
+function loadCountdown(){
+  const root = document.getElementById('countdown-root');
+  if (!root) return;
+
+  fetch(ROOT + 'partials/countdown.html')
+    .then(res => res.text())
+    .then(html => {
+      root.innerHTML = html;
+      root.querySelectorAll('script').forEach(oldScript => {
+        const newScript = document.createElement('script');
+        newScript.textContent = oldScript.textContent;
+        oldScript.replaceWith(newScript);
+      });
+    })
+    .catch(err => console.error('Errore nel caricamento di partials/countdown.html:', err));
+}
+loadCountdown();

@@ -8,7 +8,7 @@
      aggiorna col prodotto giusto (nome/prezzo/foto) non appena
      data/products.json è caricato — vedi updateProductMeta(). -->
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
-<meta name="description" content="Scopri i prodotti U're Trappin': T-shirt, felpe, cappelli e accessori.">
+<meta name="description" content="Scopri i prodotti U're Trappin': T-shirt, long sleeve, cappelli e accessori.">
 <meta property="og:type" content="product">
 <meta property="og:site_name" content="U're Trappin'">
 <!-- og:url generico qui: js/product.js lo aggiorna con l'URL esatto
@@ -26,6 +26,12 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- ===== COUNTDOWN DROP =====
+     Caricato da js/common.js (loadCountdown, condiviso da tutte le
+     pagine) — impedisce di vedere/comprare il sito prima del lancio
+     anche a chi apre questo URL direttamente. -->
+<div id="countdown-root"></div>
 
 <!-- ===== SCHERMATA DI CARICAMENTO =====
      Overlay a schermo intero, visibile finché la pagina non ha finito
