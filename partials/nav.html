@@ -39,7 +39,7 @@
 </div>
 
 <nav id="mainNav">
-  <a class="brand" href="{{ROOT}}index.html">
+  <a class="brand" href="/">
     <img src="{{ROOT}}assets/brand/logo-navbar.png" alt="U're Trappin'" class="brand-logo">
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Apri menu" data-i18n-attr="aria-label:nav.menuOpen" aria-expanded="false">
@@ -48,9 +48,17 @@
   <!-- I testi delle voci sono quelli italiani (di riserva): quelli
        mostrati vengono da data/i18n.json tramite data-i18n, vedi
        js/common.js. L'ultima voce è il selettore di lingua IT/EN: su
-       desktop sta a destra della navbar, su mobile in fondo al menu. -->
+       desktop sta a destra della navbar, su mobile in fondo al menu.
+
+       "Home" usa "/" invece di "{{ROOT}}index.html" apposta: sulle
+       pagine alla radice {{ROOT}} è una stringa vuota, e href=""
+       ricarica la pagina corrente invece di andare alla home (bug
+       trovato mentre si sistemava un problema di analytics: "/" e
+       "/index.html" venivano contati come due pagine diverse). "/" è
+       un percorso assoluto, funziona uguale da qualunque profondità
+       (root o legali/) perché il dominio è servito dalla vera radice. -->
   <ul id="navMenu">
-    <li><a href="{{ROOT}}index.html" data-i18n="nav.home">Home</a></li>
+    <li><a href="/" data-i18n="nav.home">Home</a></li>
     <li><a href="{{ROOT}}shop.html" data-i18n="nav.shop">Negozio</a></li>
     <li><a href="{{ROOT}}gallery.html" data-i18n="nav.gallery">Archivio</a></li>
     <li><a href="{{ROOT}}index.html#music" data-i18n="nav.music">Musica</a></li>
