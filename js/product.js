@@ -32,12 +32,42 @@ function setupProductAccordion(){
   });
 }
 
+/* T-shirt e Long Sleeve hanno misure/foto diverse (capi diversi), da
+   qui il campo "sizeGuideCategory" in data/products.json — Mesh Cap e
+   Balaclava non hanno taglie quindi non compaiono qui (per loro tutto
+   il blocco #sizeField, link compreso, resta nascosto). */
+const SIZE_GUIDE_IMAGES = {
+  tshirt: {
+    table: 'assets/products/size-guide-tshirt-table.jpg',
+    photo: 'assets/products/size-guide-tshirt-photo.jpg'
+  },
+  longsleeve: {
+    table: 'assets/products/size-guide-longsleeve-table.jpg',
+    photo: 'assets/products/size-guide-longsleeve-photo.jpg'
+  }
+};
+
+/**
+ * Imposta le due foto del lightbox (tabella + capo con le misure)
+ * giuste per il prodotto in pagina — src vuoto di default in
+ * product.html apposta, lo scrive sempre questa funzione.
+ */
+function updateSizeGuideImages(product){
+  const tableImg = document.getElementById('sizeGuideTableImg');
+  const photoImg = document.getElementById('sizeGuidePhotoImg');
+  if (!tableImg || !photoImg) return;
+  const guide = SIZE_GUIDE_IMAGES[product.sizeGuideCategory];
+  if (!guide) return;
+  tableImg.src = guide.table;
+  photoImg.src = guide.photo;
+}
+
 /**
  * Lightbox "Guida alle taglie": un solo overlay condiviso da tutti i
- * prodotti con taglie (l'immagine è sempre la stessa, vedi il src già
- * scritto in product.html su #sizeGuideImg — non cambia per prodotto).
- * Si apre cliccando #sizeGuideLink, si chiude con la X, cliccando fuori
- * dalla foto (sullo sfondo scuro) o con Esc.
+ * prodotti con taglie, riusato cambiando semplicemente il src delle
+ * due foto (vedi updateSizeGuideImages). Si apre cliccando
+ * #sizeGuideLink, si chiude con la X, cliccando fuori dalla foto
+ * (sullo sfondo scuro) o con Esc.
  */
 function setupSizeGuideLightbox(){
   const link = document.getElementById('sizeGuideLink');
@@ -264,6 +294,7 @@ async function loadProductDetail(){
     // Solo sulle 2 T-shirt (data/products.json: "washingInstructions":
     // true) — non sui Long Sleeve né sugli accessori.
     if (washingField) washingField.style.display = product.washingInstructions ? '' : 'none';
+    updateSizeGuideImages(product);
     updateAvailability(product, sizeSelect, availabilityEl, buyButton, codButton);
 
     // Testi che dipendono dalla lingua ("Esaurito"/"Sold out" compreso,

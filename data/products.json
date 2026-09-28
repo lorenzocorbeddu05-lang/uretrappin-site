@@ -4,6 +4,7 @@
     "variant": "Black",
     "codLabel": "T-Shirt Nera",
     "washingInstructions": true,
+    "sizeGuideCategory": "tshirt",
     "price": "40€",
     "available": true,
     "photos": [
@@ -51,6 +52,7 @@
     "variant": "White",
     "codLabel": "T-Shirt Bianca",
     "washingInstructions": true,
+    "sizeGuideCategory": "tshirt",
     "price": "40€",
     "available": true,
     "photos": [
@@ -97,6 +99,7 @@
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
     "variant": "Heather Black, pink print",
     "codLabel": "Long Sleeve Nera scritta rosa",
+    "sizeGuideCategory": "longsleeve",
     "price": "40€",
     "available": true,
     "photos": [
@@ -146,6 +149,7 @@
     "name": "Get Rich Or Die Trappin' Heather Black Long Sleeve",
     "variant": "Heather Black, white print",
     "codLabel": "Long Sleeve Nera scritta bianca",
+    "sizeGuideCategory": "longsleeve",
     "price": "40€",
     "available": true,
     "photos": [
@@ -196,6 +200,7 @@
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
     "variant": "White, black print",
     "codLabel": "Long Sleeve Bianca scritta nera",
+    "sizeGuideCategory": "longsleeve",
     "price": "40€",
     "available": true,
     "photos": [
@@ -245,6 +250,7 @@
     "name": "Get Rich Or Die Trappin' White Long Sleeve",
     "variant": "White, pink print",
     "codLabel": "Long Sleeve Bianca scritta rosa",
+    "sizeGuideCategory": "longsleeve",
     "price": "40€",
     "available": true,
     "photos": [

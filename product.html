@@ -134,10 +134,20 @@
 <!-- ===== LIGHTBOX GUIDA ALLE TAGLIE =====
      Nascosto finché #sizeGuideLink non viene cliccato (vedi
      js/product.js). Un solo lightbox nella pagina, riusato da
-     qualunque prodotto — l'immagine cambia semplicemente src. -->
+     qualunque prodotto — ma la COPPIA di foto cambia in base al
+     prodotto (T-shirt e Long Sleeve hanno misure diverse, vedi
+     "sizeGuideCategory" in data/products.json): il src di questi due
+     <img> viene impostato da js/product.js (updateSizeGuideImages),
+     non è fisso come sembra qui. Due foto sempre insieme: la tabella
+     misure e la foto del capo con le misure segnate — da desktop una
+     a fianco all'altra, da mobile una sopra l'altra (vedi @media in
+     style.css). -->
 <div class="lightbox" id="sizeGuideLightbox" aria-hidden="true">
   <button type="button" class="lightbox-close" id="sizeGuideClose" aria-label="Chiudi" data-i18n-attr="aria-label:product.sizeGuideClose">&times;</button>
-  <img class="lightbox-img" id="sizeGuideImg" src="assets/products/size-guide.jpg" alt="Guida alle taglie" data-i18n-attr="alt:product.sizeGuide">
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="sizeGuideTableImg" src="" alt="Tabella delle taglie" data-i18n-attr="alt:product.sizeGuideTableAlt">
+    <img class="lightbox-img" id="sizeGuidePhotoImg" src="" alt="Misure del capo" data-i18n-attr="alt:product.sizeGuidePhotoAlt">
+  </div>
 </div>
 
 <!-- ===== ALTRI PRODOTTI =====
