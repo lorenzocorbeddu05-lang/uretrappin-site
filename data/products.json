@@ -11,9 +11,9 @@
       "assets/products/black-tshirt-0.jpg",
       "assets/products/black-tshirt-1.jpg",
       "assets/products/black-tshirt-2.jpg",
-      "assets/products/black-tshirt-3.jpg",
       "assets/products/black-tshirt-4.jpg",
-      "assets/products/black-tshirt-5.jpg"
+      "assets/products/black-tshirt-5.jpg",
+      "assets/products/black-tshirt-6.jpg"
     ],
     "hoverPhoto": "assets/products/black-tshirt-4.jpg",
     "sizes": [
@@ -58,9 +58,9 @@
       "assets/products/white-tshirt-0.jpg",
       "assets/products/white-tshirt-1.jpg",
       "assets/products/white-tshirt-2.jpg",
-      "assets/products/white-tshirt-3.jpg",
       "assets/products/white-tshirt-4.jpg",
-      "assets/products/white-tshirt-5.jpg"
+      "assets/products/white-tshirt-5.jpg",
+      "assets/products/white-tshirt-6.jpg"
     ],
     "hoverPhoto": "assets/products/white-tshirt-4.jpg",
     "sizes": [
@@ -107,6 +107,7 @@
       "assets/products/longsleeve-black-pink-3.jpg",
       "assets/products/longsleeve-black-pink-4.jpg",
       "assets/products/longsleeve-black-pink-5.jpg",
+      "assets/products/longsleeve-black-pink-6.jpg",
       "assets/products/longsleeve-black-pink-7.jpg"
     ],
     "hoverPhoto": "assets/products/longsleeve-black-pink-4.jpg",
@@ -157,6 +158,7 @@
       "assets/products/longsleeve-black-white-4.jpg",
       "assets/products/longsleeve-black-white-5.jpg",
       "assets/products/longsleeve-black-white-6.jpg",
+      "assets/products/longsleeve-black-white-7.jpg",
       "assets/products/longsleeve-black-white-8.jpg"
     ],
     "hoverPhoto": "assets/products/longsleeve-black-white-5.jpg",
@@ -206,6 +208,7 @@
       "assets/products/longsleeve-white-black-3.jpg",
       "assets/products/longsleeve-white-black-4.jpg",
       "assets/products/longsleeve-white-black-5.jpg",
+      "assets/products/longsleeve-white-black-6.jpg",
       "assets/products/longsleeve-white-black-7.jpg"
     ],
     "hoverPhoto": "assets/products/longsleeve-white-black-4.jpg",
@@ -256,6 +259,7 @@
       "assets/products/longsleeve-white-pink-4.jpg",
       "assets/products/longsleeve-white-pink-5.jpg",
       "assets/products/longsleeve-white-pink-6.jpg",
+      "assets/products/longsleeve-white-pink-7.jpg",
       "assets/products/longsleeve-white-pink-8.jpg"
     ],
     "hoverPhoto": "assets/products/longsleeve-white-pink-5.jpg",
