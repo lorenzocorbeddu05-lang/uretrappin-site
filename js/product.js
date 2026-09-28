@@ -32,6 +32,40 @@ function setupProductAccordion(){
   });
 }
 
+/**
+ * Lightbox "Guida alle taglie": un solo overlay condiviso da tutti i
+ * prodotti con taglie (l'immagine è sempre la stessa, vedi il src già
+ * scritto in product.html su #sizeGuideImg — non cambia per prodotto).
+ * Si apre cliccando #sizeGuideLink, si chiude con la X, cliccando fuori
+ * dalla foto (sullo sfondo scuro) o con Esc.
+ */
+function setupSizeGuideLightbox(){
+  const link = document.getElementById('sizeGuideLink');
+  const lightbox = document.getElementById('sizeGuideLightbox');
+  const closeBtn = document.getElementById('sizeGuideClose');
+  if (!link || !lightbox) return;
+
+  const open = () => {
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  };
+  const close = () => {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+  };
+
+  link.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  // Click sullo sfondo (non sulla foto) chiude — sulla foto stessa no,
+  // altrimenti diventerebbe impossibile guardarla da vicino cliccandoci.
+  lightbox.addEventListener('click', event => {
+    if (event.target === lightbox) close();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') close();
+  });
+}
+
 /* ===== GOOGLE FORM "PAGA ALLA CONSEGNA" =====
    URL del form + ID dei due campi a scelta multipla (Capo da
    acquistare, Taglia), presi da un link "Modulo precompilato" generato
@@ -217,6 +251,7 @@ async function loadProductDetail(){
     const sizeSelect = document.getElementById('sizeSelect');
     const buyButton = document.getElementById('buyButton');
     const codButton = document.getElementById('codButton');
+    const washingField = document.getElementById('washingField');
 
     if (product.sizes && product.sizes.length){
       renderSizeSelect(product, sizeSelect);
@@ -226,6 +261,9 @@ async function loadProductDetail(){
     } else {
       sizeField.style.display = 'none';
     }
+    // Solo sulle 2 T-shirt (data/products.json: "washingInstructions":
+    // true) — non sui Long Sleeve né sugli accessori.
+    if (washingField) washingField.style.display = product.washingInstructions ? '' : 'none';
     updateAvailability(product, sizeSelect, availabilityEl, buyButton, codButton);
 
     // Testi che dipendono dalla lingua ("Esaurito"/"Sold out" compreso,
@@ -239,6 +277,7 @@ async function loadProductDetail(){
     });
 
     setupProductAccordion();
+    setupSizeGuideLightbox();
 
     const relatedGrid = document.getElementById('relatedProducts');
     if (relatedGrid){

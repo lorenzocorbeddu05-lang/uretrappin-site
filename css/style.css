@@ -889,13 +889,24 @@
      continuità con la pagina, non di "scheda" separata. */
   .shop-page{
     padding-top:calc(7rem + var(--marquee-h));
+    /* Sovrascrive il padding laterale generico di "section" (var(--gap),
+       ~1.5-2rem su mobile) con uno più piccolo — è questo il vero
+       parametro che allarga o restringe le foto prodotto, molto più
+       del gap tra le colonne. ABBASSA questo valore per ingrandire
+       ancora, ALZALO per rimpicciolire. */
+    padding-left:1rem;
+    padding-right:1rem;
     max-width:1400px;
     margin:0 auto;
   }
   .products-grid{
     display:grid;
     grid-template-columns:repeat(2, 1fr);
-    gap:2.5rem 1rem;
+    /* Da mobile le card sono già larghe quanto lo schermo diviso 2 (1fr
+       1fr): per ingrandire le foto qui, ABBASSA il secondo valore
+       (il gap ORIZZONTALE tra le due colonne, ora 0.7rem) — meno
+       spazio vuoto tra le colonne = card (e quindi foto) più larghe. */
+    gap:2.5rem 0.7rem;
   }
   .product-card{
     display:flex;
@@ -922,6 +933,13 @@
   .product-photo--hover{
     opacity:0;
     transition:opacity 0.2s ease;
+    /* Le due foto hanno proporzioni diverse (la prima è il capo su
+       sfondo nero, tagliata stretta intorno al capo; questa è il
+       modello, verticale) — con object-fit:contain, dove l'immagine
+       più "piccola" non arriva lo spazio è trasparente e si vedrebbe
+       la foto sotto. Sfondo nero qui sopra copre sempre tutto,
+       coerente col nero della pagina. */
+    background:var(--bg);
   }
   @media (hover:hover){
     .product-card:hover .product-photo--hover{
@@ -943,9 +961,9 @@
   }
   @media (min-width:721px){
     .products-grid{
-      /* 320px = larghezza massima di ogni card: alzalo per ingrandire
+      /* 340px = larghezza massima di ogni card: alzalo per ingrandire
          ancora i prodotti e lasciare meno spazio vuoto ai lati. */
-      grid-template-columns:repeat(3, minmax(0, 320px));
+      grid-template-columns:repeat(3, minmax(0, 340px));
       justify-content:center;
       gap:3rem 2rem;
     }
@@ -967,6 +985,7 @@
     display:flex;
     flex-direction:column;
     gap:0.8rem;
+    min-width:0; /* idem: senza, il contenuto sotto (.product-thumbs) può forzare questa colonna più larga dello schermo */
   }
   .product-main-photo{
     width:100%;
@@ -974,17 +993,30 @@
     object-fit:contain;
     display:block;
   }
+  /* Scorrevole orizzontalmente invece che andare a capo o sforare
+     fuori dallo schermo — con 7-9 foto per prodotto (vedi
+     data/products.json) una fila fissa è più larga dello schermo su
+     mobile e si tira dietro tutta la colonna della galleria (bug
+     visto dal vivo: la foto principale usciva dai bordi del sito).
+     Stessa tecnica di .products-scroll più in basso. */
   .product-thumbs{
     display:flex;
     gap:0.6rem;
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:0.3rem; /* respiro per non tagliare il bordo attivo sotto */
+    min-width:0; /* senza questo, da flex-item la riga si allarga quanto il suo contenuto invece di scorrere — vedi commento sopra */
   }
   .product-thumbs img{
+    flex:0 0 70px; /* dimensione fissa: non si restringono per stare tutte in riga */
     width:70px;
     height:70px;
     object-fit:contain;
     cursor:pointer;
     border:1.5px solid transparent;
     opacity:0.6;
+    scroll-snap-align:start;
     transition: border-color 0.2s, opacity 0.2s;
   }
   .product-thumbs img.active{
@@ -1036,6 +1068,61 @@
     font-size:0.8rem;
     color:var(--steel);
     margin-top: -0.3rem;
+  }
+  /* Riga che affianca il box della taglia e il link "Guida alle
+     taglie" — così il link sta proprio accanto al box, non lontano
+     su in alto vicino alla label "Taglia". */
+  .product-size-row{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+  }
+  .size-guide-link{
+    -webkit-appearance:none;
+    appearance:none;
+    background:none;
+    border:none;
+    padding:0;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:0.8rem;
+    color:var(--green);
+    text-decoration:underline;
+    cursor:pointer;
+  }
+
+  /* ---------- LIGHTBOX GUIDA ALLE TAGLIE ---------- */
+  .lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:500;
+    background:rgba(0,0,0,0.92);
+    align-items:center;
+    justify-content:center;
+    padding:2rem;
+  }
+  .lightbox.is-open{
+    display:flex;
+  }
+  .lightbox-img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+  }
+  .lightbox-close{
+    -webkit-appearance:none;
+    appearance:none;
+    position:absolute;
+    top:1rem; right:1.2rem;
+    background:none;
+    border:none;
+    color:var(--off-white);
+    font-size:2.2rem;
+    line-height:1;
+    cursor:pointer;
   }
   /* Contenitore della select: la freccina è un ::after posizionato
      sopra, perché una <select> non supporta pseudo-elementi propri

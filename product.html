@@ -61,8 +61,15 @@
 
     <div class="product-field" id="sizeField">
       <label class="product-field-label" for="sizeSelect" data-i18n="product.size">Taglia</label>
-      <div class="product-select-wrap">
-        <select class="product-size-select" id="sizeSelect"></select>
+      <div class="product-size-row">
+        <div class="product-select-wrap">
+          <select class="product-size-select" id="sizeSelect"></select>
+        </div>
+        <!-- Stessa immagine per tutti i prodotti con taglie (S/M/L/XL
+             o S/M/L), non una per prodotto — vedi assets/products/
+             size-guide.jpg. Nascosto insieme a #sizeField per gli
+             accessori senza taglie (Mesh Cap/Balaclava). -->
+        <button type="button" class="size-guide-link" id="sizeGuideLink" data-i18n="product.sizeGuide">Guida alle taglie</button>
       </div>
     </div>
 
@@ -107,9 +114,31 @@
           </div>
         </div>
       </div>
+      <!-- Solo sulle 2 T-shirt (data/products.json: campo
+           "washingInstructions":true), non sui Long Sleeve né sugli
+           accessori — controllo in js/product.js. Testo uguale per
+           entrambe, quindi scritto qui una sola volta come
+           "Spedizione" sopra, non ripetuto in products.json. -->
+      <div class="accordion-item" id="washingField">
+        <button class="accordion-trigger" type="button" data-i18n="product.washing">Istruzioni per il lavaggio</button>
+        <div class="accordion-panel">
+          <div class="accordion-panel-inner">
+            <p data-i18n="product.washingText">Lavare in ammollo.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- ===== LIGHTBOX GUIDA ALLE TAGLIE =====
+     Nascosto finché #sizeGuideLink non viene cliccato (vedi
+     js/product.js). Un solo lightbox nella pagina, riusato da
+     qualunque prodotto — l'immagine cambia semplicemente src. -->
+<div class="lightbox" id="sizeGuideLightbox" aria-hidden="true">
+  <button type="button" class="lightbox-close" id="sizeGuideClose" aria-label="Chiudi" data-i18n-attr="aria-label:product.sizeGuideClose">&times;</button>
+  <img class="lightbox-img" id="sizeGuideImg" src="assets/products/size-guide.jpg" alt="Guida alle taglie" data-i18n-attr="alt:product.sizeGuide">
+</div>
 
 <!-- ===== ALTRI PRODOTTI =====
      Riga orizzontale scorrevole col resto dei prodotti (tutti tranne

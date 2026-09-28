@@ -10,10 +10,16 @@
    ========================================================= */
 
 function renderProductCard(product, id){
-  // La foto n.2 (se esiste) è sovrapposta alla prima e mostrata al
-  // passaggio del mouse su desktop (vedi .product-photo--hover in CSS).
-  const hoverPhoto = product.photos[1]
-    ? `<img class="product-photo product-photo--hover" src="${product.photos[1]}" alt="" loading="lazy">`
+  // Foto mostrata al passaggio del mouse su desktop (vedi
+  // .product-photo--hover in CSS): SEMPRE product.hoverPhoto (il
+  // modello frontale, impostato a mano in data/products.json), non
+  // semplicemente photos[1] — l'ordine delle foto in "photos" mette
+  // prima gli scatti di dettaglio/texture e solo dopo il modello, e
+  // quante foto di dettaglio ci sono varia da prodotto a prodotto,
+  // quindi la posizione del frontale nell'array non è sempre la stessa.
+  const hoverSrc = product.hoverPhoto || product.photos[1];
+  const hoverPhoto = hoverSrc
+    ? `<img class="product-photo product-photo--hover" src="${hoverSrc}" alt="" loading="lazy">`
     : '';
 
   return `
