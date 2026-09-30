@@ -907,6 +907,18 @@
        (il gap ORIZZONTALE tra le due colonne, ora 0.7rem) — meno
        spazio vuoto tra le colonne = card (e quindi foto) più larghe. */
     gap:2.5rem 0.7rem;
+    /* Riserva lo spazio della griglia PRIMA che js/shop.js finisca di
+       scaricare data/products.json e la riempia — senza questo, la
+       pagina parte con solo la scritta "Caricamento prodotti…" (poche
+       righe) e poi salta di colpo all'altezza vera della griglia,
+       causando un CLS (Cumulative Layout Shift) alto, misurato con
+       dati Cloudflare reali: 0.26 su mobile, "scarso" per Google,
+       contro lo ~0 di index.html che non ha questo problema (i suoi
+       elementi hanno già lo spazio riservato in HTML). Stima
+       approssimativa per 8 prodotti su 2 colonne (4 righe): non serve
+       che sia esatta, basta che riduca il salto. Se cambia il numero
+       di prodotti va ritoccata. */
+    min-height: calc(188vw + 22rem);
   }
   .product-card{
     display:flex;
@@ -966,6 +978,10 @@
       grid-template-columns:repeat(3, minmax(0, 340px));
       justify-content:center;
       gap:3rem 2rem;
+      /* Stesso motivo del min-height da mobile qui sopra — da desktop
+         sono 3 colonne invece di 2 (3 righe per 8 prodotti invece di
+         4), stima diversa di conseguenza. */
+      min-height: 1280px;
     }
   }
 
